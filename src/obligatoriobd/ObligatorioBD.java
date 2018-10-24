@@ -28,7 +28,7 @@ public class ObligatorioBD {
         System.out.println(reu0.getIntegrantes().size());
         //cambios para el git
         
-        //Esto es todo una mie***
+        //Esto es todo una mie***//caca pure
     }
     
 }
