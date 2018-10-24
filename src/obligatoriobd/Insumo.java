@@ -12,12 +12,12 @@ package obligatoriobd;
 public class Insumo {
     
     public static int id = 0;
-    private int IDInsumo;
+    private int idInsumo;
     private String nombre;
     private String descripcion;
     
     public Insumo(String nombre, String descripcion) {
-        IDInsumo = Insumo.id++;
+        idInsumo = Insumo.id++;
         this.nombre = nombre;
         this.descripcion = descripcion;
     }
@@ -31,11 +31,11 @@ public class Insumo {
     }
 
     public int getIDInsumo() {
-        return IDInsumo;
+        return idInsumo;
     }
 
     public void setIDInsumo(int IDInsumo) {
-        this.IDInsumo = IDInsumo;
+        this.idInsumo = IDInsumo;
     }
 
     public String getNombre() {

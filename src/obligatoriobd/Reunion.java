@@ -14,16 +14,16 @@ import java.util.LinkedList;
 public class Reunion {
         
     public static int id = 0;
-    private int IDReunion;
-    private int IDUsuarioCreador;
+    private int idReunion;
+    private int idUsuarioCreador;
     private boolean estaActiva;
     private String horaInicio;
     private String horaFin;
     private LinkedList integrantes = new LinkedList();
     
     public Reunion(String horaInicio, String horaFin, int IDUsuarioCreador){
-        IDReunion = Reunion.id++;
-        this.IDUsuarioCreador = IDUsuarioCreador;        
+        idReunion = Reunion.id++;
+        this.idUsuarioCreador = IDUsuarioCreador;        
         this.integrantes.add(this);
     }
     
@@ -36,19 +36,19 @@ public class Reunion {
     }
 
     public int getIDReunion() {
-        return IDReunion;
+        return idReunion;
     }
 
     public void setIDReunion(int IDReunion) {
-        this.IDReunion = IDReunion;
+        this.idReunion = IDReunion;
     }
 
     public int getIDUsuarioCreador() {
-        return IDUsuarioCreador;
+        return idUsuarioCreador;
     }
 
     public void setIDUsuarioCreador(int IDUsuarioCreador) {
-        this.IDUsuarioCreador = IDUsuarioCreador;
+        this.idUsuarioCreador = IDUsuarioCreador;
     }
 
     public boolean isEstaActiva() {

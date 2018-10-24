@@ -5,24 +5,26 @@
  */
 package obligatoriobd;
 
+import java.util.Date;
+
 /**
  *
  * @author Agustín
  */
 public class Evento {
     public static int id = 0;
-    private int IDEvento;
-    private int IDUsuario;
+    private int idEvento;
+    private int idUsuario;
     private String descripcion;
     private boolean esMensual;
     private boolean esAnual;
-    private String fechaCreacion;
-    private String fecha;
+    private Date fechaCreacion;
+    private Date fecha;
     private String tipo;
     
-    public Evento(int IDUsuario, String descripcion, boolean esMensual, boolean esAnual, String fecha, String tipo) {
-        this.IDEvento = Insumo.id++;
-        this.IDUsuario = IDUsuario;
+    public Evento(int IDUsuario, String descripcion, boolean esMensual, boolean esAnual, Date fecha, String tipo) {
+        this.idEvento = Insumo.id++;
+        this.idUsuario = IDUsuario;
         this.descripcion = descripcion;
         this.esMensual = esMensual;
         this.esAnual = esAnual;
@@ -40,19 +42,19 @@ public class Evento {
     }
 
     public int getIDEvento() {
-        return IDEvento;
+        return idEvento;
     }
 
     public void setIDEvento(int IDEvento) {
-        this.IDEvento = IDEvento;
+        this.idEvento = IDEvento;
     }
 
     public int getIDUsuario() {
-        return IDUsuario;
+        return idEvento;
     }
 
     public void setIDUsuario(int IDUsuario) {
-        this.IDUsuario = IDUsuario;
+        this.idEvento = IDUsuario;
     }
 
     public String getDescripcion() {
@@ -79,19 +81,19 @@ public class Evento {
         this.esAnual = esAnual;
     }
 
-    public String getFechaCreacion() {
+    public Date getFechaCreacion() {
         return fechaCreacion;
     }
 
-    public void setFechaCreacion(String fechaCreacion) {
+    public void setFechaCreacion(Date fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
 
-    public String getFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
-    public void setFecha(String fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 

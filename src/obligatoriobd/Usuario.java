@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 package obligatoriobd;
+
+import java.util.Date;
+
 /**
  *
  * @author Agustín
@@ -11,17 +14,17 @@ package obligatoriobd;
 public class Usuario {
     
     public static int id = 0;
-    private int IDUsuario;
+    private int idUsuario;
     private String usuername;
     private String ultimaConexion;
     
     public Usuario(String username){
-        IDUsuario = Usuario.id++;
+        idUsuario = Usuario.id++;
         this.usuername = username;
     }    
 
     public Integer getId() {
-        return IDUsuario;
+        return idUsuario;
     }
 
     public void setId(Integer id) {
@@ -45,7 +48,7 @@ public class Usuario {
     }
     
     public Reunion crearReunion(String horaInicio, String horaFin){
-        return new Reunion(horaInicio, horaFin, this.IDUsuario);
+        return new Reunion(horaInicio, horaFin, this.idUsuario);
     }
     
     public void agregarAReunion(Usuario usuario, Reunion reunion/*int IDUsuario, int IDReunion*/){
@@ -53,9 +56,9 @@ public class Usuario {
         reunion.getIntegrantes().add(usuario);
     }
     
-    public Evento crearEvento(String descripcion, boolean esMensual, boolean esAnual, String fecha, String tipo){
+    public Evento crearEvento(String descripcion, boolean esMensual, boolean esAnual, Date fecha, String tipo){
         //obtener fecha del momento para fechaCreacion
         String fechaCreacion = null;
-        return new Evento(this.IDUsuario, descripcion, esMensual, esAnual, fecha, tipo);
+        return new Evento(this.idUsuario, descripcion, esMensual, esAnual, fecha, tipo);
     }
 }
