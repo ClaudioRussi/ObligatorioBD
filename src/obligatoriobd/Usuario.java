@@ -52,4 +52,10 @@ public class Usuario {
         //obtener la reunion a partir de su id y lo mismo con usuario
         reunion.getIntegrantes().add(usuario);
     }
+    
+    public Evento crearEvento(String descripcion, boolean esMensual, boolean esAnual, String fecha, String tipo){
+        //obtener fecha del momento para fechaCreacion
+        String fechaCreacion = null;
+        return new Evento(this.IDUsuario, descripcion, esMensual, esAnual, fecha, tipo);
+    }
 }
