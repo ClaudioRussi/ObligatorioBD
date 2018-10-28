@@ -5,10 +5,8 @@
  */
 package obligatoriobd;
 
-/**
- *
- * @author Agustín
- */
+import java.sql.*;
+
 public class ObligatorioBD {
 
     /**
