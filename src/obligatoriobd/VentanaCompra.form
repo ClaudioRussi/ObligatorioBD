@@ -33,29 +33,28 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="descripcionEvento" min="-2" pref="209" max="-2" attributes="0"/>
+                  <Component id="idInsumo" min="-2" pref="209" max="-2" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <Component id="jSpinner1" min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="diaCompra" min="-2" pref="40" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jSpinner2" min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="mesCompra" min="-2" pref="40" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jSpinner3" min="-2" pref="60" max="-2" attributes="0"/>
+                      <Component id="anioCompra" min="-2" pref="60" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace type="separate" pref="19" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                      <Component id="registrarCompra" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
@@ -63,7 +62,7 @@
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField1" min="-2" pref="54" max="-2" attributes="0"/>
+                          <Component id="precioCompra" min="-2" pref="54" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="89" max="-2" attributes="0"/>
                   </Group>
@@ -71,19 +70,19 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <EmptySpace min="4" pref="4" max="-2" attributes="0"/>
-                              <Component id="jSpinner7" min="-2" pref="58" max="-2" attributes="0"/>
+                              <Component id="cantidadInsumo" min="-2" pref="58" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Group type="102" alignment="1" attributes="0">
-                                      <Component id="jSpinner5" min="-2" pref="43" max="-2" attributes="0"/>
+                                      <Component id="horaCompra" min="-2" pref="43" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="jLabel6" alignment="1" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jSpinner6" min="-2" pref="40" max="-2" attributes="0"/>
+                              <Component id="minutoCompra" min="-2" pref="40" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
@@ -95,19 +94,14 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Component id="jButton2" alignment="0" min="-2" max="-2" attributes="0"/>
-              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="descripcionEvento" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jSpinner7" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="idInsumo" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cantidadInsumo" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                   </Group>
@@ -119,15 +113,15 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jSpinner5" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jSpinner6" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="horaCompra" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="minutoCompra" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jSpinner1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="diaCompra" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jSpinner2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="mesCompra" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jSpinner3" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="anioCompra" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -136,18 +130,18 @@
                   <Group type="102" attributes="0">
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jTextField1" min="-2" max="-2" attributes="0"/>
+                      <Component id="precioCompra" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace pref="61" max="32767" attributes="0"/>
-              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+              <Component id="registrarCompra" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JTextField" name="descripcionEvento">
+    <Component class="javax.swing.JTextField" name="idInsumo">
       <Properties>
         <Property name="text" type="java.lang.String" value="Insumo"/>
       </Properties>
@@ -157,15 +151,9 @@
         <Property name="text" type="java.lang.String" value="ventanaCompra"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="registrarCompra">
       <Properties>
         <Property name="text" type="java.lang.String" value="Registrar"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="jButton2">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="X"/>
-        <Property name="actionCommand" type="java.lang.String" value="botonCerrar"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">
@@ -186,32 +174,32 @@
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField1">
+    <Component class="javax.swing.JTextField" name="precioCompra">
       <Properties>
         <Property name="text" type="java.lang.String" value="$"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JSpinner" name="jSpinner1">
+    <Component class="javax.swing.JSpinner" name="diaCompra">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
         <Property name="text" type="java.lang.String" value="/"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JSpinner" name="jSpinner2">
+    <Component class="javax.swing.JSpinner" name="mesCompra">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
         <Property name="text" type="java.lang.String" value="/"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JSpinner" name="jSpinner3">
+    <Component class="javax.swing.JSpinner" name="anioCompra">
     </Component>
-    <Component class="javax.swing.JSpinner" name="jSpinner5">
+    <Component class="javax.swing.JSpinner" name="horaCompra">
     </Component>
-    <Component class="javax.swing.JSpinner" name="jSpinner6">
+    <Component class="javax.swing.JSpinner" name="minutoCompra">
     </Component>
-    <Component class="javax.swing.JSpinner" name="jSpinner7">
+    <Component class="javax.swing.JSpinner" name="cantidadInsumo">
     </Component>
   </SubComponents>
 </Form>
