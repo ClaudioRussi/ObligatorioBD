@@ -70,6 +70,6 @@ public class Compra {
         this.cantidadComprada = cantidadComprada;
     }
     
-    
-    
+   
+     
 }

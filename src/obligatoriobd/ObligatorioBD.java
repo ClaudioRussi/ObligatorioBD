@@ -20,9 +20,9 @@ public class ObligatorioBD {
     public static void main(String[] args) {
         ArrayList<Evento> eventos = new ArrayList();
         
-        Usuario user0 = new Usuario("nom1");
-        Usuario user1 = new Usuario("nom2");
-        Usuario user2 = new Usuario("nom3");
+        Usuario user0 = new Usuario("nom1","pas21");
+        Usuario user1 = new Usuario("nom2", "pas21");
+        Usuario user2 = new Usuario("nom3", "pas21");
         System.out.println(user0.getId());
         System.out.println(user1.getId());
         Reunion reu0 = user0.crearReunion("askjd", "skjda");

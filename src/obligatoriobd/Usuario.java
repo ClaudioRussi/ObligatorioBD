@@ -15,23 +15,26 @@ import java.util.Date;
 public class Usuario {
     
     String url = "jdbc:postgresql://192.168.56.1:5432/BD2018-1";
-    String usuario = "postgres"; 
-    String contrasenia = "test123";
+    String PG_usuario = "postgres"; 
+    String PG_contrasenia = "test123";
     
     public static int id = 0;
     private int idUsuario;
     private String username;
     private Date ultimaConexion;
+    private String contrasenia;
     
-    public Usuario(String username){
+    public Usuario(String username, String contrasenia){
         idUsuario = Usuario.id++;
         this.username = username;
+        this.contrasenia = contrasenia;
     }    
     
-    private Usuario(String username, int id, Date ultimaConexion){
+    private Usuario(String username, int id, Date ultimaConexion, String contrasenia){
         idUsuario = id;
         this.username = username;
         this.ultimaConexion = ultimaConexion;
+        this.contrasenia = contrasenia;
     }
 
     public Integer getId() {
@@ -77,13 +80,13 @@ public class Usuario {
         Usuario user = null;
         try{
             Class.forName("org.postgresql.Driver");
-            Connection conexion = DriverManager.getConnection(url, usuario, contrasenia);
+            Connection conexion = DriverManager.getConnection(url, PG_usuario, PG_contrasenia);
             java.sql.Statement st = conexion.createStatement();
             
-            String sql = "SELECT * FROM evento WHERE id = " + id;
+            String sql = "SELECT * FROM usuario WHERE id = " + id;
             ResultSet result = st.executeQuery(sql);
             if(result != null){
-                user = (new Usuario(result.getString("username"), result.getInt("id"), result.getDate("ultima_conexion")));
+                user = (new Usuario(result.getString("username"), result.getInt("id"), result.getDate("ultima_conexion"), result.getString("contrasenia")));
             }
             result.close();
             st.close();
@@ -98,9 +101,9 @@ public class Usuario {
     public void Save(){
         try{
             Class.forName("org.postgresql.Driver");
-            Connection conexion = DriverManager.getConnection(url, usuario, contrasenia);
+            Connection conexion = DriverManager.getConnection(url, PG_usuario, PG_contrasenia);
             java.sql.Statement st = conexion.createStatement();
-            String insertion = "INSERT INTO usuario VALUES "+this.idUsuario+" "+this.username+" "+this.ultimaConexion+";";
+            String insertion = "INSERT INTO usuario VALUES "+this.idUsuario+" "+this.username+" "+this.ultimaConexion+" "+ this.contrasenia +";";
             st.executeUpdate(insertion);
             st.close();
             conexion.close();
@@ -113,9 +116,9 @@ public class Usuario {
     public void Update(){
          try{
             Class.forName("org.postgresql.Driver");
-            Connection conexion = DriverManager.getConnection(url, usuario, contrasenia);
+            Connection conexion = DriverManager.getConnection(url, PG_usuario, PG_contrasenia);
             java.sql.Statement st = conexion.createStatement();
-            String Update = "UPDATE usuario SET username = "+this.username+", ultima_conexion = "+this.ultimaConexion+" WHERE id = "+ this.idUsuario +";";
+            String Update = "UPDATE usuario SET username = "+this.username+", ultima_conexion = "+this.ultimaConexion+ ", contrasenia = "+ this.contrasenia +" WHERE id = "+ this.idUsuario +";";
             st.executeUpdate(Update);
             st.close();
             conexion.close();
@@ -128,7 +131,7 @@ public class Usuario {
     public void Delete(){
         try{
             Class.forName("org.postgresql.Driver");
-            Connection conexion = DriverManager.getConnection(url, usuario, contrasenia);
+            Connection conexion = DriverManager.getConnection(url, PG_usuario, PG_contrasenia);
             java.sql.Statement st = conexion.createStatement();
             String Update = "DELETE FROM usuario WHERE id = "+ this.idUsuario+";";
             st.executeUpdate(Update);
@@ -138,5 +141,27 @@ public class Usuario {
             System.out.println("ERROR DE CONEXION" + e.getMessage());
             
         }
+    }
+    
+    public Usuario LogIn(String username, String password){
+        Usuario user = null;
+        try{
+            Class.forName("org.postgresql.Driver");
+            Connection conexion = DriverManager.getConnection(url, PG_usuario, PG_contrasenia);
+            java.sql.Statement st = conexion.createStatement();
+            
+            String sql = "SELECT * FROM usuario WHERE username = " + username + " AND contrasenia = "+password+";";
+            ResultSet result = st.executeQuery(sql);
+            if(result != null){
+                user = (new Usuario(result.getString("username"), result.getInt("id"), result.getDate("ultima_conexion"), result.getString("contrasenia")));
+            }
+            result.close();
+            st.close();
+            conexion.close();
+        }catch (Exception e){
+            System.out.println("ERROR DE CONEXION" + e.getMessage());
+            
+        }
+        return user;
     }
 }
