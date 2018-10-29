@@ -32,7 +32,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         botonReunion = new javax.swing.JButton();
         botonCompra = new javax.swing.JButton();
         botonConsumicion = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -50,60 +49,79 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         ventanaPrincipal.setText("ventana principal");
 
         botonEvento.setText("Evento");
+        botonEvento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEventoActionPerformed(evt);
+            }
+        });
 
         botonReunion.setText("Reunion");
+        botonReunion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonReunionActionPerformed(evt);
+            }
+        });
 
         botonCompra.setText("Compra");
+        botonCompra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCompraActionPerformed(evt);
+            }
+        });
 
         botonConsumicion.setText("Consumicion");
-
-        jButton1.setText("X");
-        jButton1.setActionCommand("botonCerrar");
+        botonConsumicion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonConsumicionActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(158, 158, 158)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel6))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(ventanaPrincipal)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel9)
-                        .addComponent(botonEvento)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
+                        .addComponent(jLabel9)
+                        .addGap(125, 125, 125))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(botonEvento)
+                            .addComponent(ventanaPrincipal))
+                        .addGap(34, 34, 34)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel1)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(72, 72, 72)
+                                        .addComponent(jLabel1))
                                     .addComponent(botonReunion))
                                 .addGap(33, 33, 33)
                                 .addComponent(botonCompra)
                                 .addGap(37, 37, 37)
                                 .addComponent(botonConsumicion))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(31, 31, 31)
+                                .addGap(75, 75, 75)
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel2)))
-                        .addContainerGap())))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(158, 158, 158)
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel6))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(107, 107, 107)
-                    .addComponent(jLabel3))
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(172, 172, 172)
-                    .addComponent(jLabel4)))
+                        .addContainerGap(19, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(107, 107, 107)
+                            .addComponent(jLabel3))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(172, 172, 172)
+                            .addComponent(jLabel4)))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(180, 180, 180)
                 .addComponent(jLabel8)
@@ -114,11 +132,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(ventanaPrincipal))
-                            .addComponent(jButton1))
+                        .addContainerGap()
+                        .addComponent(ventanaPrincipal)
                         .addGap(48, 48, 48))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -127,7 +142,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(8, 8, 8)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -142,17 +157,41 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(botonEvento)
-                            .addComponent(botonReunion)
                             .addComponent(botonCompra)
-                            .addComponent(botonConsumicion))
+                            .addComponent(botonConsumicion)
+                            .addComponent(botonReunion))
                         .addGap(31, 31, 31))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel7)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void botonEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEventoActionPerformed
+        VentanaEvento ventanaEvento = new VentanaEvento();
+        ventanaEvento.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_botonEventoActionPerformed
+
+    private void botonReunionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonReunionActionPerformed
+        VentanaCrearReunion ventanaReunion = new VentanaCrearReunion();
+        ventanaReunion.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_botonReunionActionPerformed
+
+    private void botonCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCompraActionPerformed
+        VentanaCompra ventanaCompra = new VentanaCompra();
+        ventanaCompra.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_botonCompraActionPerformed
+
+    private void botonConsumicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonConsumicionActionPerformed
+        VentanaConsumicion ventanaConsumicion = new VentanaConsumicion();
+        ventanaConsumicion.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_botonConsumicionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -194,7 +233,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton botonConsumicion;
     private javax.swing.JButton botonEvento;
     private javax.swing.JButton botonReunion;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
