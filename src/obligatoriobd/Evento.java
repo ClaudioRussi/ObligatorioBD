@@ -158,4 +158,49 @@ public class Evento {
         }
         return evento;
     }
+    
+    public void Save(){
+        try{
+            Class.forName("org.postgresql.Driver");
+            Connection conexion = DriverManager.getConnection(url, usuario, contrasenia);
+            java.sql.Statement st = conexion.createStatement();
+            String insertion = "INSERT INTO evento VALUES "+this.idEvento+" "+this.idUsuario+" "+this.descripcion+" "+this.esMensual+" "+this.esAnual+" "+this.fechaCreacion+" "+this.fecha+" "+this.tipo+";";
+            st.executeUpdate(insertion);
+            st.close();
+            conexion.close();
+        }catch (Exception e){
+            System.out.println("ERROR DE CONEXION" + e.getMessage());
+            
+        }
+    }
+    
+    public void Update(){
+         try{
+            Class.forName("org.postgresql.Driver");
+            Connection conexion = DriverManager.getConnection(url, usuario, contrasenia);
+            java.sql.Statement st = conexion.createStatement();
+            String Update = "UPDATE evento SET id_usuario = "+this.idUsuario+", descripcion = "+this.descripcion+", es_mensual = "+this.esMensual+", es_anual = "+this.esAnual+", fecha_creacion = "+this.fechaCreacion+", fecha = "+this.fecha+", tipo = "+this.tipo+" WHERE id = "+ this.idEvento +";";
+            st.executeUpdate(Update);
+            st.close();
+            conexion.close();
+        }catch (Exception e){
+            System.out.println("ERROR DE CONEXION" + e.getMessage());
+            
+        }
+    }
+    
+    public void Delete(){
+        try{
+            Class.forName("org.postgresql.Driver");
+            Connection conexion = DriverManager.getConnection(url, usuario, contrasenia);
+            java.sql.Statement st = conexion.createStatement();
+            String Update = "DELETE FROM evento WHERE id = "+ this.idEvento+";";
+            st.executeUpdate(Update);
+            st.close();
+            conexion.close();
+        }catch (Exception e){
+            System.out.println("ERROR DE CONEXION" + e.getMessage());
+            
+        }
+    }
 }

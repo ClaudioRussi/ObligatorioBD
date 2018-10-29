@@ -41,7 +41,7 @@ public class VentanaSesion extends javax.swing.JFrame {
 
         idUsuario.setText("idUsuario");
 
-        jLabel1.setText("ID:");
+        jLabel1.setText("Usuario:");
 
         jLabel2.setText("Contraseña:");
 
