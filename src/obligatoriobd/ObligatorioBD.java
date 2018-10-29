@@ -6,13 +6,20 @@
 package obligatoriobd;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class ObligatorioBD {
-
+    static String url = "jdbc:postgresql://192.168.56.1:5432/BD2018-1";
+    static String usuario = "postgres"; 
+    static String contrasenia = "test123";
+    
+    
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        ArrayList<Evento> eventos = new ArrayList();
+        
         Usuario user0 = new Usuario("nom1");
         Usuario user1 = new Usuario("nom2");
         Usuario user2 = new Usuario("nom3");
@@ -27,6 +34,9 @@ public class ObligatorioBD {
         //cambios para el git
         
         //Esto es todo una mie***//caca pure
+        
+        Thread calendario = new Thread(new HiloCalendario(eventos));
+        calendario.start();
     }
     
 }

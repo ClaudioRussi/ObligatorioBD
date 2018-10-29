@@ -5,6 +5,7 @@
  */
 package obligatoriobd;
 
+import java.sql.*;
 import java.util.Date;
 
 /**
@@ -12,6 +13,10 @@ import java.util.Date;
  * @author Agustín
  */
 public class Usuario {
+    
+    String url = "jdbc:postgresql://192.168.56.1:5432/BD2018-1";
+    String usuario = "postgres"; 
+    String contrasenia = "test123";
     
     public static int id = 0;
     private int idUsuario;
@@ -61,4 +66,6 @@ public class Usuario {
         String fechaCreacion = null;
         return new Evento(this.idUsuario, descripcion, esMensual, esAnual, fecha, tipo);
     }
+    
+   
 }
