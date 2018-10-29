@@ -20,13 +20,19 @@ public class Usuario {
     
     public static int id = 0;
     private int idUsuario;
-    private String usuername;
-    private String ultimaConexion;
+    private String username;
+    private Date ultimaConexion;
     
     public Usuario(String username){
         idUsuario = Usuario.id++;
-        this.usuername = username;
+        this.username = username;
     }    
+    
+    private Usuario(String username, int id, Date ultimaConexion){
+        idUsuario = id;
+        this.username = username;
+        this.ultimaConexion = ultimaConexion;
+    }
 
     public Integer getId() {
         return idUsuario;
@@ -37,18 +43,18 @@ public class Usuario {
     }
 
     public String getUsuername() {
-        return usuername;
+        return username;
     }
 
     public void setUsuername(String usuername) {
-        this.usuername = usuername;
+        this.username = usuername;
     }
 
-    public String getUltimaConexion() {
+    public Date getUltimaConexion() {
         return ultimaConexion;
     }
 
-    public void setUltimaConexion(String ultimaConexion) {
+    public void setUltimaConexion(Date ultimaConexion) {
         this.ultimaConexion = ultimaConexion;
     }
     
@@ -67,5 +73,70 @@ public class Usuario {
         return new Evento(this.idUsuario, descripcion, esMensual, esAnual, fecha, tipo);
     }
     
-   
+    public Usuario buscarUserPorId(int id){
+        Usuario user = null;
+        try{
+            Class.forName("org.postgresql.Driver");
+            Connection conexion = DriverManager.getConnection(url, usuario, contrasenia);
+            java.sql.Statement st = conexion.createStatement();
+            
+            String sql = "SELECT * FROM evento WHERE id = " + id;
+            ResultSet result = st.executeQuery(sql);
+            if(result != null){
+                user = (new Usuario(result.getString("username"), result.getInt("id"), result.getDate("ultima_conexion")));
+            }
+            result.close();
+            st.close();
+            conexion.close();
+        }catch (Exception e){
+            System.out.println("ERROR DE CONEXION" + e.getMessage());
+            
+        }
+        return user;
+    }
+    
+    public void Save(){
+        try{
+            Class.forName("org.postgresql.Driver");
+            Connection conexion = DriverManager.getConnection(url, usuario, contrasenia);
+            java.sql.Statement st = conexion.createStatement();
+            String insertion = "INSERT INTO usuario VALUES "+this.idUsuario+" "+this.username+" "+this.ultimaConexion+";";
+            st.executeUpdate(insertion);
+            st.close();
+            conexion.close();
+        }catch (Exception e){
+            System.out.println("ERROR DE CONEXION" + e.getMessage());
+            
+        }
+    }
+    
+    public void Update(){
+         try{
+            Class.forName("org.postgresql.Driver");
+            Connection conexion = DriverManager.getConnection(url, usuario, contrasenia);
+            java.sql.Statement st = conexion.createStatement();
+            String Update = "UPDATE usuario SET username = "+this.username+", ultima_conexion = "+this.ultimaConexion+" WHERE id = "+ this.idUsuario +";";
+            st.executeUpdate(Update);
+            st.close();
+            conexion.close();
+        }catch (Exception e){
+            System.out.println("ERROR DE CONEXION" + e.getMessage());
+            
+        }
+    }
+    
+    public void Delete(){
+        try{
+            Class.forName("org.postgresql.Driver");
+            Connection conexion = DriverManager.getConnection(url, usuario, contrasenia);
+            java.sql.Statement st = conexion.createStatement();
+            String Update = "DELETE FROM usuario WHERE id = "+ this.idUsuario+";";
+            st.executeUpdate(Update);
+            st.close();
+            conexion.close();
+        }catch (Exception e){
+            System.out.println("ERROR DE CONEXION" + e.getMessage());
+            
+        }
+    }
 }
