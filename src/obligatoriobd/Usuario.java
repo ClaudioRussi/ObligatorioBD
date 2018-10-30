@@ -25,7 +25,8 @@ public class Usuario {
     private String contrasenia;
     
     public Usuario(String username, String contrasenia){
-        idUsuario = Usuario.id++;
+        id++;
+        idUsuario = Usuario.id;
         this.username = username;
         this.contrasenia = contrasenia;
     }    
@@ -103,7 +104,7 @@ public class Usuario {
             Class.forName("org.postgresql.Driver");
             Connection conexion = DriverManager.getConnection(url, PG_usuario, PG_contrasenia);
             java.sql.Statement st = conexion.createStatement();
-            String insertion = "INSERT INTO usuario VALUES ("+this.idUsuario+" '"+this.username+"' "+this.ultimaConexion+" '"+ this.contrasenia +"');";
+            String insertion = "INSERT INTO usuario VALUES ("+this.idUsuario+" ,'"+this.username+"', "+this.ultimaConexion+", '"+ this.contrasenia +"');";
             st.executeUpdate(insertion);
             st.close();
             conexion.close();

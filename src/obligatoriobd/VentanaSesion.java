@@ -141,7 +141,7 @@ public class VentanaSesion extends javax.swing.JFrame {
         Usuario usuario = new Usuario(idUsuario.getText(), new String(contraseniaUsuario.getPassword()));
         usuario.Save();
         ObligatorioBD.usuarioLoggeado = usuario;
-        VentanaSesion vent = new VentanaSesion();
+        VentanaPrincipal vent = new VentanaPrincipal();
         vent.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_crearActionPerformed

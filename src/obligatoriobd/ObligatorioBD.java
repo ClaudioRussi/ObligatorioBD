@@ -47,11 +47,11 @@ public class ObligatorioBD {
             Connection conexion = DriverManager.getConnection(url, usuario, contrasenia);
             java.sql.Statement st = conexion.createStatement();
             
-            String sql = "SELECT MAX(id_usuario) FROM usuario;";
+            String sql = "SELECT MAX(id_usuario) AS id FROM usuario;";
             ResultSet result = st.executeQuery(sql);
             
             while(result.next()){
-                 Usuario.id = result.getInt("id_usuario");
+                 Usuario.id = result.getInt("id");
             }
             /*if(result != null){
                 Usuario.id = result.getInt("id_usuario");
