@@ -16,6 +16,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
      */
     public VentanaPrincipal() {
         initComponents();
+        this.LblUsuario.setText(ObligatorioBD.usuarioLoggeado.getUsuername()); 
     }
 
     /**
@@ -41,6 +42,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        BtnCerrarSesion = new javax.swing.JButton();
+        LblUsuario = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 204, 255));
@@ -76,6 +79,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        BtnCerrarSesion.setText("Cerrar sesión");
+        BtnCerrarSesion.setToolTipText("");
+        BtnCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCerrarSesionActionPerformed(evt);
+            }
+        });
+
+        LblUsuario.setText("Username");
+        LblUsuario.setToolTipText("");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -97,31 +111,40 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                             .addComponent(ventanaPrincipal))
                         .addGap(34, 34, 34)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(107, 107, 107)
+                                .addComponent(jLabel3))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(172, 172, 172)
+                                .addComponent(jLabel4))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(72, 72, 72)
-                                        .addComponent(jLabel1))
-                                    .addComponent(botonReunion))
-                                .addGap(33, 33, 33)
-                                .addComponent(botonCompra)
-                                .addGap(37, 37, 37)
-                                .addComponent(botonConsumicion))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(75, 75, 75)
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel2)))
-                        .addContainerGap(19, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(107, 107, 107)
-                            .addComponent(jLabel3))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(172, 172, 172)
-                            .addComponent(jLabel4)))))
+                                        .addGap(75, 75, 75)
+                                        .addComponent(jLabel5)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel2))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(LblUsuario)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addGap(72, 72, 72)
+                                                        .addComponent(jLabel1))
+                                                    .addComponent(botonReunion))
+                                                .addGap(33, 33, 33)
+                                                .addComponent(botonCompra)))
+                                        .addGap(37, 37, 37)
+                                        .addComponent(botonConsumicion)))
+                                .addGap(0, 10, Short.MAX_VALUE))
+                            .addComponent(BtnCerrarSesion, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addContainerGap())))
             .addGroup(layout.createSequentialGroup()
                 .addGap(180, 180, 180)
                 .addComponent(jLabel8)
@@ -133,8 +156,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(ventanaPrincipal)
-                        .addGap(48, 48, 48))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(ventanaPrincipal)
+                            .addComponent(BtnCerrarSesion)
+                            .addComponent(LblUsuario))
+                        .addGap(43, 43, 43))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel9)
@@ -193,8 +219,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_botonConsumicionActionPerformed
 
+    private void BtnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCerrarSesionActionPerformed
+        ObligatorioBD.usuarioLoggeado = null; 
+        VentanaSesion vtn = new VentanaSesion();
+        vtn.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_BtnCerrarSesionActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnCerrarSesion;
+    private javax.swing.JLabel LblUsuario;
     private javax.swing.JButton botonCompra;
     private javax.swing.JButton botonConsumicion;
     private javax.swing.JButton botonEvento;

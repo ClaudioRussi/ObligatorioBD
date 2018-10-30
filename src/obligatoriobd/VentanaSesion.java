@@ -34,6 +34,7 @@ public class VentanaSesion extends javax.swing.JFrame {
         contraseniaUsuario = new javax.swing.JPasswordField();
         acceder = new javax.swing.JButton();
         crear = new javax.swing.JButton();
+        LblError = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,6 +72,8 @@ public class VentanaSesion extends javax.swing.JFrame {
             }
         });
 
+        LblError.setForeground(new java.awt.Color(255, 0, 0));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -93,8 +96,11 @@ public class VentanaSesion extends javax.swing.JFrame {
                                 .addComponent(acceder))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(idUsuario)
-                                .addComponent(contraseniaUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)))))
-                .addContainerGap(154, Short.MAX_VALUE))
+                                .addComponent(contraseniaUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(73, 73, 73)
+                        .addComponent(LblError, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(92, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -113,7 +119,9 @@ public class VentanaSesion extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(acceder)
                     .addComponent(crear))
-                .addContainerGap(76, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(LblError)
+                .addContainerGap(58, Short.MAX_VALUE))
         );
 
         pack();
@@ -128,7 +136,8 @@ public class VentanaSesion extends javax.swing.JFrame {
             this.dispose();
         }
         else{
-            System.out.println("Error al logearse.\n");
+            this.LblError.setText("Error al loguearse\n");
+            //System.out.println("Error al logearse.\n");
         }
     }//GEN-LAST:event_accederActionPerformed
 
@@ -147,11 +156,13 @@ public class VentanaSesion extends javax.swing.JFrame {
         if(!usuario.RegisterError){
             ObligatorioBD.usuarioLoggeado = usuario;
             VentanaPrincipal vent = new VentanaPrincipal();
+            
             vent.setVisible(true);
             this.dispose();
         }
         else{
-            System.out.println("Ya existe un usuario con ese nombre.\n");
+            this.LblError.setText("Ya existe un usuario con ese nombre.\n");
+            //System.out.println("Ya existe un usuario con ese nombre.\n");
         }
         
     }//GEN-LAST:event_crearActionPerformed
@@ -192,6 +203,7 @@ public class VentanaSesion extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel LblError;
     private javax.swing.JButton acceder;
     private javax.swing.JPasswordField contraseniaUsuario;
     private javax.swing.JButton crear;
