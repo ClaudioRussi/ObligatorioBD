@@ -14,9 +14,9 @@ import java.util.Date;
  */
 public class Usuario {
     
-    String url = "jdbc:postgresql://192.168.56.1:5432/BD2018-1";
-    String PG_usuario = "postgres"; 
-    String PG_contrasenia = "test123";
+    static String url = "jdbc:postgresql://192.168.56.1:5432/BD2018-1";
+    static String PG_usuario = "postgres"; 
+    static String PG_contrasenia = "test123";
     
     public static int id = 0;
     private int idUsuario;
@@ -143,7 +143,7 @@ public class Usuario {
         }
     }
     
-    public Usuario LogIn(String username, String password){
+    public static Usuario LogIn(String username, String password){
         Usuario user = null;
         try{
             Class.forName("org.postgresql.Driver");

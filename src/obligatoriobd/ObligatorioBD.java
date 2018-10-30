@@ -13,6 +13,8 @@ public class ObligatorioBD {
     static String usuario = "postgres"; 
     static String contrasenia = "test123";
     
+    static Usuario usuarioLoggeado;
+    
     
     /**
      * @param args the command line arguments

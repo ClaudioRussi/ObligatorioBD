@@ -40,14 +40,29 @@ public class VentanaSesion extends javax.swing.JFrame {
         ventanaSesion.setText("ventanaSesion");
 
         idUsuario.setText("idUsuario");
+        idUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                idUsuarioActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Usuario:");
 
         jLabel2.setText("Contraseña:");
 
         contraseniaUsuario.setText("jPasswordField1");
+        contraseniaUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                contraseniaUsuarioActionPerformed(evt);
+            }
+        });
 
         acceder.setText("Acceder");
+        acceder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                accederActionPerformed(evt);
+            }
+        });
 
         crear.setText("Crear");
 
@@ -98,6 +113,20 @@ public class VentanaSesion extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void accederActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accederActionPerformed
+        // TODO add your handling code here:
+        
+        ObligatorioBD.usuarioLoggeado = Usuario.LogIn(idUsuario.getText(), new String(contraseniaUsuario.getPassword()));
+    }//GEN-LAST:event_accederActionPerformed
+
+    private void idUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_idUsuarioActionPerformed
+
+    private void contraseniaUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contraseniaUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_contraseniaUsuarioActionPerformed
 
     /**
      * @param args the command line arguments
