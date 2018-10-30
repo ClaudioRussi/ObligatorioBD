@@ -65,6 +65,11 @@ public class VentanaSesion extends javax.swing.JFrame {
         });
 
         crear.setText("Crear");
+        crear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                crearActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -127,6 +132,13 @@ public class VentanaSesion extends javax.swing.JFrame {
     private void contraseniaUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contraseniaUsuarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_contraseniaUsuarioActionPerformed
+
+    private void crearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearActionPerformed
+        // TODO add your handling code here:
+        Usuario usuario = new Usuario(idUsuario.getText(), new String(contraseniaUsuario.getPassword()));
+        usuario.Save();
+        ObligatorioBD.usuarioLoggeado = usuario;
+    }//GEN-LAST:event_crearActionPerformed
 
     /**
      * @param args the command line arguments
