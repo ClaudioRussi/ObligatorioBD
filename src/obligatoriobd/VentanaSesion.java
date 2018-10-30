@@ -131,6 +131,7 @@ public class VentanaSesion extends javax.swing.JFrame {
         // TODO add your handling code here:
         Usuario usr = Usuario.LogIn(idUsuario.getText(), new String(contraseniaUsuario.getPassword()));
         if(!Usuario.LogInError){
+            ObligatorioBD.usuarioLoggeado = usr;
             VentanaPrincipal vent = new VentanaPrincipal();
             vent.setVisible(true);
             this.dispose();
