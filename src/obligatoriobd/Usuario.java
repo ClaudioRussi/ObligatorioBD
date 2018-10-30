@@ -169,8 +169,20 @@ public class Usuario {
             String sql = "SELECT * FROM usuario WHERE username = '" + username + "' AND contrasenia = '"+password+"';";
             ResultSet result = st.executeQuery(sql);
             while(result.next()){
-                user = (new Usuario(result.getString("username"), result.getInt("id_usuario"), result.getDate("ultima_conexion"), result.getString("contrasenia")));
+                String usrname = result.getString("username");
+                System.out.println(usrname);
+                if(!usrname.equals("")){
+                    user = (new Usuario(result.getString("username"), result.getInt("id_usuario"), result.getDate("ultima_conexion"), result.getString("contrasenia")));
+                }
+                else{
+                    result.close();
+                    st.close();
+                    conexion.close();
+                    LogInError = true;
+                    return null;
+                }
             }
+            
             result.close();
             st.close();
             conexion.close();
