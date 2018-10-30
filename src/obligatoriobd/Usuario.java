@@ -49,7 +49,7 @@ public class Usuario {
         this.id = id;
     }
 
-    public String getUsuername() {
+    public String getUsername() {
         return username;
     }
 
@@ -194,6 +194,8 @@ public class Usuario {
             System.out.println("ERROR AL CARGAR LA CLASE "+ e.getMessage());
             Usuario.LogInError = true;
         }
+        //Test
+        System.out.println(user);
         return user;
     }
 }

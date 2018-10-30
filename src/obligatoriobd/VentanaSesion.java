@@ -132,6 +132,10 @@ public class VentanaSesion extends javax.swing.JFrame {
         Usuario usr = Usuario.LogIn(idUsuario.getText(), new String(contraseniaUsuario.getPassword()));
         if(!Usuario.LogInError){
             ObligatorioBD.usuarioLoggeado = usr;
+            //Test=======
+            System.out.println("USER:" +usr);
+            System.out.println("ENTRE");
+            //
             VentanaPrincipal vent = new VentanaPrincipal(usr); // pasar por parametro el usuario
             vent.setVisible(true);
             this.dispose();

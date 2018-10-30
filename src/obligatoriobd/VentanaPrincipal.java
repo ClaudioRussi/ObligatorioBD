@@ -16,9 +16,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
      */
     public VentanaPrincipal(Usuario usr) {
         initComponents();
-        this.lblUsuario.setText(usr.getUsuername()); 
+        this.lblUsuario.setText(usr.getUsername());
+        
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -194,7 +194,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void botonEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEventoActionPerformed
         VentanaEvento ventanaEvento = new VentanaEvento();
         ventanaEvento.setVisible(true);
