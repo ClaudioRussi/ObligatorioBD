@@ -34,7 +34,7 @@ public class VentanaSesion extends javax.swing.JFrame {
         contraseniaUsuario = new javax.swing.JPasswordField();
         acceder = new javax.swing.JButton();
         crear = new javax.swing.JButton();
-        LblError = new javax.swing.JLabel();
+        lblError = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -72,7 +72,7 @@ public class VentanaSesion extends javax.swing.JFrame {
             }
         });
 
-        LblError.setForeground(new java.awt.Color(255, 0, 0));
+        lblError.setForeground(new java.awt.Color(255, 0, 0));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -99,7 +99,7 @@ public class VentanaSesion extends javax.swing.JFrame {
                                 .addComponent(contraseniaUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(73, 73, 73)
-                        .addComponent(LblError, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(lblError, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(92, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -120,7 +120,7 @@ public class VentanaSesion extends javax.swing.JFrame {
                     .addComponent(acceder)
                     .addComponent(crear))
                 .addGap(18, 18, 18)
-                .addComponent(LblError)
+                .addComponent(lblError)
                 .addContainerGap(58, Short.MAX_VALUE))
         );
 
@@ -132,12 +132,12 @@ public class VentanaSesion extends javax.swing.JFrame {
         Usuario usr = Usuario.LogIn(idUsuario.getText(), new String(contraseniaUsuario.getPassword()));
         if(!Usuario.LogInError){
             ObligatorioBD.usuarioLoggeado = usr;
-            VentanaPrincipal vent = new VentanaPrincipal();
+            VentanaPrincipal vent = new VentanaPrincipal(); // pasar por parametro el usuario
             vent.setVisible(true);
             this.dispose();
         }
         else{
-            this.LblError.setText("Error al loguearse\n");
+            this.lblError.setText("Error al loguearse\n");
             //System.out.println("Error al logearse.\n");
         }
     }//GEN-LAST:event_accederActionPerformed
@@ -162,7 +162,7 @@ public class VentanaSesion extends javax.swing.JFrame {
             this.dispose();
         }
         else{
-            this.LblError.setText("Ya existe un usuario con ese nombre.\n");
+            this.lblError.setText("Ya existe un usuario con ese nombre.\n");
             //System.out.println("Ya existe un usuario con ese nombre.\n");
         }
         
@@ -204,13 +204,13 @@ public class VentanaSesion extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel LblError;
     private javax.swing.JButton acceder;
     private javax.swing.JPasswordField contraseniaUsuario;
     private javax.swing.JButton crear;
     private javax.swing.JTextField idUsuario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel lblError;
     private javax.swing.JLabel ventanaSesion;
     // End of variables declaration//GEN-END:variables
 }

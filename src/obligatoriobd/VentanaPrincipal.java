@@ -16,7 +16,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
      */
     public VentanaPrincipal() {
         initComponents();
-        this.LblUsuario.setText(ObligatorioBD.usuarioLoggeado.getUsuername()); 
+        this.lblUsuario.setText(ObligatorioBD.usuarioLoggeado.getUsuername()); 
     }
 
     /**
@@ -43,7 +43,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         BtnCerrarSesion = new javax.swing.JButton();
-        LblUsuario = new javax.swing.JLabel();
+        lblUsuario = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 204, 255));
@@ -87,8 +87,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        LblUsuario.setText("Username");
-        LblUsuario.setToolTipText("");
+        lblUsuario.setText("Username");
+        lblUsuario.setToolTipText("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -131,7 +131,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                                         .addComponent(jLabel2))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(LblUsuario)
+                                            .addComponent(lblUsuario)
                                             .addGroup(layout.createSequentialGroup()
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addGroup(layout.createSequentialGroup()
@@ -159,7 +159,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(ventanaPrincipal)
                             .addComponent(BtnCerrarSesion)
-                            .addComponent(LblUsuario))
+                            .addComponent(lblUsuario))
                         .addGap(43, 43, 43))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -229,7 +229,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnCerrarSesion;
-    private javax.swing.JLabel LblUsuario;
     private javax.swing.JButton botonCompra;
     private javax.swing.JButton botonConsumicion;
     private javax.swing.JButton botonEvento;
@@ -243,6 +242,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    public javax.swing.JLabel lblUsuario;
     private javax.swing.JLabel ventanaPrincipal;
     // End of variables declaration//GEN-END:variables
 }
