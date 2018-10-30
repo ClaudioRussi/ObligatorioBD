@@ -49,9 +49,13 @@ public class ObligatorioBD {
             
             String sql = "SELECT MAX(id_usuario) FROM usuario;";
             ResultSet result = st.executeQuery(sql);
-            if(result != null){
-                Usuario.id = result.getInt("id_usuario");
+            
+            while(result.next()){
+                 Usuario.id = result.getInt("id_usuario");
             }
+            /*if(result != null){
+                Usuario.id = result.getInt("id_usuario");
+            }*/
             result.close();
             st.close();
             conexion.close();
