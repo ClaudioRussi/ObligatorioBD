@@ -149,7 +149,7 @@ public class Evento {
             
             String sql = "SELECT * FROM evento WHERE id = " + id;
             ResultSet result = st.executeQuery(sql);
-            if(result != null){
+            while(result.next()){
                 evento = (new Evento(result.getInt("id_usuario"), result.getString("descripcion"), result.getBoolean("es_mensual"),result.getBoolean("es_anual"), result.getDate("fecha"), result.getString("tipo")));
             }
             result.close();
@@ -170,7 +170,7 @@ public class Evento {
             Class.forName("org.postgresql.Driver");
             Connection conexion = DriverManager.getConnection(url, usuario, contrasenia);
             java.sql.Statement st = conexion.createStatement();
-            String insertion = "INSERT INTO evento VALUES ("+this.idEvento+" "+this.idUsuario+" '"+this.descripcion+"' "+this.esMensual+" "+this.esAnual+" "+this.fechaCreacion+" "+this.fecha+" '"+this.tipo+")';";
+            String insertion = "INSERT INTO evento VALUES ("+this.idEvento+", "+this.idUsuario+", '"+this.descripcion+"', "+this.esMensual+", "+this.esAnual+", "+this.fechaCreacion+", "+this.fecha+", '"+this.tipo+")';";
             st.executeUpdate(insertion);
             st.close();
             conexion.close();

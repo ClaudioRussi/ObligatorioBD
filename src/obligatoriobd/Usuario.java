@@ -86,7 +86,7 @@ public class Usuario {
             
             String sql = "SELECT * FROM usuario WHERE id = " + id;
             ResultSet result = st.executeQuery(sql);
-            if(result != null){
+            while(result.next()){
                 user = (new Usuario(result.getString("username"), result.getInt("id"), result.getDate("ultima_conexion"), result.getString("contrasenia")));
             }
             result.close();
@@ -162,7 +162,7 @@ public class Usuario {
             
             String sql = "SELECT * FROM usuario WHERE username = '" + username + "' AND contrasenia = '"+password+"';";
             ResultSet result = st.executeQuery(sql);
-            if(result != null){
+            while(result.next()){
                 user = (new Usuario(result.getString("username"), result.getInt("id"), result.getDate("ultima_conexion"), result.getString("contrasenia")));
             }
             result.close();

@@ -123,7 +123,7 @@ public class VentanaSesion extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         ObligatorioBD.usuarioLoggeado = Usuario.LogIn(idUsuario.getText(), new String(contraseniaUsuario.getPassword()));
-        VentanaSesion vent = new VentanaSesion();
+        VentanaPrincipal vent = new VentanaPrincipal();
         vent.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_accederActionPerformed
