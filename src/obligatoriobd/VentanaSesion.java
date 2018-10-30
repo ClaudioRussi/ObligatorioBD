@@ -132,7 +132,7 @@ public class VentanaSesion extends javax.swing.JFrame {
         Usuario usr = Usuario.LogIn(idUsuario.getText(), new String(contraseniaUsuario.getPassword()));
         if(!Usuario.LogInError){
             ObligatorioBD.usuarioLoggeado = usr;
-            VentanaPrincipal vent = new VentanaPrincipal(); // pasar por parametro el usuario
+            VentanaPrincipal vent = new VentanaPrincipal(usr); // pasar por parametro el usuario
             vent.setVisible(true);
             this.dispose();
         }
@@ -156,7 +156,7 @@ public class VentanaSesion extends javax.swing.JFrame {
         usuario.Save();
         if(!usuario.RegisterError){
             ObligatorioBD.usuarioLoggeado = usuario;
-            VentanaPrincipal vent = new VentanaPrincipal();
+            VentanaPrincipal vent = new VentanaPrincipal(usuario);
             
             vent.setVisible(true);
             this.dispose();
