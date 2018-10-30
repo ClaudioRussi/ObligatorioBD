@@ -123,6 +123,9 @@ public class VentanaSesion extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         ObligatorioBD.usuarioLoggeado = Usuario.LogIn(idUsuario.getText(), new String(contraseniaUsuario.getPassword()));
+        VentanaSesion vent = new VentanaSesion();
+        vent.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_accederActionPerformed
 
     private void idUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idUsuarioActionPerformed
@@ -138,6 +141,9 @@ public class VentanaSesion extends javax.swing.JFrame {
         Usuario usuario = new Usuario(idUsuario.getText(), new String(contraseniaUsuario.getPassword()));
         usuario.Save();
         ObligatorioBD.usuarioLoggeado = usuario;
+        VentanaSesion vent = new VentanaSesion();
+        vent.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_crearActionPerformed
 
     /**

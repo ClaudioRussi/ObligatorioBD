@@ -22,7 +22,7 @@ public class ObligatorioBD {
     public static void main(String[] args) {
         ArrayList<Evento> eventos = new ArrayList();
         
-        Usuario user0 = new Usuario("nom1","pas21");
+        /*Usuario user0 = new Usuario("nom1","pas21");
         Usuario user1 = new Usuario("nom2", "pas21");
         Usuario user2 = new Usuario("nom3", "pas21");
         System.out.println(user0.getId());
@@ -35,10 +35,40 @@ public class ObligatorioBD {
         System.out.println(reu0.getIntegrantes().size());
         //cambios para el git
         
-        //Esto es todo una mie***//caca pure
+        //Esto es todo una mie**caca pure
         
         Thread calendario = new Thread(new HiloCalendario(eventos));
-        calendario.start();
+        calendario.start();*/
+        
+        
+         
+        try{
+            Class.forName("org.postgresql.Driver");
+            Connection conexion = DriverManager.getConnection(url, usuario, contrasenia);
+            java.sql.Statement st = conexion.createStatement();
+            
+            String sql = "SELECT MAX(id) FROM usuario;";
+            ResultSet result = st.executeQuery(sql);
+            if(result != null){
+                Usuario.id = result.getInt("id");
+            }
+            result.close();
+            st.close();
+            conexion.close();
+        }catch (SQLException e){
+            System.out.println("ERROR DE CONEXION " + e.getMessage());
+            
+        }
+        catch(ClassNotFoundException e){
+            System.out.println("ERROR AL CARGAR LA CLASE "+ e.getMessage());
+        }
+        
+        System.out.println("Id cargado, id actual es: "+Usuario.id+".\n");
+        
+        VentanaSesion vent = new VentanaSesion();
+        vent.setVisible(true);
+        
+                
     }
     
 }

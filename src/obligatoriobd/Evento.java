@@ -131,9 +131,12 @@ public class Evento {
             result.close();
             st.close();
             conexion.close();
-        }catch (Exception e){
-            System.out.println("ERROR DE CONEXION" + e.getMessage());
+        }catch (SQLException e){
+            System.out.println("ERROR DE CONEXION " + e.getMessage());
             
+        }
+        catch(ClassNotFoundException e){
+            System.out.println("ERROR AL CARGAR LA CLASE "+ e.getMessage());
         }
     }
     
@@ -152,9 +155,12 @@ public class Evento {
             result.close();
             st.close();
             conexion.close();
-        }catch (Exception e){
-            System.out.println("ERROR DE CONEXION" + e.getMessage());
+        }catch (SQLException e){
+            System.out.println("ERROR DE CONEXION " + e.getMessage());
             
+        }
+        catch(ClassNotFoundException e){
+            System.out.println("ERROR AL CARGAR LA CLASE "+ e.getMessage());
         }
         return evento;
     }
@@ -164,13 +170,16 @@ public class Evento {
             Class.forName("org.postgresql.Driver");
             Connection conexion = DriverManager.getConnection(url, usuario, contrasenia);
             java.sql.Statement st = conexion.createStatement();
-            String insertion = "INSERT INTO evento VALUES "+this.idEvento+" "+this.idUsuario+" "+this.descripcion+" "+this.esMensual+" "+this.esAnual+" "+this.fechaCreacion+" "+this.fecha+" "+this.tipo+";";
+            String insertion = "INSERT INTO evento VALUES ("+this.idEvento+" "+this.idUsuario+" '"+this.descripcion+"' "+this.esMensual+" "+this.esAnual+" "+this.fechaCreacion+" "+this.fecha+" '"+this.tipo+")';";
             st.executeUpdate(insertion);
             st.close();
             conexion.close();
-        }catch (Exception e){
-            System.out.println("ERROR DE CONEXION" + e.getMessage());
+        }catch (SQLException e){
+            System.out.println("ERROR DE CONEXION " + e.getMessage());
             
+        }
+        catch(ClassNotFoundException e){
+            System.out.println("ERROR AL CARGAR LA CLASE "+ e.getMessage());
         }
     }
     
@@ -179,13 +188,16 @@ public class Evento {
             Class.forName("org.postgresql.Driver");
             Connection conexion = DriverManager.getConnection(url, usuario, contrasenia);
             java.sql.Statement st = conexion.createStatement();
-            String Update = "UPDATE evento SET id_usuario = "+this.idUsuario+", descripcion = "+this.descripcion+", es_mensual = "+this.esMensual+", es_anual = "+this.esAnual+", fecha_creacion = "+this.fechaCreacion+", fecha = "+this.fecha+", tipo = "+this.tipo+" WHERE id = "+ this.idEvento +";";
+            String Update = "UPDATE evento SET id_usuario = "+this.idUsuario+", descripcion = '"+this.descripcion+"', es_mensual = "+this.esMensual+", es_anual = "+this.esAnual+", fecha_creacion = "+this.fechaCreacion+", fecha = "+this.fecha+", tipo = '"+this.tipo+"' WHERE id = "+ this.idEvento +";";
             st.executeUpdate(Update);
             st.close();
             conexion.close();
-        }catch (Exception e){
-            System.out.println("ERROR DE CONEXION" + e.getMessage());
+        }catch (SQLException e){
+            System.out.println("ERROR DE CONEXION " + e.getMessage());
             
+        }
+        catch(ClassNotFoundException e){
+            System.out.println("ERROR AL CARGAR LA CLASE "+ e.getMessage());
         }
     }
     
@@ -198,9 +210,12 @@ public class Evento {
             st.executeUpdate(Update);
             st.close();
             conexion.close();
-        }catch (Exception e){
-            System.out.println("ERROR DE CONEXION" + e.getMessage());
+        }catch (SQLException e){
+            System.out.println("ERROR DE CONEXION " + e.getMessage());
             
+        }
+        catch(ClassNotFoundException e){
+            System.out.println("ERROR AL CARGAR LA CLASE "+ e.getMessage());
         }
     }
 }

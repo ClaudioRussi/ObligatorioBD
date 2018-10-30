@@ -103,13 +103,16 @@ public class Usuario {
             Class.forName("org.postgresql.Driver");
             Connection conexion = DriverManager.getConnection(url, PG_usuario, PG_contrasenia);
             java.sql.Statement st = conexion.createStatement();
-            String insertion = "INSERT INTO usuario VALUES "+this.idUsuario+" "+this.username+" "+this.ultimaConexion+" "+ this.contrasenia +";";
+            String insertion = "INSERT INTO usuario VALUES ("+this.idUsuario+" '"+this.username+"' "+this.ultimaConexion+" '"+ this.contrasenia +"');";
             st.executeUpdate(insertion);
             st.close();
             conexion.close();
-        }catch (Exception e){
-            System.out.println("ERROR DE CONEXION" + e.getMessage());
+        }catch (SQLException e){
+            System.out.println("ERROR DE CONEXION " + e.getMessage());
             
+        }
+        catch(ClassNotFoundException e){
+            System.out.println("ERROR AL CARGAR LA CLASE "+ e.getMessage());
         }
     }
     
@@ -118,13 +121,16 @@ public class Usuario {
             Class.forName("org.postgresql.Driver");
             Connection conexion = DriverManager.getConnection(url, PG_usuario, PG_contrasenia);
             java.sql.Statement st = conexion.createStatement();
-            String Update = "UPDATE usuario SET username = "+this.username+", ultima_conexion = "+this.ultimaConexion+ ", contrasenia = "+ this.contrasenia +" WHERE id = "+ this.idUsuario +";";
+            String Update = "UPDATE usuario SET username = '"+this.username+"', ultima_conexion = "+this.ultimaConexion+ ", contrasenia = '"+ this.contrasenia +"' WHERE id = "+ this.idUsuario +";";
             st.executeUpdate(Update);
             st.close();
             conexion.close();
-        }catch (Exception e){
-            System.out.println("ERROR DE CONEXION" + e.getMessage());
+        }catch (SQLException e){
+            System.out.println("ERROR DE CONEXION " + e.getMessage());
             
+        }
+        catch(ClassNotFoundException e){
+            System.out.println("ERROR AL CARGAR LA CLASE "+ e.getMessage());
         }
     }
     
@@ -137,9 +143,12 @@ public class Usuario {
             st.executeUpdate(Update);
             st.close();
             conexion.close();
-        }catch (Exception e){
-            System.out.println("ERROR DE CONEXION" + e.getMessage());
+        }catch (SQLException e){
+            System.out.println("ERROR DE CONEXION " + e.getMessage());
             
+        }
+        catch(ClassNotFoundException e){
+            System.out.println("ERROR AL CARGAR LA CLASE "+ e.getMessage());
         }
     }
     
@@ -150,7 +159,7 @@ public class Usuario {
             Connection conexion = DriverManager.getConnection(url, PG_usuario, PG_contrasenia);
             java.sql.Statement st = conexion.createStatement();
             
-            String sql = "SELECT * FROM usuario WHERE username = " + username + " AND contrasenia = "+password+";";
+            String sql = "SELECT * FROM usuario WHERE username = '" + username + "' AND contrasenia = '"+password+"';";
             ResultSet result = st.executeQuery(sql);
             if(result != null){
                 user = (new Usuario(result.getString("username"), result.getInt("id"), result.getDate("ultima_conexion"), result.getString("contrasenia")));
@@ -158,9 +167,12 @@ public class Usuario {
             result.close();
             st.close();
             conexion.close();
-        }catch (Exception e){
-            System.out.println("ERROR DE CONEXION" + e.getMessage());
+        }catch (SQLException e){
+            System.out.println("ERROR DE CONEXION " + e.getMessage());
             
+        }
+        catch(ClassNotFoundException e){
+            System.out.println("ERROR AL CARGAR LA CLASE "+ e.getMessage());
         }
         return user;
     }
