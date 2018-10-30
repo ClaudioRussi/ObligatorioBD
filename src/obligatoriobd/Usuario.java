@@ -18,6 +18,9 @@ public class Usuario {
     static String PG_usuario = "postgres"; 
     static String PG_contrasenia = "test123";
     
+    Boolean RegisterError = false;
+    static Boolean LogInError = false;
+    
     public static int id = 0;
     private int idUsuario;
     private String username;
@@ -87,7 +90,7 @@ public class Usuario {
             String sql = "SELECT * FROM usuario WHERE id = " + id;
             ResultSet result = st.executeQuery(sql);
             while(result.next()){
-                user = (new Usuario(result.getString("username"), result.getInt("id"), result.getDate("ultima_conexion"), result.getString("contrasenia")));
+                user = (new Usuario(result.getString("username"), result.getInt("id_usuario"), result.getDate("ultima_conexion"), result.getString("contrasenia")));
             }
             result.close();
             st.close();
@@ -108,12 +111,15 @@ public class Usuario {
             st.executeUpdate(insertion);
             st.close();
             conexion.close();
+            RegisterError = false;
         }catch (SQLException e){
             System.out.println("ERROR DE CONEXION " + e.getMessage());
+            RegisterError = true;
             
         }
         catch(ClassNotFoundException e){
             System.out.println("ERROR AL CARGAR LA CLASE "+ e.getMessage());
+            RegisterError = true;
         }
     }
     
@@ -122,7 +128,7 @@ public class Usuario {
             Class.forName("org.postgresql.Driver");
             Connection conexion = DriverManager.getConnection(url, PG_usuario, PG_contrasenia);
             java.sql.Statement st = conexion.createStatement();
-            String Update = "UPDATE usuario SET username = '"+this.username+"', ultima_conexion = "+this.ultimaConexion+ ", contrasenia = '"+ this.contrasenia +"' WHERE id = "+ this.idUsuario +";";
+            String Update = "UPDATE usuario SET username = '"+this.username+"', ultima_conexion = "+this.ultimaConexion+ ", contrasenia = '"+ this.contrasenia +"' WHERE id_usuario = "+ this.idUsuario +";";
             st.executeUpdate(Update);
             st.close();
             conexion.close();
@@ -140,7 +146,7 @@ public class Usuario {
             Class.forName("org.postgresql.Driver");
             Connection conexion = DriverManager.getConnection(url, PG_usuario, PG_contrasenia);
             java.sql.Statement st = conexion.createStatement();
-            String Update = "DELETE FROM usuario WHERE id = "+ this.idUsuario+";";
+            String Update = "DELETE FROM usuario WHERE id_usuario = "+ this.idUsuario+";";
             st.executeUpdate(Update);
             st.close();
             conexion.close();
@@ -163,17 +169,19 @@ public class Usuario {
             String sql = "SELECT * FROM usuario WHERE username = '" + username + "' AND contrasenia = '"+password+"';";
             ResultSet result = st.executeQuery(sql);
             while(result.next()){
-                user = (new Usuario(result.getString("username"), result.getInt("id"), result.getDate("ultima_conexion"), result.getString("contrasenia")));
+                user = (new Usuario(result.getString("username"), result.getInt("id_usuario"), result.getDate("ultima_conexion"), result.getString("contrasenia")));
             }
             result.close();
             st.close();
             conexion.close();
+            Usuario.LogInError = false;
         }catch (SQLException e){
             System.out.println("ERROR DE CONEXION " + e.getMessage());
-            
+            Usuario.LogInError = true;
         }
         catch(ClassNotFoundException e){
             System.out.println("ERROR AL CARGAR LA CLASE "+ e.getMessage());
+            Usuario.LogInError = true;
         }
         return user;
     }

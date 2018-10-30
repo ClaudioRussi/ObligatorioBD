@@ -121,11 +121,15 @@ public class VentanaSesion extends javax.swing.JFrame {
 
     private void accederActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accederActionPerformed
         // TODO add your handling code here:
-        
-        ObligatorioBD.usuarioLoggeado = Usuario.LogIn(idUsuario.getText(), new String(contraseniaUsuario.getPassword()));
-        VentanaPrincipal vent = new VentanaPrincipal();
-        vent.setVisible(true);
-        this.dispose();
+        Usuario usr = Usuario.LogIn(idUsuario.getText(), new String(contraseniaUsuario.getPassword()));
+        if(!Usuario.LogInError){
+            VentanaPrincipal vent = new VentanaPrincipal();
+            vent.setVisible(true);
+            this.dispose();
+        }
+        else{
+            System.out.println("Error al logearse.\n");
+        }
     }//GEN-LAST:event_accederActionPerformed
 
     private void idUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idUsuarioActionPerformed
@@ -140,10 +144,16 @@ public class VentanaSesion extends javax.swing.JFrame {
         // TODO add your handling code here:
         Usuario usuario = new Usuario(idUsuario.getText(), new String(contraseniaUsuario.getPassword()));
         usuario.Save();
-        ObligatorioBD.usuarioLoggeado = usuario;
-        VentanaPrincipal vent = new VentanaPrincipal();
-        vent.setVisible(true);
-        this.dispose();
+        if(!usuario.RegisterError){
+            ObligatorioBD.usuarioLoggeado = usuario;
+            VentanaPrincipal vent = new VentanaPrincipal();
+            vent.setVisible(true);
+            this.dispose();
+        }
+        else{
+            System.out.println("Ya existe un usuario con ese nombre.\n");
+        }
+        
     }//GEN-LAST:event_crearActionPerformed
 
     /**

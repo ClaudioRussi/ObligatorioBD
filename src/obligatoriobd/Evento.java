@@ -35,7 +35,17 @@ public class Evento {
     private String tipo;
     
     public Evento(int IDUsuario, String descripcion, boolean esMensual, boolean esAnual, Date fecha, String tipo) {
-        this.idEvento = Insumo.id++;
+        this.idEvento = Evento.id++;
+        this.idUsuario = IDUsuario;
+        this.descripcion = descripcion;
+        this.esMensual = esMensual;
+        this.esAnual = esAnual;
+        this.fecha = fecha;
+        this.tipo = tipo; 
+        
+    }
+    public Evento(int IDEvento, int IDUsuario, String descripcion, boolean esMensual, boolean esAnual, Date fecha, String tipo) {
+        this.idEvento = IDEvento;
         this.idUsuario = IDUsuario;
         this.descripcion = descripcion;
         this.esMensual = esMensual;
@@ -126,7 +136,7 @@ public class Evento {
             String sql = "SELECT * FROM evento WHERE fecha >= "+ dateFormat.format(fecha);
             ResultSet result = st.executeQuery(sql);
             while(result.next()){
-                eventos.add(new Evento(result.getInt("id_usuario"), result.getString("descripcion"), result.getBoolean("es_mensual"),result.getBoolean("es_anual"), result.getDate("fecha"), result.getString("tipo")));
+                eventos.add(new Evento(result.getInt("id_evento"), result.getInt("id_usuario"), result.getString("descripcion"), result.getBoolean("es_mensual"),result.getBoolean("es_anual"), result.getDate("fecha"), result.getString("tipo")));
             }
             result.close();
             st.close();
@@ -150,7 +160,7 @@ public class Evento {
             String sql = "SELECT * FROM evento WHERE id = " + id;
             ResultSet result = st.executeQuery(sql);
             while(result.next()){
-                evento = (new Evento(result.getInt("id_usuario"), result.getString("descripcion"), result.getBoolean("es_mensual"),result.getBoolean("es_anual"), result.getDate("fecha"), result.getString("tipo")));
+                evento = (new Evento(result.getInt("id_evento"), result.getInt("id_usuario"), result.getString("descripcion"), result.getBoolean("es_mensual"),result.getBoolean("es_anual"), result.getDate("fecha"), result.getString("tipo")));
             }
             result.close();
             st.close();
@@ -206,7 +216,7 @@ public class Evento {
             Class.forName("org.postgresql.Driver");
             Connection conexion = DriverManager.getConnection(url, usuario, contrasenia);
             java.sql.Statement st = conexion.createStatement();
-            String Update = "DELETE FROM evento WHERE id = "+ this.idEvento+";";
+            String Update = "DELETE FROM evento WHERE id_evento = "+ this.idEvento+";";
             st.executeUpdate(Update);
             st.close();
             conexion.close();
