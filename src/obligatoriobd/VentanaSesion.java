@@ -57,14 +57,14 @@ public class VentanaSesion extends javax.swing.JFrame {
             }
         });
 
-        acceder.setText("Acceder");
+        acceder.setText("Log in");
         acceder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 accederActionPerformed(evt);
             }
         });
 
-        crear.setText("Crear");
+        crear.setText("Sign up");
         crear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 crearActionPerformed(evt);
@@ -94,7 +94,7 @@ public class VentanaSesion extends javax.swing.JFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(idUsuario)
                                 .addComponent(contraseniaUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)))))
-                .addContainerGap(152, Short.MAX_VALUE))
+                .addContainerGap(154, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
