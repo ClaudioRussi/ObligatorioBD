@@ -168,20 +168,19 @@ public class Usuario {
             
             String sql = "SELECT * FROM usuario WHERE username = '" + username + "' AND contrasenia = '"+password+"';";
             ResultSet result = st.executeQuery(sql);
-            if(!result.next()){
+            
+            boolean tieneNext = result.next();
+            if(!tieneNext){
                     result.close();
                     st.close();
                     conexion.close();
                     LogInError = true;
                     return null;
-            }
-            while(result.next()){
+            }else{
                 String usrname = result.getString("username");
-                System.out.println(usrname);
                 user = (new Usuario(result.getString("username"), result.getInt("id_usuario"), result.getDate("ultima_conexion"), result.getString("contrasenia")));
 
             }
-            
             result.close();
             st.close();
             conexion.close();
@@ -194,8 +193,6 @@ public class Usuario {
             System.out.println("ERROR AL CARGAR LA CLASE "+ e.getMessage());
             Usuario.LogInError = true;
         }
-        //Test
-        System.out.println(user);
         return user;
     }
 }
