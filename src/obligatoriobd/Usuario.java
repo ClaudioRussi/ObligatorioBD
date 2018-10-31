@@ -87,7 +87,7 @@ public class Usuario {
             Connection conexion = DriverManager.getConnection(url, PG_usuario, PG_contrasenia);
             java.sql.Statement st = conexion.createStatement();
             
-            String sql = "SELECT * FROM usuario WHERE id = " + id;
+            String sql = "SELECT * FROM usuario WHERE id_usuario = " + id;
             ResultSet result = st.executeQuery(sql);
             while(result.next()){
                 user = (new Usuario(result.getString("username"), result.getInt("id_usuario"), result.getDate("ultima_conexion"), result.getString("contrasenia")));

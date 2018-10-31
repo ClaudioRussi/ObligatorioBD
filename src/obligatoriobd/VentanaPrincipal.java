@@ -14,9 +14,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form VentanaPrincipal
      */
-    public VentanaPrincipal(Usuario usr) {
+    public VentanaPrincipal() {
         initComponents();
-        this.lblUsuario.setText(usr.getUsername());
+        this.lblUsuario.setText(ObligatorioBD.usuarioLoggeado.getUsername());
         
     }
     /**

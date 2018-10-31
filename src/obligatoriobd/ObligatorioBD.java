@@ -57,6 +57,15 @@ public class ObligatorioBD {
                 Usuario.id = result.getInt("id_usuario");
             }*/
             result.close();
+            
+            sql = "SELECT MAX(id_compra) AS id FROM compra;";
+            result = st.executeQuery(sql);
+            
+            while(result.next()){
+                Compra.id = result.getInt("id");
+            }
+            result.close();
+            
             st.close();
             conexion.close();
         }catch (SQLException e){
@@ -67,8 +76,8 @@ public class ObligatorioBD {
             System.out.println("ERROR AL CARGAR LA CLASE "+ e.getMessage());
         }
         
-        System.out.println("Id cargado, id actual es: "+Usuario.id+".\n");
-        
+        System.out.println("Id usuario cargado, id actual es: "+Usuario.id+".\n");
+        System.out.println("Id compra cargado, id actual es: "+Compra.id+".\n");
         VentanaSesion vent = new VentanaSesion();
         vent.setVisible(true);
         
