@@ -5,14 +5,16 @@
  */
 package obligatoriobd;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import javax.swing.DefaultListModel;
 
 /**
  *
  * @author Agustín
  */
 public class VentanaCompra extends javax.swing.JFrame {
-
+    ArrayList<Insumo> insumos;
     /**
      * Creates new form VentanaEvento
      */
@@ -72,12 +74,12 @@ public class VentanaCompra extends javax.swing.JFrame {
         fldPrecioCompra.setText("$");
 
         btnBucsarInsumo.setText("Buscar");
-
-        lstInsumos.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+        btnBucsarInsumo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBucsarInsumoActionPerformed(evt);
+            }
         });
+
         lstInsumos.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(lstInsumos);
 
@@ -178,12 +180,24 @@ public class VentanaCompra extends javax.swing.JFrame {
         Calendar clndr = this.calendario.getCalendar();
         clndr.add(Calendar.HOUR_OF_DAY, (Integer)this.horaCompra.getValue());
         clndr.add(Calendar.MINUTE, (Integer)this.minutoCompra.getValue());
-        Compra compr = new Compra(ObligatorioBD.usuarioLoggeado.getId(), Integer.parseInt(this.lstInsumos.getSelectedValue()),Integer.parseInt(this.fldPrecioCompra.getText()), clndr.getTime(), (Integer)this.fldCantidadInsumo.getValue());
+        Insumo ins = insumos.get(this.lstInsumos.getSelectedIndex());
+        Compra compr = new Compra(ObligatorioBD.usuarioLoggeado.getId(), ins.getIDInsumo(),Integer.parseInt(this.fldPrecioCompra.getText()), clndr.getTime(), (Integer)this.fldCantidadInsumo.getValue());
         compr.Save();
         VentanaPrincipal vtn = new VentanaPrincipal();
         vtn.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnRegistrarCompraActionPerformed
+
+    private void btnBucsarInsumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBucsarInsumoActionPerformed
+        // TODO add your handling code here:
+        
+        insumos = Insumo.buscarInsumosPorNombre(this.idInsumo.getText());
+        DefaultListModel demoList = new DefaultListModel();
+        for(Insumo ins: insumos){
+          demoList.addElement(ins.getNombre());
+        }
+        this.lstInsumos.setModel(demoList);
+    }//GEN-LAST:event_btnBucsarInsumoActionPerformed
 
 
 
