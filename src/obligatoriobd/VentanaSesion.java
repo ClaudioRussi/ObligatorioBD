@@ -12,7 +12,7 @@ package obligatoriobd;
 public class VentanaSesion extends javax.swing.JFrame {
 
     /**
-     * Creates new form VentanaSesion
+     * Creates new form VentanaSesion2
      */
     public VentanaSesion() {
         initComponents();
@@ -27,145 +27,40 @@ public class VentanaSesion extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        ventanaSesion = new javax.swing.JLabel();
         idUsuario = new javax.swing.JTextField();
+        contraseniaUsuario = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        contraseniaUsuario = new javax.swing.JPasswordField();
-        acceder = new javax.swing.JButton();
         crear = new javax.swing.JButton();
-        lblError = new javax.swing.JLabel();
+        acceder = new javax.swing.JButton();
+        fondoCeleste = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(idUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 110, 180, 20));
 
-        ventanaSesion.setText("ventanaSesion");
-
-        idUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                idUsuarioActionPerformed(evt);
-            }
-        });
+        contraseniaUsuario.setText("jPasswordField1");
+        getContentPane().add(contraseniaUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 180, 180, -1));
 
         jLabel1.setText("Usuario:");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 80, -1, 20));
 
         jLabel2.setText("Contraseña:");
-
-        contraseniaUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                contraseniaUsuarioActionPerformed(evt);
-            }
-        });
-
-        acceder.setText("Log in");
-        acceder.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                accederActionPerformed(evt);
-            }
-        });
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 150, -1, 20));
 
         crear.setText("Sign up");
-        crear.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                crearActionPerformed(evt);
-            }
-        });
+        crear.setFocusPainted(false);
+        getContentPane().add(crear, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 230, 80, -1));
 
-        lblError.setForeground(new java.awt.Color(255, 0, 0));
+        acceder.setText("Log in");
+        acceder.setFocusPainted(false);
+        getContentPane().add(acceder, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 230, 80, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(ventanaSesion))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(73, 73, 73)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(crear)
-                                .addGap(18, 18, 18)
-                                .addComponent(acceder))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(idUsuario)
-                                .addComponent(contraseniaUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(73, 73, 73)
-                        .addComponent(lblError, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(92, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(ventanaSesion)
-                .addGap(72, 72, 72)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(idUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(contraseniaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(acceder)
-                    .addComponent(crear))
-                .addGap(18, 18, 18)
-                .addComponent(lblError)
-                .addContainerGap(58, Short.MAX_VALUE))
-        );
+        fondoCeleste.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondologo.jpg"))); // NOI18N
+        getContentPane().add(fondoCeleste, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void accederActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accederActionPerformed
-        // TODO add your handling code here:
-        Usuario usr = Usuario.LogIn(idUsuario.getText(), new String(contraseniaUsuario.getPassword()));
-        if(!Usuario.LogInError){
-            ObligatorioBD.usuarioLoggeado = usr;
-            VentanaPrincipal vent = new VentanaPrincipal(); // pasar por parametro el usuario
-            vent.setVisible(true);
-            this.dispose();
-        }
-        else{
-            this.lblError.setText("Error al loguearse\n");
-            //System.out.println("Error al logearse.\n");
-        }
-    }//GEN-LAST:event_accederActionPerformed
-
-    private void idUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idUsuarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_idUsuarioActionPerformed
-
-    private void contraseniaUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contraseniaUsuarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_contraseniaUsuarioActionPerformed
-
-    private void crearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearActionPerformed
-        // TODO add your handling code here:
-        Usuario usuario = new Usuario(idUsuario.getText(), new String(contraseniaUsuario.getPassword()));
-        usuario.Save();
-        if(!usuario.RegisterError){
-            ObligatorioBD.usuarioLoggeado = usuario;
-            VentanaPrincipal vent = new VentanaPrincipal();
-            
-            vent.setVisible(true);
-            this.dispose();
-        }
-        else{
-            this.lblError.setText("Ya existe un usuario con ese nombre.\n");
-            //System.out.println("Ya existe un usuario con ese nombre.\n");
-        }
-        
-    }//GEN-LAST:event_crearActionPerformed
 
     /**
      * @param args the command line arguments
@@ -193,6 +88,7 @@ public class VentanaSesion extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(VentanaSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -206,10 +102,9 @@ public class VentanaSesion extends javax.swing.JFrame {
     private javax.swing.JButton acceder;
     private javax.swing.JPasswordField contraseniaUsuario;
     private javax.swing.JButton crear;
+    private javax.swing.JLabel fondoCeleste;
     private javax.swing.JTextField idUsuario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel lblError;
-    private javax.swing.JLabel ventanaSesion;
     // End of variables declaration//GEN-END:variables
 }
