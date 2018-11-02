@@ -38,12 +38,12 @@ public class VentanaConsumicion extends javax.swing.JFrame {
         lstInsumos = new javax.swing.JList<>();
         lblInsumos = new javax.swing.JLabel();
         lblError = new javax.swing.JLabel();
+        lblAtras = new javax.swing.JLabel();
         lblfondoCeleste = new javax.swing.JLabel();
         panelBlanco = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         fldCantidadInsumo = new javax.swing.JSpinner();
         btnRegistrarConsumicion = new javax.swing.JButton();
-        lblAtras = new javax.swing.JLabel();
 
         jLabel5.setText(":");
 
@@ -72,6 +72,7 @@ public class VentanaConsumicion extends javax.swing.JFrame {
         lblInsumos.setText("Seleccionar insumo:");
         getContentPane().add(lblInsumos, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, -1, -1));
         getContentPane().add(lblError, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 250, -1, -1));
+        getContentPane().add(lblAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 40, 30));
 
         lblfondoCeleste.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblfondoCeleste.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoCelesteFinoFlecha.jpg"))); // NOI18N
@@ -116,7 +117,6 @@ public class VentanaConsumicion extends javax.swing.JFrame {
         );
 
         getContentPane().add(panelBlanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 700, 300));
-        getContentPane().add(lblAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 40, 30));
 
         pack();
         setLocationRelativeTo(null);

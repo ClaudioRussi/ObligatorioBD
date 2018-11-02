@@ -29,6 +29,7 @@ public class VentanaEvento extends javax.swing.JFrame {
 
         jLabel5 = new javax.swing.JLabel();
         crearEvento = new javax.swing.JButton();
+        lblAtras = new javax.swing.JLabel();
         lblfondoCeleste = new javax.swing.JLabel();
         panelBlanco = new javax.swing.JPanel();
         calendarioEvento = new com.toedter.calendar.JCalendar();
@@ -42,7 +43,6 @@ public class VentanaEvento extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         eventoSemanal = new javax.swing.JRadioButton();
         eventoDiario = new javax.swing.JRadioButton();
-        lblAtras = new javax.swing.JLabel();
 
         jLabel5.setText(":");
 
@@ -51,6 +51,7 @@ public class VentanaEvento extends javax.swing.JFrame {
 
         crearEvento.setText("Crear");
         getContentPane().add(crearEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(671, 266, -1, -1));
+        getContentPane().add(lblAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 40, 30));
 
         lblfondoCeleste.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblfondoCeleste.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoCelesteFinoFlecha.jpg"))); // NOI18N
@@ -144,7 +145,6 @@ public class VentanaEvento extends javax.swing.JFrame {
         );
 
         getContentPane().add(panelBlanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 700, 300));
-        getContentPane().add(lblAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 40, 30));
 
         pack();
         setLocationRelativeTo(null);

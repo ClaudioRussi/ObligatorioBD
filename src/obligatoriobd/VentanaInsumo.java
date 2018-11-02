@@ -29,19 +29,20 @@ public class VentanaInsumo extends javax.swing.JFrame {
     private void initComponents() {
 
         btnCrearInsumo = new javax.swing.JButton();
+        lblAtras = new javax.swing.JLabel();
         lblfondoCeleste = new javax.swing.JLabel();
         panelBlanco = new javax.swing.JPanel();
         descripciontxt = new javax.swing.JTextField();
         nombretxt = new javax.swing.JTextField();
         nombrelbl = new javax.swing.JLabel();
         descripcionlbl = new javax.swing.JLabel();
-        lblAtras = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnCrearInsumo.setText("Crear");
         getContentPane().add(btnCrearInsumo, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 266, -1, -1));
+        getContentPane().add(lblAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 40, 30));
 
         lblfondoCeleste.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblfondoCeleste.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoCelesteFinoFlecha.jpg"))); // NOI18N
@@ -93,7 +94,6 @@ public class VentanaInsumo extends javax.swing.JFrame {
         );
 
         getContentPane().add(panelBlanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 700, 300));
-        getContentPane().add(lblAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 40, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

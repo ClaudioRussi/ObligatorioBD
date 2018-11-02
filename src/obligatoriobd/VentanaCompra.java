@@ -38,6 +38,7 @@ public class VentanaCompra extends javax.swing.JFrame {
         lstInsumos = new javax.swing.JList<>();
         lblInsumos = new javax.swing.JLabel();
         lblError = new javax.swing.JLabel();
+        lblAtras = new javax.swing.JLabel();
         lblfondoCeleste = new javax.swing.JLabel();
         panelBlanco = new javax.swing.JPanel();
         calendario = new com.toedter.calendar.JCalendar();
@@ -49,7 +50,6 @@ public class VentanaCompra extends javax.swing.JFrame {
         fldPrecioCompra = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         btnRegistrarCompra = new javax.swing.JButton();
-        lblAtras = new javax.swing.JLabel();
 
         jLabel5.setText(":");
 
@@ -78,6 +78,7 @@ public class VentanaCompra extends javax.swing.JFrame {
         lblInsumos.setText("Seleccionar insumo:");
         getContentPane().add(lblInsumos, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, -1, -1));
         getContentPane().add(lblError, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 250, -1, -1));
+        getContentPane().add(lblAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 40, 30));
 
         lblfondoCeleste.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblfondoCeleste.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoCelesteFinoFlecha.jpg"))); // NOI18N
@@ -156,7 +157,6 @@ public class VentanaCompra extends javax.swing.JFrame {
         );
 
         getContentPane().add(panelBlanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 700, 300));
-        getContentPane().add(lblAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 30));
 
         pack();
         setLocationRelativeTo(null);

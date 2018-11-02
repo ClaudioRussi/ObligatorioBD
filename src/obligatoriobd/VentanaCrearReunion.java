@@ -30,6 +30,7 @@ public class VentanaCrearReunion extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         crearReunion = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
+        lblAtras = new javax.swing.JLabel();
         lblfondoCeleste = new javax.swing.JLabel();
         panelBlanco = new javax.swing.JPanel();
         calendario = new com.toedter.calendar.JCalendar();
@@ -41,7 +42,6 @@ public class VentanaCrearReunion extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         reunionSemanal = new javax.swing.JRadioButton();
         reunionDiaria = new javax.swing.JRadioButton();
-        lblAtras = new javax.swing.JLabel();
 
         jLabel5.setText(":");
 
@@ -51,6 +51,7 @@ public class VentanaCrearReunion extends javax.swing.JFrame {
         crearReunion.setText("Crear");
         getContentPane().add(crearReunion, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 265, -1, -1));
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(589, 171, -1, -1));
+        getContentPane().add(lblAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 40, 30));
 
         lblfondoCeleste.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblfondoCeleste.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoCelesteFinoFlecha.jpg"))); // NOI18N
@@ -134,7 +135,6 @@ public class VentanaCrearReunion extends javax.swing.JFrame {
         );
 
         getContentPane().add(panelBlanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 700, 300));
-        getContentPane().add(lblAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 40, 30));
 
         pack();
         setLocationRelativeTo(null);

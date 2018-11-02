@@ -39,7 +39,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 204, 255));
-        setPreferredSize(new java.awt.Dimension(456, 272));
+        setPreferredSize(new java.awt.Dimension(738, 300));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnCerrarSesion.setText("Cerrar sesión");
