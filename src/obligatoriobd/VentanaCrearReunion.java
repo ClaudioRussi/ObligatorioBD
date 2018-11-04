@@ -42,6 +42,8 @@ public class VentanaCrearReunion extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         reunionSemanal = new javax.swing.JRadioButton();
         reunionDiaria = new javax.swing.JRadioButton();
+        btnVerReuniones = new javax.swing.JButton();
+        btnVerInvitaciones = new javax.swing.JButton();
 
         jLabel5.setText(":");
 
@@ -81,6 +83,10 @@ public class VentanaCrearReunion extends javax.swing.JFrame {
         reunionDiaria.setText("Reunion Diaria");
         reunionDiaria.setContentAreaFilled(false);
 
+        btnVerReuniones.setText("Ver reuniones");
+
+        btnVerInvitaciones.setText("Ver invitaciones");
+
         javax.swing.GroupLayout panelBlancoLayout = new javax.swing.GroupLayout(panelBlanco);
         panelBlanco.setLayout(panelBlancoLayout);
         panelBlancoLayout.setHorizontalGroup(
@@ -105,6 +111,12 @@ public class VentanaCrearReunion extends javax.swing.JFrame {
                             .addComponent(reunionSemanal)
                             .addComponent(reunionMensual))))
                 .addContainerGap(313, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBlancoLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnVerInvitaciones)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnVerReuniones)
+                .addGap(80, 80, 80))
         );
         panelBlancoLayout.setVerticalGroup(
             panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -128,7 +140,11 @@ public class VentanaCrearReunion extends javax.swing.JFrame {
                         .addComponent(reunionMensual)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(reunionAnual)
-                        .addGap(52, 52, 52))
+                        .addGap(18, 18, 18)
+                        .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnVerReuniones)
+                            .addComponent(btnVerInvitaciones))
+                        .addContainerGap())
                     .addGroup(panelBlancoLayout.createSequentialGroup()
                         .addComponent(calendario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(49, 49, 49))))
@@ -147,6 +163,8 @@ public class VentanaCrearReunion extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnVerInvitaciones;
+    private javax.swing.JButton btnVerReuniones;
     private com.toedter.calendar.JCalendar calendario;
     private javax.swing.JButton crearReunion;
     private javax.swing.JTextField descripcionReunion;

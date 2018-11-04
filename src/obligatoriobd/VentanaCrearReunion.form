@@ -109,6 +109,13 @@
                   </Group>
                   <EmptySpace pref="313" max="32767" attributes="0"/>
               </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="btnVerInvitaciones" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="btnVerReuniones" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
+              </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -135,7 +142,12 @@
                           <Component id="reunionMensual" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="reunionAnual" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="btnVerReuniones" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnVerInvitaciones" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <Component id="calendario" min="-2" max="-2" attributes="0"/>
@@ -189,6 +201,16 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Reunion Diaria"/>
             <Property name="contentAreaFilled" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnVerReuniones">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Ver reuniones"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnVerInvitaciones">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Ver invitaciones"/>
           </Properties>
         </Component>
       </SubComponents>

@@ -9,12 +9,12 @@ package obligatoriobd;
  *
  * @author Agustín
  */
-public class VentanaPagos extends javax.swing.JFrame {
+public class VentanaInvitaciones extends javax.swing.JFrame {
 
     /**
-     * Creates new form VentanaPagos
+     * Creates new form VentanaInvitaciones
      */
-    public VentanaPagos() {
+    public VentanaInvitaciones() {
         initComponents();
     }
 
@@ -31,11 +31,12 @@ public class VentanaPagos extends javax.swing.JFrame {
         lblfondoCeleste = new javax.swing.JLabel();
         panelBlanco = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        listaPagos = new javax.swing.JList<>();
+        listaInvitaciones = new javax.swing.JList<>();
         btnConfirmar = new javax.swing.JButton();
         btnRechazar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setSize(new java.awt.Dimension(739, 300));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(lblAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 40, 30));
 
@@ -46,12 +47,12 @@ public class VentanaPagos extends javax.swing.JFrame {
         panelBlanco.setBackground(new java.awt.Color(255, 255, 255));
         panelBlanco.setPreferredSize(new java.awt.Dimension(739, 300));
 
-        listaPagos.setModel(new javax.swing.AbstractListModel<String>() {
+        listaInvitaciones.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(listaPagos);
+        jScrollPane1.setViewportView(listaInvitaciones);
 
         btnConfirmar.setText("Confirmar");
 
@@ -90,6 +91,40 @@ public class VentanaPagos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(VentanaInvitaciones.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(VentanaInvitaciones.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(VentanaInvitaciones.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(VentanaInvitaciones.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new VentanaInvitaciones().setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfirmar;
@@ -97,7 +132,7 @@ public class VentanaPagos extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAtras;
     private javax.swing.JLabel lblfondoCeleste;
-    private javax.swing.JList<String> listaPagos;
+    private javax.swing.JList<String> listaInvitaciones;
     private javax.swing.JPanel panelBlanco;
     // End of variables declaration//GEN-END:variables
 }

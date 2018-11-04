@@ -43,6 +43,7 @@ public class VentanaEvento extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         eventoSemanal = new javax.swing.JRadioButton();
         eventoDiario = new javax.swing.JRadioButton();
+        btnVerEventos = new javax.swing.JButton();
 
         jLabel5.setText(":");
 
@@ -84,6 +85,8 @@ public class VentanaEvento extends javax.swing.JFrame {
         eventoDiario.setText("Evento diario");
         eventoDiario.setContentAreaFilled(false);
 
+        btnVerEventos.setText("Ver eventos");
+
         javax.swing.GroupLayout panelBlancoLayout = new javax.swing.GroupLayout(panelBlanco);
         panelBlanco.setLayout(panelBlancoLayout);
         panelBlancoLayout.setHorizontalGroup(
@@ -112,6 +115,10 @@ public class VentanaEvento extends javax.swing.JFrame {
                             .addComponent(eventoMensual)
                             .addComponent(eventoDiario))))
                 .addContainerGap(197, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBlancoLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnVerEventos)
+                .addGap(82, 82, 82))
         );
         panelBlancoLayout.setVerticalGroup(
             panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,7 +148,9 @@ public class VentanaEvento extends javax.swing.JFrame {
                         .addComponent(eventoAnual)
                         .addGap(3, 3, 3))
                     .addComponent(calendarioEvento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addComponent(btnVerEventos)
+                .addContainerGap())
         );
 
         getContentPane().add(panelBlanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 700, 300));
@@ -156,6 +165,7 @@ public class VentanaEvento extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnVerEventos;
     private com.toedter.calendar.JCalendar calendarioEvento;
     private javax.swing.JComboBox<String> categoriaEvento;
     private javax.swing.JButton crearEvento;
