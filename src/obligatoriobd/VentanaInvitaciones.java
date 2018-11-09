@@ -5,6 +5,7 @@
  */
 package obligatoriobd;
 
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 
 /**
@@ -13,6 +14,7 @@ import javax.swing.ImageIcon;
  */
 public class VentanaInvitaciones extends javax.swing.JFrame {
 
+    DefaultListModel modeloLista;
     /**
      * Creates new form VentanaInvitaciones
      */
@@ -20,6 +22,8 @@ public class VentanaInvitaciones extends javax.swing.JFrame {
         initComponents();
         ImageIcon icon = new ImageIcon("src/imagenes/fondoCelesteFinoFlecha.jpg");
         this.lblfondoCeleste.setIcon(icon);
+        modeloLista = new DefaultListModel();
+        listaInvitaciones.setModel(modeloLista);
     }
 
     /**
