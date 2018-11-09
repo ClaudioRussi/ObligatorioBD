@@ -75,6 +75,12 @@ public class VentanaConsumicion extends javax.swing.JFrame {
         lblInsumos.setText("Seleccionar insumo:");
         getContentPane().add(lblInsumos, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, -1, -1));
         getContentPane().add(lblError, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 250, -1, -1));
+
+        lblAtras.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblAtrasMouseClicked(evt);
+            }
+        });
         getContentPane().add(lblAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 40, 30));
 
         lblfondoCeleste.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -130,6 +136,12 @@ public class VentanaConsumicion extends javax.swing.JFrame {
 
     private void btnBuscarInsumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarInsumoActionPerformed
     }//GEN-LAST:event_btnBuscarInsumoActionPerformed
+
+    private void lblAtrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtrasMouseClicked
+        VentanaPrincipal vent = new VentanaPrincipal();
+        vent.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_lblAtrasMouseClicked
 
 
 

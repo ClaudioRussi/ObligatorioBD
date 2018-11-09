@@ -56,6 +56,12 @@ public class VentanaEvento extends javax.swing.JFrame {
 
         crearEvento.setText("Crear");
         getContentPane().add(crearEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(671, 266, -1, -1));
+
+        lblAtras.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblAtrasMouseClicked(evt);
+            }
+        });
         getContentPane().add(lblAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 40, 30));
 
         lblfondoCeleste.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -165,6 +171,12 @@ public class VentanaEvento extends javax.swing.JFrame {
     private void eventoMensualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eventoMensualActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_eventoMensualActionPerformed
+
+    private void lblAtrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtrasMouseClicked
+        VentanaPrincipal vent = new VentanaPrincipal();
+        vent.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_lblAtrasMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

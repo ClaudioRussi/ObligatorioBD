@@ -64,6 +64,12 @@ public class VentanaReunion extends javax.swing.JFrame {
 
         finalizarReunion.setText("Finalizar Reunion");
         getContentPane().add(finalizarReunion, new org.netbeans.lib.awtextra.AbsoluteConstraints(616, 266, -1, -1));
+
+        lblAtras.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblAtrasMouseClicked(evt);
+            }
+        });
         getContentPane().add(lblAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 14, 40, 30));
 
         lblfondoCeleste.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -215,6 +221,12 @@ public class VentanaReunion extends javax.swing.JFrame {
     private void idUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idUsuarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_idUsuarioActionPerformed
+
+    private void lblAtrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtrasMouseClicked
+        VentanaPrincipal vent = new VentanaPrincipal();
+        vent.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_lblAtrasMouseClicked
 
  
 

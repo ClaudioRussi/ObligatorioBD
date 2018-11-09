@@ -35,13 +35,13 @@ public class VentanaCompra extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel5 = new javax.swing.JLabel();
+        lblAtras = new javax.swing.JLabel();
         idInsumo = new javax.swing.JTextField();
         btnBuscarInsumo = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         lstInsumos = new javax.swing.JList<>();
         lblInsumos = new javax.swing.JLabel();
         lblError = new javax.swing.JLabel();
-        lblAtras = new javax.swing.JLabel();
         lblfondoCeleste = new javax.swing.JLabel();
         panelBlanco = new javax.swing.JPanel();
         calendario = new com.toedter.calendar.JCalendar();
@@ -62,6 +62,16 @@ public class VentanaCompra extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        lblAtras.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblAtrasMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                lblAtrasMousePressed(evt);
+            }
+        });
+        getContentPane().add(lblAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 40, 30));
+
         idInsumo.setText("Insumo");
         getContentPane().add(idInsumo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 30, 140, -1));
 
@@ -81,7 +91,6 @@ public class VentanaCompra extends javax.swing.JFrame {
         lblInsumos.setText("Seleccionar insumo:");
         getContentPane().add(lblInsumos, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, -1, -1));
         getContentPane().add(lblError, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 250, -1, -1));
-        getContentPane().add(lblAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 40, 30));
 
         lblfondoCeleste.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         getContentPane().add(lblfondoCeleste, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 60, 300));
@@ -190,6 +199,16 @@ public class VentanaCompra extends javax.swing.JFrame {
         }
         this.lstInsumos.setModel(demoList);
     }//GEN-LAST:event_btnBuscarInsumoActionPerformed
+
+    private void lblAtrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtrasMouseClicked
+        VentanaPrincipal vent = new VentanaPrincipal();
+        vent.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_lblAtrasMouseClicked
+
+    private void lblAtrasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtrasMousePressed
+
+    }//GEN-LAST:event_lblAtrasMousePressed
 
 
 
