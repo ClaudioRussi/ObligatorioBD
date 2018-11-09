@@ -6,6 +6,7 @@
 package obligatoriobd;
 
 import java.sql.*;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -74,9 +75,9 @@ public class Usuario {
         reunion.getIntegrantes().add(usuario);
     }
     
-    public Evento crearEvento(String descripcion, boolean esDiario, boolean esSemanal, boolean esMensual, boolean esAnual, Date fecha, String tipo){
+    public Evento crearEvento(String descripcion, boolean esDiario, boolean esSemanal, boolean esMensual, 
+            boolean esAnual, Calendar fecha, String tipo){
         //obtener fecha del momento para fechaCreacion
-        String fechaCreacion = null;
         return new Evento(this.idUsuario, descripcion, esDiario, esSemanal, esMensual, esAnual, fecha, tipo);
     }
     

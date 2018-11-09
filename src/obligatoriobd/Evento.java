@@ -33,11 +33,12 @@ public class Evento {
     private boolean esSemanal;
     private boolean esMensual;
     private boolean esAnual;
-    private Date fechaCreacion;
-    private Date fecha;
+    private Calendar fechaCreacion;
+    private Calendar fecha;
     private String tipo;
     
-    public Evento(int IDUsuario, String descripcion, boolean esDiario, boolean esSemanal, boolean esMensual, boolean esAnual, Date fecha, String tipo) {
+    public Evento(int IDUsuario, String descripcion, boolean esDiario, boolean esSemanal, boolean esMensual, 
+            boolean esAnual, Calendar fecha, String tipo) {
         this.idEvento = Evento.id++;
         this.idUsuario = IDUsuario;
         this.descripcion = descripcion;
@@ -46,10 +47,12 @@ public class Evento {
         this.esMensual = esMensual;
         this.esAnual = esAnual;
         this.fecha = fecha;
+        this.fechaCreacion = Calendar.getInstance();
         this.tipo = tipo; 
         
     }
-    public Evento(int IDEvento, int IDUsuario, String descripcion, boolean esDiario, boolean esSemanal, boolean esMensual, boolean esAnual, Date fecha, String tipo) {
+    public Evento(int IDEvento, int IDUsuario, String descripcion, boolean esDiario, boolean esSemanal, 
+            boolean esMensual, boolean esAnual, Calendar fecha, Calendar fechaCreacion, String tipo) {
         
         this.idEvento = IDEvento;
         this.idUsuario = IDUsuario;
@@ -59,6 +62,7 @@ public class Evento {
         this.esMensual = esMensual;
         this.esAnual = esAnual;
         this.fecha = fecha;
+        this.fechaCreacion = fechaCreacion;
         this.tipo = tipo; 
         
     }
@@ -124,19 +128,19 @@ public class Evento {
         this.esAnual = esAnual;
     }
 
-    public Date getFechaCreacion() {
+    public Calendar getFechaCreacion() {
         return fechaCreacion;
     }
 
-    public void setFechaCreacion(Date fechaCreacion) {
+    public void setFechaCreacion(Calendar fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
 
-    public Date getFecha() {
+    public Calendar getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(Calendar fecha) {
         this.fecha = fecha;
     }
 
@@ -153,11 +157,18 @@ public class Evento {
             Class.forName("org.postgresql.Driver");
             Connection conexion = DriverManager.getConnection(url, usuario, contrasenia);
             java.sql.Statement st = conexion.createStatement();
-            
+            //Creacion de calendarios
+            Calendar fechaCreacion = Calendar.getInstance();
+            Calendar fecha = Calendar.getInstance();
             String sql = "SELECT * FROM evento WHERE id_usuario = "+ idUsuario;
             ResultSet result = st.executeQuery(sql);
             while(result.next()){
-                eventos.add(new Evento(result.getInt("id_evento"), result.getInt("id_usuario"), result.getString("descripcion"), result.getBoolean("es_diario"), result.getBoolean("es_semanal"), result.getBoolean("es_mensual"),result.getBoolean("es_anual"), result.getDate("fecha"), result.getString("tipo")));
+                fecha.setTimeInMillis(result.getTimestamp("fecha").getTime());
+                fechaCreacion.setTimeInMillis(result.getTimestamp("fecha_creacion").getTime());
+                eventos.add(new Evento(result.getInt("id_evento"), result.getInt("id_usuario"), 
+                        result.getString("descripcion"), result.getBoolean("es_diario"), 
+                        result.getBoolean("es_semanal"), result.getBoolean("es_mensual"),
+                        result.getBoolean("es_anual"), fecha, fechaCreacion, result.getString("tipo")));
             }
             result.close();
             st.close();
@@ -170,28 +181,35 @@ public class Evento {
         }
     }
 
-    static public void buscarEventosAPartirDeFecha(Date fecha, ArrayList<Evento> eventos){
-        try{
-            Class.forName("org.postgresql.Driver");
-            Connection conexion = DriverManager.getConnection(url, usuario, contrasenia);
-            java.sql.Statement st = conexion.createStatement();
-            
-            String sql = "SELECT * FROM evento WHERE fecha >= "+ dtf.format(fecha);
-            ResultSet result = st.executeQuery(sql);
-            while(result.next()){
-                eventos.add(new Evento(result.getInt("id_evento"), result.getInt("id_usuario"), result.getString("descripcion"), result.getBoolean("es_diario"), result.getBoolean("es_semanal"),result.getBoolean("es_mensual"),result.getBoolean("es_anual"), result.getDate("fecha"), result.getString("tipo")));
-            }
-            result.close();
-            st.close();
-            conexion.close();
-        }catch (SQLException e){
-            System.out.println("ERROR DE CONEXION " + e.getMessage());
-            
-        }
-        catch(ClassNotFoundException e){
-            System.out.println("ERROR AL CARGAR LA CLASE "+ e.getMessage());
-        }
-    }
+//    static public void buscarEventosAPartirDeFecha(Date fecha, ArrayList<Evento> eventos){
+//        //Se le estaba agregando los calendar para utilizar utilizar los milisecs
+//        try{
+//            Class.forName("org.postgresql.Driver");
+//            Connection conexion = DriverManager.getConnection(url, usuario, contrasenia);
+//            java.sql.Statement st = conexion.createStatement();
+//            Calendar fecha = Calendar.getInstance();
+//            Calendar fechaCreacion = Calendar.getInstance();
+//            String sql = "SELECT * FROM evento WHERE fecha >= "+ dtf.format(fecha);
+//            ResultSet result = st.executeQuery(sql);
+//            while(result.next()){
+//                fecha.setTimeInMillis(result.getTimestamp("fecha").getTime());
+//                fechaCreacion.setTimeInMillis(result.getTimestamp("fecha_creacion").getTime());
+//                eventos.add(new Evento(result.getInt("id_evento"), result.getInt("id_usuario"), 
+//                        result.getString("descripcion"), result.getBoolean("es_diario"), 
+//                        result.getBoolean("es_semanal"),result.getBoolean("es_mensual"),
+//                        result.getBoolean("es_anual"), result.getDate("fecha"), result.getString("tipo")));
+//            }
+//            result.close();
+//            st.close();
+//            conexion.close();
+//        }catch (SQLException e){
+//            System.out.println("ERROR DE CONEXION " + e.getMessage());
+//            
+//        }
+//        catch(ClassNotFoundException e){
+//            System.out.println("ERROR AL CARGAR LA CLASE "+ e.getMessage());
+//        }
+//    }
     
     static public Evento buscarEventoPorId(int id){
         Evento evento = null;
@@ -200,10 +218,18 @@ public class Evento {
             Connection conexion = DriverManager.getConnection(url, usuario, contrasenia);
             java.sql.Statement st = conexion.createStatement();
             
+            Calendar fecha = Calendar.getInstance();
+            Calendar fechaCreacion = Calendar.getInstance();
+            
             String sql = "SELECT * FROM evento WHERE id_evento = " + id;
             ResultSet result = st.executeQuery(sql);
             while(result.next()){
-                evento = (new Evento(result.getInt("id_evento"), result.getInt("id_usuario"), result.getString("descripcion"), result.getBoolean("es_diario"), result.getBoolean("es_semanal"), result.getBoolean("es_mensual"),result.getBoolean("es_anual"), result.getDate("fecha"), result.getString("tipo")));
+                fecha.setTimeInMillis(result.getTimestamp("fecha").getTime());
+                fechaCreacion.setTimeInMillis(result.getTimestamp("fecha_creacion").getTime());
+                evento = (new Evento(result.getInt("id_evento"), result.getInt("id_usuario"), 
+                        result.getString("descripcion"), result.getBoolean("es_diario"), result.getBoolean("es_semanal"),
+                        result.getBoolean("es_mensual"),result.getBoolean("es_anual"), fecha, fechaCreacion, 
+                        result.getString("tipo")));
             }
             result.close();
             st.close();
@@ -223,7 +249,15 @@ public class Evento {
             Class.forName("org.postgresql.Driver");
             Connection conexion = DriverManager.getConnection(url, usuario, contrasenia);
             java.sql.Statement st = conexion.createStatement();
-            String insertion = "INSERT INTO evento VALUES ("+this.idEvento+", "+this.idUsuario+", '"+this.descripcion+"', "+this.esDiario+", "+this.esSemanal+"', "+this.esMensual+", "+this.esAnual+", "+dtf.parse(this.fechaCreacion.toString())+", "+dtf.parse(this.fecha.toString())+", '"+this.tipo+")';";
+            String insertion = "INSERT INTO evento VALUES ("+this.idEvento+", "+this.idUsuario+", "
+                    + "'"+this.descripcion+"', "+this.esMensual+", "
+                    + ""+this.esAnual+", '"+ 
+                    Herramientas.ConvertirCalendarAString(fecha) +"', '"+this.tipo+"', "+this.esDiario+", "
+                    +this.esSemanal+", '"+ Herramientas.ConvertirCalendarAString(fechaCreacion)+"');"; 
+            //TEST
+            System.out.println("VA INSERCION");
+            System.out.println(insertion);
+            
             st.executeUpdate(insertion);
             st.close();
             conexion.close();
@@ -236,10 +270,7 @@ public class Evento {
             System.out.println("ERROR AL GUARDAR LA CLASE "+ e.getMessage());
             errorAlGuardar = true;
         }
-        catch(ParseException e){
-            System.out.println("ERROR AL PARSEAR LA CLASE "+ e.getMessage());
-            errorAlGuardar = true;
-        }
+       
     }
     
     public void Update() {
@@ -247,7 +278,13 @@ public class Evento {
             Class.forName("org.postgresql.Driver");
             Connection conexion = DriverManager.getConnection(url, usuario, contrasenia);
             java.sql.Statement st = conexion.createStatement();
-            String Update = "UPDATE evento SET id_usuario = "+this.idUsuario+", descripcion = '"+this.descripcion+"', es_diario = "+this.esDiario+", es_semanal = "+this.esSemanal+"', es_mensual = "+this.esMensual+", es_anual = "+this.esAnual+", fecha_creacion = "+dtf.parse(this.fechaCreacion.toString())+", fecha = "+dtf.parse(this.fecha.toString())+", tipo = '"+this.tipo+"' WHERE id = "+ this.idEvento +";";
+            String Update = "UPDATE evento SET id_usuario = "+this.idUsuario+", "
+                    + "descripcion = '"+this.descripcion+"', es_diario = "+this.esDiario+", "
+                    + "es_semanal = "+this.esSemanal+"', es_mensual = "+this.esMensual+", "
+                    + "es_anual = "+this.esAnual+", "
+                    + "fecha_creacion = "+ Herramientas.ConvertirCalendarAString(fechaCreacion)+", "
+                    + "fecha = "+Herramientas.ConvertirCalendarAString(fecha)+", tipo = '"+this.tipo+"' "
+                    + "WHERE id = "+ this.idEvento +";";
             st.executeUpdate(Update);
             st.close();
             conexion.close();
@@ -258,10 +295,7 @@ public class Evento {
         catch(ClassNotFoundException e){
             System.out.println("ERROR AL GUARDAR LA CLASE "+ e.getMessage());
         }
-        catch(ParseException e){
-            System.out.println("ERROR AL PARSEAR LA CLASE "+ e.getMessage());
-            errorAlGuardar = true;
-        }
+      
     }
     
     public void Delete(){

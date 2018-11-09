@@ -74,7 +74,7 @@ public class VentanaSesion extends javax.swing.JFrame {
         getContentPane().add(acceder, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 230, 80, -1));
 
         fondoCeleste.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondologo.jpg"))); // NOI18N
-        getContentPane().add(fondoCeleste, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 300));
+        getContentPane().add(fondoCeleste, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 300));
 
         pack();
         setLocationRelativeTo(null);

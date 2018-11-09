@@ -20,8 +20,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     public VentanaPrincipal() {
         initComponents();
         this.lblUsuario.setText(ObligatorioBD.usuarioLoggeado.getUsername());
-        //ImageIcon icon = new ImageIcon("src/imagenes/fondoCeleste.jpg");
-        //this.lblFondoCeleste.setIcon(icon);
+        ImageIcon icon = new ImageIcon("src/imagenes/fondoCeleste.jpg");
+        this.lblFondoCeleste.setIcon(icon);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -32,6 +32,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lblFondoCeleste = new javax.swing.JLabel();
         panelBlanco = new javax.swing.JPanel();
         botonConsumicion = new javax.swing.JButton();
         botonCompra = new javax.swing.JButton();
@@ -39,12 +40,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         botonEvento = new javax.swing.JButton();
         lblUsuario = new javax.swing.JLabel();
         btnCerrarSesion = new javax.swing.JButton();
-        lblFondoCeleste = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 204, 255));
         setPreferredSize(new java.awt.Dimension(738, 300));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblFondoCeleste.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoCeleste.jpg"))); // NOI18N
+        getContentPane().add(lblFondoCeleste, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 40, -1));
 
         panelBlanco.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -92,15 +95,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         panelBlancoLayout.setHorizontalGroup(
             panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBlancoLayout.createSequentialGroup()
-                .addGap(114, 114, 114)
-                .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(panelBlancoLayout.createSequentialGroup()
-                        .addGap(336, 336, 336)
+                .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBlancoLayout.createSequentialGroup()
+                        .addGap(450, 450, 450)
                         .addComponent(btnCerrarSesion))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelBlancoLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 387, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblUsuario))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelBlancoLayout.createSequentialGroup()
+                    .addGroup(panelBlancoLayout.createSequentialGroup()
+                        .addGap(114, 114, 114)
                         .addComponent(botonEvento)
                         .addGap(43, 43, 43)
                         .addComponent(botonReunion)
@@ -108,28 +108,29 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                         .addComponent(botonCompra)
                         .addGap(31, 31, 31)
                         .addComponent(botonConsumicion)))
-                .addContainerGap(141, Short.MAX_VALUE))
+                .addContainerGap(121, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBlancoLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(lblUsuario)
+                .addGap(41, 41, 41))
         );
         panelBlancoLayout.setVerticalGroup(
             panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBlancoLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(38, 38, 38)
                 .addComponent(lblUsuario)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
+                .addGap(58, 58, 58)
                 .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(botonEvento)
                     .addComponent(botonReunion)
                     .addComponent(botonCompra)
                     .addComponent(botonConsumicion))
-                .addGap(81, 81, 81)
+                .addGap(58, 58, 58)
                 .addComponent(btnCerrarSesion)
-                .addGap(21, 21, 21))
+                .addContainerGap(130, Short.MAX_VALUE))
         );
 
-        getContentPane().add(panelBlanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 700, 300));
-
-        lblFondoCeleste.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoCeleste.jpg"))); // NOI18N
-        getContentPane().add(lblFondoCeleste, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 40, -1));
+        getContentPane().add(panelBlanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 680, 350));
 
         pack();
         setLocationRelativeTo(null);

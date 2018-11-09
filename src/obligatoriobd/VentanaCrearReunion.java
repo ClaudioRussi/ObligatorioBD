@@ -32,8 +32,6 @@ public class VentanaCrearReunion extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel5 = new javax.swing.JLabel();
-        crearReunion = new javax.swing.JButton();
-        jLabel8 = new javax.swing.JLabel();
         lblAtras = new javax.swing.JLabel();
         lblfondoCeleste = new javax.swing.JLabel();
         panelBlanco = new javax.swing.JPanel();
@@ -48,18 +46,22 @@ public class VentanaCrearReunion extends javax.swing.JFrame {
         reunionDiaria = new javax.swing.JRadioButton();
         btnVerReuniones = new javax.swing.JButton();
         btnVerInvitaciones = new javax.swing.JButton();
+        crearReunion = new javax.swing.JButton();
 
         jLabel5.setText(":");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        crearReunion.setText("Crear");
-        getContentPane().add(crearReunion, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 265, -1, -1));
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(589, 171, -1, -1));
+        lblAtras.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblAtrasMouseClicked(evt);
+            }
+        });
         getContentPane().add(lblAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 40, 30));
 
         lblfondoCeleste.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblfondoCeleste.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoCelesteFinoFlecha.jpg"))); // NOI18N
         getContentPane().add(lblfondoCeleste, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 60, -1));
 
         panelBlanco.setBackground(new java.awt.Color(255, 255, 255));
@@ -90,6 +92,8 @@ public class VentanaCrearReunion extends javax.swing.JFrame {
 
         btnVerInvitaciones.setText("Ver invitaciones");
 
+        crearReunion.setText("Crear");
+
         javax.swing.GroupLayout panelBlancoLayout = new javax.swing.GroupLayout(panelBlanco);
         panelBlanco.setLayout(panelBlancoLayout);
         panelBlancoLayout.setHorizontalGroup(
@@ -119,7 +123,9 @@ public class VentanaCrearReunion extends javax.swing.JFrame {
                 .addComponent(btnVerInvitaciones)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnVerReuniones)
-                .addGap(80, 80, 80))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(crearReunion)
+                .addGap(8, 8, 8))
         );
         panelBlancoLayout.setVerticalGroup(
             panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,7 +152,8 @@ public class VentanaCrearReunion extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnVerReuniones)
-                            .addComponent(btnVerInvitaciones))
+                            .addComponent(btnVerInvitaciones)
+                            .addComponent(crearReunion))
                         .addContainerGap())
                     .addGroup(panelBlancoLayout.createSequentialGroup()
                         .addComponent(calendario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -163,6 +170,12 @@ public class VentanaCrearReunion extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_reunionMensualActionPerformed
 
+    private void lblAtrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtrasMouseClicked
+        VentanaPrincipal vent = new VentanaPrincipal();
+        vent.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_lblAtrasMouseClicked
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -174,7 +187,6 @@ public class VentanaCrearReunion extends javax.swing.JFrame {
     private javax.swing.JSpinner horaReunion;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel lblAtras;
     private javax.swing.JLabel lblfondoCeleste;
     private javax.swing.JSpinner minutoReunion;

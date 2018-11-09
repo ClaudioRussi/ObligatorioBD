@@ -29,7 +29,7 @@ ArrayList<Evento> eventos;
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Calendar cal = Calendar.getInstance();
         
-        Evento.buscarEventosAPartirDeFecha(cal.getTime(), eventos);
+       // Evento.buscarEventosAPartirDeFecha(cal.getTime(), eventos);
                
     }
     

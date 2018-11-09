@@ -33,7 +33,6 @@ public class VentanaReunion extends javax.swing.JFrame {
 
         jLabel5 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        finalizarReunion = new javax.swing.JButton();
         lblAtras = new javax.swing.JLabel();
         lblfondoCeleste = new javax.swing.JLabel();
         panelBlanco = new javax.swing.JPanel();
@@ -55,15 +54,13 @@ public class VentanaReunion extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
         asignarCreador = new javax.swing.JButton();
+        finalizarReunion = new javax.swing.JButton();
 
         jLabel5.setText(":");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(521, 172, -1, -1));
-
-        finalizarReunion.setText("Finalizar Reunion");
-        getContentPane().add(finalizarReunion, new org.netbeans.lib.awtextra.AbsoluteConstraints(616, 266, -1, -1));
 
         lblAtras.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -121,6 +118,8 @@ public class VentanaReunion extends javax.swing.JFrame {
 
         asignarCreador.setText("Asignar");
 
+        finalizarReunion.setText("Finalizar Reunion");
+
         javax.swing.GroupLayout panelBlancoLayout = new javax.swing.GroupLayout(panelBlanco);
         panelBlanco.setLayout(panelBlancoLayout);
         panelBlancoLayout.setHorizontalGroup(
@@ -164,7 +163,9 @@ public class VentanaReunion extends javax.swing.JFrame {
                             .addGap(68, 68, 68))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBlancoLayout.createSequentialGroup()
                             .addComponent(jButton1)
-                            .addGap(136, 136, 136)))))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(finalizarReunion)
+                            .addContainerGap()))))
         );
         panelBlancoLayout.setVerticalGroup(
             panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -200,7 +201,9 @@ public class VentanaReunion extends javax.swing.JFrame {
                             .addComponent(pago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnAgregarPago))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
+                        .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton1)
+                            .addComponent(finalizarReunion))
                         .addContainerGap())
                     .addGroup(panelBlancoLayout.createSequentialGroup()
                         .addGap(3, 3, 3)
