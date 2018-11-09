@@ -80,7 +80,7 @@ public class Evento {
     }
 
     public int getIDUsuario() {
-        return idEvento;
+        return idUsuario;
     }
 
     public void setIDUsuario(int IDUsuario) {
@@ -148,6 +148,28 @@ public class Evento {
         this.tipo = tipo;
     }
     
+    static public void buscarEventosPorUsuario(ArrayList<Evento> eventos, int idUsuario){
+        try{
+            Class.forName("org.postgresql.Driver");
+            Connection conexion = DriverManager.getConnection(url, usuario, contrasenia);
+            java.sql.Statement st = conexion.createStatement();
+            
+            String sql = "SELECT * FROM evento WHERE id_usuario = "+ idUsuario;
+            ResultSet result = st.executeQuery(sql);
+            while(result.next()){
+                eventos.add(new Evento(result.getInt("id_evento"), result.getInt("id_usuario"), result.getString("descripcion"), result.getBoolean("es_diario"), result.getBoolean("es_semanal"), result.getBoolean("es_mensual"),result.getBoolean("es_anual"), result.getDate("fecha"), result.getString("tipo")));
+            }
+            result.close();
+            st.close();
+            conexion.close();
+        }catch (SQLException e){
+            System.out.println("ERROR DE CONEXION " + e.getMessage());
+        }
+        catch(ClassNotFoundException e){
+            System.out.println("ERROR AL CARGAR LA CLASE "+ e.getMessage());
+        }
+    }
+
     static public void buscarEventosAPartirDeFecha(Date fecha, ArrayList<Evento> eventos){
         try{
             Class.forName("org.postgresql.Driver");
@@ -178,7 +200,7 @@ public class Evento {
             Connection conexion = DriverManager.getConnection(url, usuario, contrasenia);
             java.sql.Statement st = conexion.createStatement();
             
-            String sql = "SELECT * FROM evento WHERE id = " + id;
+            String sql = "SELECT * FROM evento WHERE id_evento = " + id;
             ResultSet result = st.executeQuery(sql);
             while(result.next()){
                 evento = (new Evento(result.getInt("id_evento"), result.getInt("id_usuario"), result.getString("descripcion"), result.getBoolean("es_diario"), result.getBoolean("es_semanal"), result.getBoolean("es_mensual"),result.getBoolean("es_anual"), result.getDate("fecha"), result.getString("tipo")));
@@ -196,7 +218,7 @@ public class Evento {
         return evento;
     }
     
-    public void Save() throws ParseException{
+    public void Save(){
         try{
             Class.forName("org.postgresql.Driver");
             Connection conexion = DriverManager.getConnection(url, usuario, contrasenia);
@@ -211,12 +233,16 @@ public class Evento {
             errorAlGuardar = true;
         }
         catch(ClassNotFoundException e){
-            System.out.println("ERROR AL CARGAR LA CLASE "+ e.getMessage());
+            System.out.println("ERROR AL GUARDAR LA CLASE "+ e.getMessage());
+            errorAlGuardar = true;
+        }
+        catch(ParseException e){
+            System.out.println("ERROR AL PARSEAR LA CLASE "+ e.getMessage());
             errorAlGuardar = true;
         }
     }
     
-    public void Update() throws ParseException{
+    public void Update() {
          try{
             Class.forName("org.postgresql.Driver");
             Connection conexion = DriverManager.getConnection(url, usuario, contrasenia);
@@ -230,7 +256,11 @@ public class Evento {
             
         }
         catch(ClassNotFoundException e){
-            System.out.println("ERROR AL CARGAR LA CLASE "+ e.getMessage());
+            System.out.println("ERROR AL GUARDAR LA CLASE "+ e.getMessage());
+        }
+        catch(ParseException e){
+            System.out.println("ERROR AL PARSEAR LA CLASE "+ e.getMessage());
+            errorAlGuardar = true;
         }
     }
     
@@ -244,11 +274,10 @@ public class Evento {
             st.close();
             conexion.close();
         }catch (SQLException e){
-            System.out.println("ERROR DE CONEXION " + e.getMessage());
-            
+            System.out.println("ERROR DE CONEXION " + e.getMessage());            
         }
         catch(ClassNotFoundException e){
-            System.out.println("ERROR AL CARGAR LA CLASE "+ e.getMessage());
+            System.out.println("ERROR AL GUARDAR LA CLASE "+ e.getMessage());
         }
     }
 }

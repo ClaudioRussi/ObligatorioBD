@@ -5,14 +5,20 @@
  */
 package obligatoriobd;
 
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Agustín
  */
 public class VentanaVerEventos extends javax.swing.JFrame {
-
+    
+    DefaultListModel modeloLista;
+    ArrayList<Evento> array = new ArrayList();
+    
     /**
      * Creates new form VentanaVerEventos
      */
@@ -20,6 +26,14 @@ public class VentanaVerEventos extends javax.swing.JFrame {
         initComponents();
         ImageIcon icon = new ImageIcon("src/imagenes/fondoCelesteFinoFlecha.jpg");
         this.lblfondoCeleste.setIcon(icon);
+        modeloLista = new DefaultListModel();
+        Evento.buscarEventosPorUsuario(array, ObligatorioBD.usuarioLoggeado.getId());
+        for(Evento evento : array){
+            String elementoLista;
+            elementoLista = evento.getTipo() + " " + evento.getDescripcion() + " " + evento.getFecha();
+            modeloLista.addElement(elementoLista);
+        }
+        listaEventos.setModel(modeloLista);        
     }
 
     /**
@@ -57,6 +71,11 @@ public class VentanaVerEventos extends javax.swing.JFrame {
         jScrollPane1.setViewportView(listaEventos);
 
         btnConfirmar.setText("Eliminar evento");
+        btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfirmarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelBlancoLayout = new javax.swing.GroupLayout(panelBlanco);
         panelBlanco.setLayout(panelBlancoLayout);
@@ -86,6 +105,19 @@ public class VentanaVerEventos extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
+        int pos;
+        int res;
+        res = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea eliminar este evento?");
+        if (res == 0){
+            pos = listaEventos.getSelectedIndex();
+            modeloLista.remove(pos);
+            Evento evento = array.get(pos);
+            array.remove(pos);
+            evento.Delete();
+        }
+    }//GEN-LAST:event_btnConfirmarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfirmar;
