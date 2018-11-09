@@ -7,6 +7,7 @@ package obligatoriobd;
 
 import java.sql.*;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -22,7 +23,7 @@ public class Evento {
     static String url = "jdbc:postgresql://192.168.56.1:5432/BD2018-1";
     static String usuario = "postgres"; 
     static String contrasenia = "test123";
-    static DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+    static DateFormat dtf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
     
     public static int id = 0;
     private int idEvento;
@@ -153,7 +154,7 @@ public class Evento {
             Connection conexion = DriverManager.getConnection(url, usuario, contrasenia);
             java.sql.Statement st = conexion.createStatement();
             
-            String sql = "SELECT * FROM evento WHERE fecha >= "+ dateFormat.format(fecha);
+            String sql = "SELECT * FROM evento WHERE fecha >= "+ dtf.format(fecha);
             ResultSet result = st.executeQuery(sql);
             while(result.next()){
                 eventos.add(new Evento(result.getInt("id_evento"), result.getInt("id_usuario"), result.getString("descripcion"), result.getBoolean("es_diario"), result.getBoolean("es_semanal"),result.getBoolean("es_mensual"),result.getBoolean("es_anual"), result.getDate("fecha"), result.getString("tipo")));
@@ -195,12 +196,12 @@ public class Evento {
         return evento;
     }
     
-    public void Save(){
+    public void Save() throws ParseException{
         try{
             Class.forName("org.postgresql.Driver");
             Connection conexion = DriverManager.getConnection(url, usuario, contrasenia);
             java.sql.Statement st = conexion.createStatement();
-            String insertion = "INSERT INTO evento VALUES ("+this.idEvento+", "+this.idUsuario+", '"+this.descripcion+"', "+this.esDiario+", "+this.esSemanal+"', "+this.esMensual+", "+this.esAnual+", "+this.fechaCreacion+", "+this.fecha+", '"+this.tipo+")';";
+            String insertion = "INSERT INTO evento VALUES ("+this.idEvento+", "+this.idUsuario+", '"+this.descripcion+"', "+this.esDiario+", "+this.esSemanal+"', "+this.esMensual+", "+this.esAnual+", "+dtf.parse(this.fechaCreacion.toString())+", "+dtf.parse(this.fecha.toString())+", '"+this.tipo+")';";
             st.executeUpdate(insertion);
             st.close();
             conexion.close();
@@ -215,12 +216,12 @@ public class Evento {
         }
     }
     
-    public void Update(){
+    public void Update() throws ParseException{
          try{
             Class.forName("org.postgresql.Driver");
             Connection conexion = DriverManager.getConnection(url, usuario, contrasenia);
             java.sql.Statement st = conexion.createStatement();
-            String Update = "UPDATE evento SET id_usuario = "+this.idUsuario+", descripcion = '"+this.descripcion+"', es_diario = "+this.esDiario+", es_semanal = "+this.esSemanal+"', es_mensual = "+this.esMensual+", es_anual = "+this.esAnual+", fecha_creacion = "+this.fechaCreacion+", fecha = "+this.fecha+", tipo = '"+this.tipo+"' WHERE id = "+ this.idEvento +";";
+            String Update = "UPDATE evento SET id_usuario = "+this.idUsuario+", descripcion = '"+this.descripcion+"', es_diario = "+this.esDiario+", es_semanal = "+this.esSemanal+"', es_mensual = "+this.esMensual+", es_anual = "+this.esAnual+", fecha_creacion = "+dtf.parse(this.fechaCreacion.toString())+", fecha = "+dtf.parse(this.fecha.toString())+", tipo = '"+this.tipo+"' WHERE id = "+ this.idEvento +";";
             st.executeUpdate(Update);
             st.close();
             conexion.close();
