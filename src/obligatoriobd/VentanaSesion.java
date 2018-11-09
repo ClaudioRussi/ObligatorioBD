@@ -5,6 +5,8 @@
  */
 package obligatoriobd;
 
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author Agustín
@@ -16,6 +18,8 @@ public class VentanaSesion extends javax.swing.JFrame {
      */
     public VentanaSesion() {
         initComponents();
+         ImageIcon icon = new ImageIcon("src/imagenes/fondologo.jpg");
+        this.fondoCeleste.setIcon(icon);
     }
 
     /**
@@ -37,6 +41,7 @@ public class VentanaSesion extends javax.swing.JFrame {
         fondoCeleste = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblError.setForeground(new java.awt.Color(255, 0, 0));
@@ -69,11 +74,10 @@ public class VentanaSesion extends javax.swing.JFrame {
             }
         });
         getContentPane().add(acceder, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 230, 80, -1));
-
-        fondoCeleste.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondologo.jpg"))); // NOI18N
-        getContentPane().add(fondoCeleste, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        getContentPane().add(fondoCeleste, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 300));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void crearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearActionPerformed
