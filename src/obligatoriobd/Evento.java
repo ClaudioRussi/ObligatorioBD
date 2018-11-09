@@ -182,7 +182,6 @@ public class Evento {
             ResultSet result = st.executeQuery(sql);
             while(result.next()){
                 evento = (new Evento(result.getInt("id_evento"), result.getInt("id_usuario"), result.getString("descripcion"), result.getBoolean("es_diario"), result.getBoolean("es_semanal"), result.getBoolean("es_mensual"),result.getBoolean("es_anual"), result.getDate("fecha"), result.getString("tipo")));
-                
             }
             result.close();
             st.close();
