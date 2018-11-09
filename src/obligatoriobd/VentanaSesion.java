@@ -27,6 +27,7 @@ public class VentanaSesion extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lblError = new javax.swing.JLabel();
         idUsuario = new javax.swing.JTextField();
         contraseniaUsuario = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
@@ -37,6 +38,9 @@ public class VentanaSesion extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblError.setForeground(new java.awt.Color(255, 0, 0));
+        getContentPane().add(lblError, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 270, -1, -1));
         getContentPane().add(idUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 110, 180, 20));
 
         contraseniaUsuario.setText("jPasswordField1");
@@ -50,10 +54,20 @@ public class VentanaSesion extends javax.swing.JFrame {
 
         crear.setText("Sign up");
         crear.setFocusPainted(false);
+        crear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                crearActionPerformed(evt);
+            }
+        });
         getContentPane().add(crear, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 230, 80, -1));
 
         acceder.setText("Log in");
         acceder.setFocusPainted(false);
+        acceder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                accederActionPerformed(evt);
+            }
+        });
         getContentPane().add(acceder, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 230, 80, -1));
 
         fondoCeleste.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondologo.jpg"))); // NOI18N
@@ -61,6 +75,38 @@ public class VentanaSesion extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void crearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearActionPerformed
+        // TODO add your handling code here:
+        Usuario usuario = new Usuario(idUsuario.getText(), new String(contraseniaUsuario.getPassword()));
+        usuario.Save();
+        if(!usuario.RegisterError){
+            ObligatorioBD.usuarioLoggeado = usuario;
+            VentanaPrincipal vent = new VentanaPrincipal();
+            
+            vent.setVisible(true);
+            this.dispose();
+        }
+        else{
+            this.lblError.setText("Ya existe un usuario con ese nombre.\n");
+            //System.out.println("Ya existe un usuario con ese nombre.\n");
+        }
+    }//GEN-LAST:event_crearActionPerformed
+
+    private void accederActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accederActionPerformed
+        // TODO add your handling code here:
+        Usuario usr = Usuario.LogIn(idUsuario.getText(), new String(contraseniaUsuario.getPassword()));
+        if(!Usuario.LogInError){
+            ObligatorioBD.usuarioLoggeado = usr;
+            VentanaPrincipal vent = new VentanaPrincipal(); // pasar por parametro el usuario
+            vent.setVisible(true);
+            this.dispose();
+        }
+        else{
+            this.lblError.setText("Error al loguearse\n");
+            //System.out.println("Error al logearse.\n");
+        }
+    }//GEN-LAST:event_accederActionPerformed
 
     /**
      * @param args the command line arguments
@@ -106,5 +152,6 @@ public class VentanaSesion extends javax.swing.JFrame {
     private javax.swing.JTextField idUsuario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel lblError;
     // End of variables declaration//GEN-END:variables
 }

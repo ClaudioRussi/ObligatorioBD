@@ -14,7 +14,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class Insumo {
-    
+    static boolean errorAlGuardar;
     static String url = "jdbc:postgresql://192.168.56.1:5432/BD2018-1";
     static String PG_usuario = "postgres"; 
     static String PG_contrasenia = "test123";
@@ -24,8 +24,15 @@ public class Insumo {
     private String nombre;
     private String descripcion;
     
+    public Insumo(int idInsumo, String nombre, String descripcion) {
+        this.idInsumo = idInsumo;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+    }
+    
     public Insumo(String nombre, String descripcion) {
-        idInsumo = Insumo.id++;
+        id++;
+        idInsumo = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
     }
@@ -94,12 +101,14 @@ public class Insumo {
             st.executeUpdate(insertion);
             st.close();
             conexion.close();
+            errorAlGuardar = false;
         }catch (SQLException e){
             System.out.println("ERROR DE CONEXION " + e.getMessage());
-            
+            errorAlGuardar = true;
         }
         catch(ClassNotFoundException e){
             System.out.println("ERROR AL CARGAR LA CLASE "+ e.getMessage());
+            errorAlGuardar = true;
         }
     }
     

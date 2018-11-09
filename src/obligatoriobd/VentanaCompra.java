@@ -170,9 +170,12 @@ public class VentanaCompra extends javax.swing.JFrame {
         Insumo ins = insumos.get(this.lstInsumos.getSelectedIndex());
         Compra compr = new Compra(ObligatorioBD.usuarioLoggeado.getId(), ins.getIDInsumo(),Integer.parseInt(this.fldPrecioCompra.getText()), clndr.getTime(), (Integer)this.fldCantidadInsumo.getValue());
         compr.Save();
-        VentanaPrincipal vtn = new VentanaPrincipal();
-        vtn.setVisible(true);
-        this.dispose();
+        if(Compra.errorAlGuardar){
+            this.lblError.setText("Hubo un error al guardar la compra.");
+        }
+        else{
+            this.lblError.setText("Se guardo la compra correctamente.");
+        }
     }//GEN-LAST:event_btnRegistrarCompraActionPerformed
 
     private void btnBuscarInsumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarInsumoActionPerformed
