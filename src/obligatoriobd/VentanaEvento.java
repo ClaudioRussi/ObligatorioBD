@@ -5,6 +5,8 @@
  */
 package obligatoriobd;
 
+import java.util.Calendar;
+import java.util.LinkedList;
 import javax.swing.ImageIcon;
 
 /**
@@ -48,6 +50,7 @@ public class VentanaEvento extends javax.swing.JFrame {
         eventoSemanal = new javax.swing.JRadioButton();
         eventoDiario = new javax.swing.JRadioButton();
         btnVerEventos = new javax.swing.JButton();
+        lblError = new javax.swing.JLabel();
 
         jLabel5.setText(":");
 
@@ -55,6 +58,11 @@ public class VentanaEvento extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         crearEvento.setText("Crear");
+        crearEvento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                crearEventoActionPerformed(evt);
+            }
+        });
         getContentPane().add(crearEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(671, 266, -1, -1));
 
         lblAtras.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -95,6 +103,11 @@ public class VentanaEvento extends javax.swing.JFrame {
         eventoDiario.setContentAreaFilled(false);
 
         btnVerEventos.setText("Ver eventos");
+        btnVerEventos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerEventosActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelBlancoLayout = new javax.swing.GroupLayout(panelBlanco);
         panelBlanco.setLayout(panelBlancoLayout);
@@ -125,7 +138,9 @@ public class VentanaEvento extends javax.swing.JFrame {
                             .addComponent(eventoDiario))))
                 .addContainerGap(197, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBlancoLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(197, 197, 197)
+                .addComponent(lblError, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnVerEventos)
                 .addGap(82, 82, 82))
         );
@@ -158,7 +173,9 @@ public class VentanaEvento extends javax.swing.JFrame {
                         .addGap(3, 3, 3))
                     .addComponent(calendarioEvento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
-                .addComponent(btnVerEventos)
+                .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnVerEventos)
+                    .addComponent(lblError))
                 .addContainerGap())
         );
 
@@ -178,6 +195,32 @@ public class VentanaEvento extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_lblAtrasMouseClicked
 
+    private void crearEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearEventoActionPerformed
+        // TODO add your handling code here:
+        Calendar clndr = this.calendarioEvento.getCalendar();
+        clndr.add(Calendar.HOUR_OF_DAY, (Integer)horaEvento.getValue());
+        clndr.add(Calendar.MINUTE, (Integer)minutoEvento.getValue());
+        //int IDUsuario, String descripcion, boolean esDiario, boolean esSemanal, boolean esMensual, boolean esAnual, Date fecha, String tipo
+        Evento evnto = new Evento(ObligatorioBD.usuarioLoggeado.getId(), descripcionEvento.getText(), eventoDiario.isSelected(), eventoSemanal.isSelected(), eventoMensual.isSelected(), eventoAnual.isSelected(), clndr.getTime(), ObligatorioBD.categorias[categoriaEvento.getSelectedIndex()]);
+        evnto.Save();
+        if(Evento.errorAlGuardar){
+            lblError.setText("Hubo un error al guardar el evento");
+        }
+        else{
+            lblError.setText("Se guardo el evento correctamente");
+            VentanaPrincipal vtn = new VentanaPrincipal();
+            vtn.setVisible(true);
+            this.dispose();
+        }
+    }//GEN-LAST:event_crearEventoActionPerformed
+
+    private void btnVerEventosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerEventosActionPerformed
+        // TODO add your handling code here:
+        VentanaVerEventos vtn = new VentanaVerEventos();
+        vtn.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnVerEventosActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnVerEventos;
@@ -194,6 +237,7 @@ public class VentanaEvento extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel lblAtras;
+    private javax.swing.JLabel lblError;
     private javax.swing.JLabel lblfondoCeleste;
     private javax.swing.JSpinner minutoEvento;
     private javax.swing.JPanel panelBlanco;

@@ -12,6 +12,7 @@ public class ObligatorioBD {
     static String url = "jdbc:postgresql://192.168.56.1:5432/BD2018-1";
     static String usuario = "postgres"; 
     static String contrasenia = "test123";
+    static String[] categorias;
     
     static Usuario usuarioLoggeado;
     
