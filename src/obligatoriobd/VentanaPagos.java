@@ -5,6 +5,8 @@
  */
 package obligatoriobd;
 
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author Agustín
@@ -16,6 +18,8 @@ public class VentanaPagos extends javax.swing.JFrame {
      */
     public VentanaPagos() {
         initComponents();
+        ImageIcon icon = new ImageIcon("src/imagenes/fondoCelesteFinoFlecha.jpg");
+        this.lblfondoCeleste.setIcon(icon);
     }
 
     /**
@@ -40,7 +44,6 @@ public class VentanaPagos extends javax.swing.JFrame {
         getContentPane().add(lblAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 40, 30));
 
         lblfondoCeleste.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblfondoCeleste.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoCelesteFinoFlecha.jpg"))); // NOI18N
         getContentPane().add(lblfondoCeleste, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 60, -1));
 
         panelBlanco.setBackground(new java.awt.Color(255, 255, 255));

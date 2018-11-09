@@ -18,7 +18,7 @@ public class VentanaSesion extends javax.swing.JFrame {
      */
     public VentanaSesion() {
         initComponents();
-         ImageIcon icon = new ImageIcon("src/imagenes/fondologo.jpg");
+        ImageIcon icon = new ImageIcon("src/imagenes/fondoCelesteFinoFecha.jpg");
         this.fondoCeleste.setIcon(icon);
     }
 
