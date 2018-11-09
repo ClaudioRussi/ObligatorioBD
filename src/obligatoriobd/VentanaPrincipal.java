@@ -5,6 +5,8 @@
  */
 package obligatoriobd;
 
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author Agustín
@@ -17,7 +19,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     public VentanaPrincipal() {
         initComponents();
         this.lblUsuario.setText(ObligatorioBD.usuarioLoggeado.getUsername());
-        
+        ImageIcon icon = new ImageIcon("src/imagenes/fondoCeleste.jpg");
+        this.lblfondoCeleste.setIcon(icon);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -56,7 +59,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         getContentPane().add(lblUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 10, -1, -1));
 
         lblfondoCeleste.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblfondoCeleste.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoCeleste.jpg"))); // NOI18N
         getContentPane().add(lblfondoCeleste, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 60, 300));
 
         panelBlanco.setBackground(new java.awt.Color(255, 255, 255));
