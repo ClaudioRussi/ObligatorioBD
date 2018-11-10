@@ -27,10 +27,12 @@ public class VentanaVerEventos extends javax.swing.JFrame {
         ImageIcon icon = new ImageIcon("src/imagenes/fondoCelesteFinoFlecha.jpg");
         this.lblfondoCeleste.setIcon(icon);
         modeloLista = new DefaultListModel();
+        //Consulta SQL
         Evento.buscarEventosPorUsuario(array, ObligatorioBD.usuarioLoggeado.getId());
         for(Evento evento : array){
             String elementoLista;
-            elementoLista = evento.getTipo() + " " + evento.getDescripcion() + " " + evento.getFecha();
+            elementoLista = evento.getTipo() + " | " + evento.getDescripcion() + " | " + 
+                    Herramientas.ConvertirCalendarAString(evento.getFecha());
             modeloLista.addElement(elementoLista);
         }
         listaEventos.setModel(modeloLista);        
@@ -55,9 +57,16 @@ public class VentanaVerEventos extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(739, 300));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblAtras.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblAtrasMouseClicked(evt);
+            }
+        });
         getContentPane().add(lblAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 40, 30));
 
         lblfondoCeleste.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblfondoCeleste.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoCelesteFinoFlecha.jpg"))); // NOI18N
         getContentPane().add(lblfondoCeleste, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 60, -1));
 
         panelBlanco.setBackground(new java.awt.Color(255, 255, 255));
@@ -104,6 +113,7 @@ public class VentanaVerEventos extends javax.swing.JFrame {
         getContentPane().add(panelBlanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, -1, -1));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
@@ -118,6 +128,12 @@ public class VentanaVerEventos extends javax.swing.JFrame {
             evento.Delete();
         }
     }//GEN-LAST:event_btnConfirmarActionPerformed
+
+    private void lblAtrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtrasMouseClicked
+        VentanaEvento vent = new VentanaEvento();
+        vent.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_lblAtrasMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfirmar;

@@ -16,7 +16,6 @@ public class ObligatorioBD {
     
     static Usuario usuarioLoggeado;
     
-    
     /**
      * @param args the command line arguments
      */
@@ -36,7 +35,7 @@ public class ObligatorioBD {
         System.out.println(reu0.getIntegrantes().size());
         //cambios para el git
         
-        //Esto es todo una mie**caca pure
+        
         
         Thread calendario = new Thread(new HiloCalendario(eventos));
         calendario.start();*/
@@ -59,16 +58,16 @@ public class ObligatorioBD {
             }*/
             result.close();
             
-//            sql = "SELECT MAX(id_compra) AS id FROM compra;";
-//            result = st.executeQuery(sql);
-//            
-//            while(result.next()){
-//                Compra.id = result.getInt("id");
-//            }
-//            result.close();
-//            
-//            st.close();
-//            conexion.close();
+            sql = "SELECT MAX(id_evento) AS id FROM evento;";
+            result = st.executeQuery(sql);
+            
+            while(result.next()){
+                Evento.id = result.getInt("id");
+            }
+            result.close();
+            
+            st.close();
+            conexion.close();
         }catch (SQLException e){
             System.out.println("ERROR DE CONEXION " + e.getMessage());
             
@@ -78,7 +77,7 @@ public class ObligatorioBD {
         }
         
         System.out.println("Id usuario cargado, id actual es: "+Usuario.id+".\n");
-        System.out.println("Id compra cargado, id actual es: "+Compra.id+".\n");
+        System.out.println("Id evento cargado, id actual es: "+Evento.id+".\n");
         VentanaSesion vent = new VentanaSesion();
         vent.setVisible(true);
         

@@ -7,6 +7,7 @@ package obligatoriobd;
 
 import java.sql.*;
 import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -30,22 +31,11 @@ public class Compra {
     int idUsuario;
     int idInsumo;
     int precioCompra;
-    Date fecha;
+    Calendar fecha;
     int cantidadComprada;
-    int idCompra;
 
     
-    public Compra(int idUsuario, int idInsumo, int precioCompra, Date fecha, int cantidadComprada){
-        id++;
-        this.idCompra = id;
-        this.idUsuario = idUsuario;
-        this.idInsumo = idInsumo;
-        this.precioCompra = precioCompra;
-        this.fecha = fecha;
-        this.cantidadComprada = cantidadComprada;
-    }
-    public Compra(int idUsuario, int idInsumo, int precioCompra, Date fecha, int cantidadComprada, int idCompra){
-        this.idCompra = idCompra;
+    public Compra(int idUsuario, int idInsumo, int precioCompra, Calendar fecha, int cantidadComprada){
         this.idUsuario = idUsuario;
         this.idInsumo = idInsumo;
         this.precioCompra = precioCompra;
@@ -65,7 +55,7 @@ public class Compra {
         return precioCompra;
     }
 
-    public Date getFecha() {
+    public Calendar getFecha() {
         return fecha;
     }
 
@@ -85,7 +75,7 @@ public class Compra {
         this.precioCompra = precioCompra;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(Calendar fecha) {
         this.fecha = fecha;
     }
 
@@ -93,7 +83,7 @@ public class Compra {
         this.cantidadComprada = cantidadComprada;
     }
     
-    public Compra buscarCompraPorIds(int idCompra){
+   static public Compra buscarCompraPorIds(int idCompra){
         Compra compra = null;
         try{
             Class.forName("org.postgresql.Driver");
@@ -103,7 +93,11 @@ public class Compra {
             String sql = "SELECT * FROM compra WHERE id_insumo = " + idCompra + ";" ;
             ResultSet result = st.executeQuery(sql);
             while(result.next()){
-                compra = (new Compra(result.getInt("id_usuario"), result.getInt("id_insumo"), result.getInt("precio_compra") ,result.getDate("fecha"), result.getInt("precio_compra"), result.getInt("idCompra")));
+                Calendar fecha = Calendar.getInstance();
+                fecha.setTimeInMillis(result.getTimestamp("fecha").getTime());
+                
+                compra = (new Compra(result.getInt("id_usuario"), result.getInt("id_insumo"), result.getInt("precio_compra") ,
+                        fecha, result.getInt("precio_compra")));
             }
             result.close();
             st.close();
@@ -121,7 +115,9 @@ public class Compra {
             Class.forName("org.postgresql.Driver");
             Connection conexion = DriverManager.getConnection(url, PG_usuario, PG_contrasenia);
             java.sql.Statement st = conexion.createStatement();
-            String insertion = "INSERT INTO compra VALUES ("+this.idUsuario+" ,"+this.idInsumo+", "+this.precioCompra+", '"+ dtf.parse(this.fecha.toString()) +"', "+this.cantidadComprada+", "+ this.idCompra+");";
+            String insertion = "INSERT INTO compra VALUES ("+this.idUsuario+" ,"+this.idInsumo+", "
+                    +this.precioCompra+", '"+ dtf.parse(this.fecha.toString()) +"', "
+                    +this.cantidadComprada+");";
             st.executeUpdate(insertion);
             st.close();
             conexion.close();
@@ -142,7 +138,10 @@ public class Compra {
             Class.forName("org.postgresql.Driver");
             Connection conexion = DriverManager.getConnection(url, PG_usuario, PG_contrasenia);
             java.sql.Statement st = conexion.createStatement();
-            String insertion = "UPDATE compra SET id_usuario = "+this.idUsuario+", id_insumo = "+this.idInsumo+", precio_compra = "+this.precioCompra+", fecha = '"+ dtf.parse(this.fecha.toString()) +"', cantidad_comprada =  "+this.cantidadComprada+" WHERE id_compra = "+ this.idCompra +";";
+            String insertion = "UPDATE compra SET id_usuario = "+this.idUsuario+", id_insumo = "+
+                    this.idInsumo+", precio_compra = "+this.precioCompra+", fecha = '"+
+                    Herramientas.ConvertirCalendarAString(fecha) +"', cantidad_comprada =  "+this.cantidadComprada+" WHERE id_usuario ="+
+                    idUsuario+",id_insumo ="+ idInsumo + ",fecha =" + Herramientas.ConvertirCalendarAString(fecha);;
             st.executeUpdate(insertion);
             st.close();
             conexion.close();
@@ -160,7 +159,8 @@ public class Compra {
             Class.forName("org.postgresql.Driver");
             Connection conexion = DriverManager.getConnection(url, PG_usuario, PG_contrasenia);
             java.sql.Statement st = conexion.createStatement();
-            String Update = "DELETE FROM compra WHERE id_compra = "+ this.idCompra +";";
+            String Update = "DELETE FROM compra WHERE id_usuario ="+ idUsuario+",id_insumo ="+ idInsumo + 
+                    ",fecha =" + Herramientas.ConvertirCalendarAString(fecha);
             st.executeUpdate(Update);
             st.close();
             conexion.close();

@@ -39,7 +39,8 @@ public class Evento {
     
     public Evento(int IDUsuario, String descripcion, boolean esDiario, boolean esSemanal, boolean esMensual, 
             boolean esAnual, Calendar fecha, String tipo) {
-        this.idEvento = Evento.id++;
+        Evento.id ++;
+        this.idEvento = Evento.id;
         this.idUsuario = IDUsuario;
         this.descripcion = descripcion;
         this.esDiario = esDiario;
@@ -158,11 +159,12 @@ public class Evento {
             Connection conexion = DriverManager.getConnection(url, usuario, contrasenia);
             java.sql.Statement st = conexion.createStatement();
             //Creacion de calendarios
-            Calendar fechaCreacion = Calendar.getInstance();
-            Calendar fecha = Calendar.getInstance();
+            
             String sql = "SELECT * FROM evento WHERE id_usuario = "+ idUsuario;
             ResultSet result = st.executeQuery(sql);
             while(result.next()){
+                Calendar fechaCreacion = Calendar.getInstance();
+                Calendar fecha = Calendar.getInstance();
                 fecha.setTimeInMillis(result.getTimestamp("fecha").getTime());
                 fechaCreacion.setTimeInMillis(result.getTimestamp("fecha_creacion").getTime());
                 eventos.add(new Evento(result.getInt("id_evento"), result.getInt("id_usuario"), 
@@ -181,35 +183,36 @@ public class Evento {
         }
     }
 
-//    static public void buscarEventosAPartirDeFecha(Date fecha, ArrayList<Evento> eventos){
-//        //Se le estaba agregando los calendar para utilizar utilizar los milisecs
-//        try{
-//            Class.forName("org.postgresql.Driver");
-//            Connection conexion = DriverManager.getConnection(url, usuario, contrasenia);
-//            java.sql.Statement st = conexion.createStatement();
-//            Calendar fecha = Calendar.getInstance();
-//            Calendar fechaCreacion = Calendar.getInstance();
-//            String sql = "SELECT * FROM evento WHERE fecha >= "+ dtf.format(fecha);
-//            ResultSet result = st.executeQuery(sql);
-//            while(result.next()){
-//                fecha.setTimeInMillis(result.getTimestamp("fecha").getTime());
-//                fechaCreacion.setTimeInMillis(result.getTimestamp("fecha_creacion").getTime());
-//                eventos.add(new Evento(result.getInt("id_evento"), result.getInt("id_usuario"), 
-//                        result.getString("descripcion"), result.getBoolean("es_diario"), 
-//                        result.getBoolean("es_semanal"),result.getBoolean("es_mensual"),
-//                        result.getBoolean("es_anual"), result.getDate("fecha"), result.getString("tipo")));
-//            }
-//            result.close();
-//            st.close();
-//            conexion.close();
-//        }catch (SQLException e){
-//            System.out.println("ERROR DE CONEXION " + e.getMessage());
-//            
-//        }
-//        catch(ClassNotFoundException e){
-//            System.out.println("ERROR AL CARGAR LA CLASE "+ e.getMessage());
-//        }
-//    }
+    static public void buscarEventosAPartirDeFecha(Calendar miFecha, ArrayList<Evento> eventos){
+        //Se le estaba agregando los calendar para utilizar utilizar los milisecs
+        try{
+            Class.forName("org.postgresql.Driver");
+            Connection conexion = DriverManager.getConnection(url, usuario, contrasenia);
+            java.sql.Statement st = conexion.createStatement();
+            String sql = "SELECT * FROM evento WHERE fecha >= "+ Herramientas.ConvertirCalendarAString(miFecha);
+            ResultSet result = st.executeQuery(sql);
+            while(result.next()){
+                Calendar fecha = Calendar.getInstance();
+                Calendar fechaCreacion = Calendar.getInstance();
+            
+                fecha.setTimeInMillis(result.getTimestamp("fecha").getTime());
+                fechaCreacion.setTimeInMillis(result.getTimestamp("fecha_creacion").getTime());
+                eventos.add(new Evento(result.getInt("id_evento"), result.getInt("id_usuario"), 
+                        result.getString("descripcion"), result.getBoolean("es_diario"), 
+                        result.getBoolean("es_semanal"),result.getBoolean("es_mensual"),
+                        result.getBoolean("es_anual"), fecha, fechaCreacion, result.getString("tipo")));
+            }
+            result.close();
+            st.close();
+            conexion.close();
+        }catch (SQLException e){
+            System.out.println("ERROR DE CONEXION " + e.getMessage());
+            
+        }
+        catch(ClassNotFoundException e){
+            System.out.println("ERROR AL CARGAR LA CLASE "+ e.getMessage());
+        }
+    }
     
     static public Evento buscarEventoPorId(int id){
         Evento evento = null;
@@ -218,14 +221,15 @@ public class Evento {
             Connection conexion = DriverManager.getConnection(url, usuario, contrasenia);
             java.sql.Statement st = conexion.createStatement();
             
-            Calendar fecha = Calendar.getInstance();
-            Calendar fechaCreacion = Calendar.getInstance();
-            
             String sql = "SELECT * FROM evento WHERE id_evento = " + id;
             ResultSet result = st.executeQuery(sql);
             while(result.next()){
+                Calendar fecha = Calendar.getInstance();
+                Calendar fechaCreacion = Calendar.getInstance();
+                //Se convierte fecha a milisegundos
                 fecha.setTimeInMillis(result.getTimestamp("fecha").getTime());
                 fechaCreacion.setTimeInMillis(result.getTimestamp("fecha_creacion").getTime());
+                
                 evento = (new Evento(result.getInt("id_evento"), result.getInt("id_usuario"), 
                         result.getString("descripcion"), result.getBoolean("es_diario"), result.getBoolean("es_semanal"),
                         result.getBoolean("es_mensual"),result.getBoolean("es_anual"), fecha, fechaCreacion, 
@@ -257,7 +261,7 @@ public class Evento {
             //TEST
             System.out.println("VA INSERCION");
             System.out.println(insertion);
-            
+            //
             st.executeUpdate(insertion);
             st.close();
             conexion.close();

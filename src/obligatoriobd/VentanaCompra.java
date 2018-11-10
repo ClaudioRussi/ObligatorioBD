@@ -176,10 +176,13 @@ public class VentanaCompra extends javax.swing.JFrame {
     private void btnRegistrarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarCompraActionPerformed
         // TODO add your handling code here:
         Calendar clndr = this.calendario.getCalendar();
-        clndr.add(Calendar.HOUR_OF_DAY, (Integer)this.horaCompra.getValue());
-        clndr.add(Calendar.MINUTE, (Integer)this.minutoCompra.getValue());
+        clndr.set(Calendar.HOUR_OF_DAY, (Integer)this.horaCompra.getValue());
+        clndr.set(Calendar.MINUTE, (Integer)this.minutoCompra.getValue());
+        clndr.set(Calendar.SECOND, 0);
+        
         Insumo ins = insumos.get(this.lstInsumos.getSelectedIndex());
-        Compra compr = new Compra(ObligatorioBD.usuarioLoggeado.getId(), ins.getIDInsumo(),Integer.parseInt(this.fldPrecioCompra.getText()), clndr.getTime(), (Integer)this.fldCantidadInsumo.getValue());
+        Compra compr = new Compra(ObligatorioBD.usuarioLoggeado.getId(), ins.getIDInsumo(),
+                Integer.parseInt(this.fldPrecioCompra.getText()),clndr ,(Integer)this.fldCantidadInsumo.getValue());
         compr.Save();
         if(Compra.errorAlGuardar){
             this.lblError.setText("Hubo un error al guardar la compra.");

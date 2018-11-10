@@ -26,6 +26,14 @@ public class VentanaEvento extends javax.swing.JFrame {
         initComponents();
         ImageIcon icon = new ImageIcon("src/imagenes/fondoCelesteFinoFlecha.jpg");
         this.lblfondoCeleste.setIcon(icon);
+        btnGroup.add(this.eventoAnual);
+        btnGroup.add(this.eventoDiario);
+        btnGroup.add(this.eventoMensual);
+        btnGroup.add(this.eventoSemanal);
+        for(String str : ObligatorioBD.categorias){
+            this.categoriaEvento.addItem(str);
+        }
+        
     }
 
     /**
@@ -38,6 +46,7 @@ public class VentanaEvento extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel5 = new javax.swing.JLabel();
+        btnGroup = new javax.swing.ButtonGroup();
         lblAtras = new javax.swing.JLabel();
         lblfondoCeleste = new javax.swing.JLabel();
         panelBlanco = new javax.swing.JPanel();
@@ -87,9 +96,11 @@ public class VentanaEvento extends javax.swing.JFrame {
             }
         });
 
-        jLabel9.setText(":");
+        horaEvento.setModel(new javax.swing.SpinnerNumberModel(0, 0, 23, 1));
 
-        categoriaEvento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        minutoEvento.setModel(new javax.swing.SpinnerNumberModel(0, 0, 59, 1));
+
+        jLabel9.setText(":");
 
         jLabel6.setText("Categoría:");
 
@@ -127,6 +138,8 @@ public class VentanaEvento extends javax.swing.JFrame {
                         .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(eventoSemanal)
                             .addComponent(eventoAnual)
+                            .addComponent(eventoMensual)
+                            .addComponent(eventoDiario)
                             .addGroup(panelBlancoLayout.createSequentialGroup()
                                 .addGap(4, 4, 4)
                                 .addComponent(horaEvento, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -137,10 +150,8 @@ public class VentanaEvento extends javax.swing.JFrame {
                                 .addGap(35, 35, 35)
                                 .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel6)
-                                    .addComponent(categoriaEvento, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(eventoMensual)
-                            .addComponent(eventoDiario))))
-                .addContainerGap(196, Short.MAX_VALUE))
+                                    .addComponent(categoriaEvento, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(137, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBlancoLayout.createSequentialGroup()
                 .addGap(197, 197, 197)
                 .addComponent(lblError, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -153,7 +164,7 @@ public class VentanaEvento extends javax.swing.JFrame {
         panelBlancoLayout.setVerticalGroup(
             panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBlancoLayout.createSequentialGroup()
-                .addContainerGap(39, Short.MAX_VALUE)
+                .addContainerGap(38, Short.MAX_VALUE)
                 .addComponent(descripcionEvento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
                 .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -164,10 +175,9 @@ public class VentanaEvento extends javax.swing.JFrame {
                                 .addGap(3, 3, 3)
                                 .addComponent(jLabel9))
                             .addComponent(minutoEvento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(panelBlancoLayout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addGap(6, 6, 6)
-                                .addComponent(categoriaEvento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel6))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(categoriaEvento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(eventoDiario)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -178,7 +188,7 @@ public class VentanaEvento extends javax.swing.JFrame {
                         .addComponent(eventoAnual)
                         .addGap(3, 3, 3))
                     .addComponent(calendarioEvento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnVerEventos)
                     .addComponent(lblError)
@@ -236,6 +246,7 @@ public class VentanaEvento extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup btnGroup;
     private javax.swing.JButton btnVerEventos;
     private com.toedter.calendar.JCalendar calendarioEvento;
     private javax.swing.JComboBox<String> categoriaEvento;
