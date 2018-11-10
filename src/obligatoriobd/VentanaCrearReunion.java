@@ -20,6 +20,10 @@ public class VentanaCrearReunion extends javax.swing.JFrame {
         initComponents();
         ImageIcon icon = new ImageIcon("src/imagenes/fondoCelesteFinoFlecha.jpg");
         this.lblfondoCeleste.setIcon(icon);
+        this.btnGroup.add(this.reunionAnual);
+        this.btnGroup.add(this.reunionDiaria);
+        this.btnGroup.add(this.reunionMensual);
+        this.btnGroup.add(this.reunionSemanal);
     }
 
     /**
@@ -32,6 +36,7 @@ public class VentanaCrearReunion extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel5 = new javax.swing.JLabel();
+        btnGroup = new javax.swing.ButtonGroup();
         lblAtras = new javax.swing.JLabel();
         lblfondoCeleste = new javax.swing.JLabel();
         panelBlanco = new javax.swing.JPanel();
@@ -89,10 +94,25 @@ public class VentanaCrearReunion extends javax.swing.JFrame {
         reunionDiaria.setContentAreaFilled(false);
 
         btnVerReuniones.setText("Ver reuniones");
+        btnVerReuniones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerReunionesActionPerformed(evt);
+            }
+        });
 
         btnVerInvitaciones.setText("Ver invitaciones");
+        btnVerInvitaciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerInvitacionesActionPerformed(evt);
+            }
+        });
 
         crearReunion.setText("Crear");
+        crearReunion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                crearReunionActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelBlancoLayout = new javax.swing.GroupLayout(panelBlanco);
         panelBlanco.setLayout(panelBlancoLayout);
@@ -176,9 +196,22 @@ public class VentanaCrearReunion extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_lblAtrasMouseClicked
 
+    private void btnVerInvitacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerInvitacionesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVerInvitacionesActionPerformed
+
+    private void btnVerReunionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerReunionesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVerReunionesActionPerformed
+
+    private void crearReunionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearReunionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_crearReunionActionPerformed
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup btnGroup;
     private javax.swing.JButton btnVerInvitaciones;
     private javax.swing.JButton btnVerReuniones;
     private com.toedter.calendar.JCalendar calendario;

@@ -66,13 +66,18 @@
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="114" max="-2" attributes="0"/>
-                          <Component id="botonEvento" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="43" pref="43" max="-2" attributes="0"/>
-                          <Component id="botonReunion" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="39" pref="39" max="-2" attributes="0"/>
-                          <Component id="botonCompra" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="31" pref="31" max="-2" attributes="0"/>
-                          <Component id="botonConsumicion" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="btnInsumos" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Component id="botonEvento" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="43" pref="43" max="-2" attributes="0"/>
+                                  <Component id="botonReunion" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="39" pref="39" max="-2" attributes="0"/>
+                                  <Component id="botonCompra" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="31" pref="31" max="-2" attributes="0"/>
+                                  <Component id="botonConsumicion" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
                   </Group>
                   <EmptySpace pref="121" max="32767" attributes="0"/>
@@ -96,7 +101,9 @@
                       <Component id="botonCompra" min="-2" max="-2" attributes="0"/>
                       <Component id="botonConsumicion" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="btnInsumos" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
                   <Component id="btnCerrarSesion" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="130" max="32767" attributes="0"/>
               </Group>
@@ -152,6 +159,14 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCerrarSesionActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnInsumos">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Insumos"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnInsumosActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

@@ -36,9 +36,10 @@ public class Evento {
     private Calendar fechaCreacion;
     private Calendar fecha;
     private String tipo;
+    private int idReunion;
     
     public Evento(int IDUsuario, String descripcion, boolean esDiario, boolean esSemanal, boolean esMensual, 
-            boolean esAnual, Calendar fecha, String tipo) {
+            boolean esAnual, Calendar fecha, String tipo, int idReunion) {
         Evento.id ++;
         this.idEvento = Evento.id;
         this.idUsuario = IDUsuario;
@@ -50,10 +51,11 @@ public class Evento {
         this.fecha = fecha;
         this.fechaCreacion = Calendar.getInstance();
         this.tipo = tipo; 
+        this.idReunion = idReunion;
         
     }
     public Evento(int IDEvento, int IDUsuario, String descripcion, boolean esDiario, boolean esSemanal, 
-            boolean esMensual, boolean esAnual, Calendar fecha, Calendar fechaCreacion, String tipo) {
+            boolean esMensual, boolean esAnual, Calendar fecha, Calendar fechaCreacion, String tipo, int idReunion) {
         
         this.idEvento = IDEvento;
         this.idUsuario = IDUsuario;
@@ -65,6 +67,7 @@ public class Evento {
         this.fecha = fecha;
         this.fechaCreacion = fechaCreacion;
         this.tipo = tipo; 
+        this.idReunion = idReunion;
         
     }
 
@@ -170,7 +173,7 @@ public class Evento {
                 eventos.add(new Evento(result.getInt("id_evento"), result.getInt("id_usuario"), 
                         result.getString("descripcion"), result.getBoolean("es_diario"), 
                         result.getBoolean("es_semanal"), result.getBoolean("es_mensual"),
-                        result.getBoolean("es_anual"), fecha, fechaCreacion, result.getString("tipo")));
+                        result.getBoolean("es_anual"), fecha, fechaCreacion, result.getString("tipo"), result.getInt("id_reunion")));
             }
             result.close();
             st.close();
@@ -200,7 +203,7 @@ public class Evento {
                 eventos.add(new Evento(result.getInt("id_evento"), result.getInt("id_usuario"), 
                         result.getString("descripcion"), result.getBoolean("es_diario"), 
                         result.getBoolean("es_semanal"),result.getBoolean("es_mensual"),
-                        result.getBoolean("es_anual"), fecha, fechaCreacion, result.getString("tipo")));
+                        result.getBoolean("es_anual"), fecha, fechaCreacion, result.getString("tipo"), result.getInt("id_reunion")));
             }
             result.close();
             st.close();
@@ -233,7 +236,7 @@ public class Evento {
                 evento = (new Evento(result.getInt("id_evento"), result.getInt("id_usuario"), 
                         result.getString("descripcion"), result.getBoolean("es_diario"), result.getBoolean("es_semanal"),
                         result.getBoolean("es_mensual"),result.getBoolean("es_anual"), fecha, fechaCreacion, 
-                        result.getString("tipo")));
+                        result.getString("tipo"), result.getInt("id_reunion")));
             }
             result.close();
             st.close();
@@ -249,6 +252,12 @@ public class Evento {
     }
     
     public void Save(){
+        Integer verdaderoIdReunion;
+        if(idReunion != -1){
+            verdaderoIdReunion = idReunion;
+        } else{
+            verdaderoIdReunion = null;
+        }
         try{
             Class.forName("org.postgresql.Driver");
             Connection conexion = DriverManager.getConnection(url, usuario, contrasenia);
@@ -257,7 +266,7 @@ public class Evento {
                     + "'"+this.descripcion+"', "+this.esMensual+", "
                     + ""+this.esAnual+", '"+ 
                     Herramientas.ConvertirCalendarAString(fecha) +"', '"+this.tipo+"', "+this.esDiario+", "
-                    +this.esSemanal+", '"+ Herramientas.ConvertirCalendarAString(fechaCreacion)+"');"; 
+                    +this.esSemanal+", '"+ Herramientas.ConvertirCalendarAString(fechaCreacion)+"',"+verdaderoIdReunion+");"; 
             //TEST
             System.out.println("VA INSERCION");
             System.out.println(insertion);

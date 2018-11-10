@@ -75,11 +75,11 @@ public class Usuario {
         reunion.getIntegrantes().add(usuario);
     }
     
-    public Evento crearEvento(String descripcion, boolean esDiario, boolean esSemanal, boolean esMensual, 
-            boolean esAnual, Calendar fecha, String tipo){
-        //obtener fecha del momento para fechaCreacion
-        return new Evento(this.idUsuario, descripcion, esDiario, esSemanal, esMensual, esAnual, fecha, tipo);
-    }
+//    public Evento crearEvento(String descripcion, boolean esDiario, boolean esSemanal, boolean esMensual, 
+//            boolean esAnual, Calendar fecha, String tipo, int idReunion){
+//        //obtener fecha del momento para fechaCreacion
+//        return new Evento(this.idUsuario, descripcion, esDiario, esSemanal, esMensual, esAnual, fecha, tipo, idReunion);
+//    }
     
     public Usuario buscarUserPorId(int id){
         Usuario user = null;

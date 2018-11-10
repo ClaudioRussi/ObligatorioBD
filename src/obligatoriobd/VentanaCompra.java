@@ -93,6 +93,7 @@ public class VentanaCompra extends javax.swing.JFrame {
         getContentPane().add(lblError, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 250, -1, -1));
 
         lblfondoCeleste.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblfondoCeleste.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoCelesteFinoFlecha.jpg"))); // NOI18N
         getContentPane().add(lblfondoCeleste, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 60, 300));
 
         panelBlanco.setBackground(new java.awt.Color(255, 255, 255));

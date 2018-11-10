@@ -52,6 +52,9 @@
     <Component class="javax.swing.JLabel" name="lblfondoCeleste">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="2"/>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/imagenes/fondoCelesteFinoFlecha.jpg"/>
+        </Property>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -75,23 +78,32 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                      <Component id="creador" min="-2" max="-2" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
-                              <Component id="idUsuario" alignment="0" pref="159" max="32767" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="agregarUsuario" min="-2" max="-2" attributes="0"/>
-                              <Component id="asignarCreador" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                              <Component id="creador" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                      <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="idUsuario" alignment="0" pref="159" max="32767" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="agregarUsuario" min="-2" max="-2" attributes="0"/>
+                                      <Component id="asignarCreador" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
                           </Group>
+                          <EmptySpace min="90" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="lblError" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace min="90" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
@@ -177,6 +189,7 @@
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="finalizarReunion" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblError" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -214,12 +227,18 @@
             <Property name="text" type="java.lang.String" value="Agregar"/>
             <Property name="actionCommand" type="java.lang.String" value="agregarUsuario"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="agregarUsuarioActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="agregarInsumo">
           <Properties>
             <Property name="text" type="java.lang.String" value="Agregar"/>
             <Property name="actionCommand" type="java.lang.String" value="agregarInsumo"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="agregarInsumoActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="idInsumo">
           <Properties>
@@ -262,11 +281,17 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Agregar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAgregarPagoActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButton1">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ver pagos"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="creador">
           <Properties>
@@ -302,11 +327,19 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Asignar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="asignarCreadorActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="finalizarReunion">
           <Properties>
             <Property name="text" type="java.lang.String" value="Finalizar Reunion"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="finalizarReunionActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblError">
         </Component>
       </SubComponents>
     </Container>

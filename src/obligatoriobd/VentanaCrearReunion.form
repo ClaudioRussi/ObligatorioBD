@@ -7,6 +7,8 @@
         <Property name="text" type="java.lang.String" value=":"/>
       </Properties>
     </Component>
+    <Component class="javax.swing.ButtonGroup" name="btnGroup">
+    </Component>
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
@@ -196,16 +198,25 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Ver reuniones"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVerReunionesActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnVerInvitaciones">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ver invitaciones"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVerInvitacionesActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="crearReunion">
           <Properties>
             <Property name="text" type="java.lang.String" value="Crear"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="crearReunionActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

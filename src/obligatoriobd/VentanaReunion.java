@@ -55,6 +55,7 @@ public class VentanaReunion extends javax.swing.JFrame {
         jList1 = new javax.swing.JList<>();
         asignarCreador = new javax.swing.JButton();
         finalizarReunion = new javax.swing.JButton();
+        lblError = new javax.swing.JLabel();
 
         jLabel5.setText(":");
 
@@ -70,6 +71,7 @@ public class VentanaReunion extends javax.swing.JFrame {
         getContentPane().add(lblAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 14, 40, 30));
 
         lblfondoCeleste.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblfondoCeleste.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoCelesteFinoFlecha.jpg"))); // NOI18N
         getContentPane().add(lblfondoCeleste, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 60, 300));
 
         panelBlanco.setBackground(new java.awt.Color(255, 255, 255));
@@ -85,9 +87,19 @@ public class VentanaReunion extends javax.swing.JFrame {
 
         agregarUsuario.setText("Agregar");
         agregarUsuario.setActionCommand("agregarUsuario");
+        agregarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregarUsuarioActionPerformed(evt);
+            }
+        });
 
         agregarInsumo.setText("Agregar");
         agregarInsumo.setActionCommand("agregarInsumo");
+        agregarInsumo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregarInsumoActionPerformed(evt);
+            }
+        });
 
         idInsumo.setText("idInsumo");
 
@@ -104,8 +116,18 @@ public class VentanaReunion extends javax.swing.JFrame {
         pago.setText("$");
 
         btnAgregarPago.setText("Agregar");
+        btnAgregarPago.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarPagoActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("Ver pagos");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         creador.setText("Asignar creador:");
 
@@ -117,27 +139,43 @@ public class VentanaReunion extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jList1);
 
         asignarCreador.setText("Asignar");
+        asignarCreador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                asignarCreadorActionPerformed(evt);
+            }
+        });
 
         finalizarReunion.setText("Finalizar Reunion");
+        finalizarReunion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                finalizarReunionActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelBlancoLayout = new javax.swing.GroupLayout(panelBlanco);
         panelBlanco.setLayout(panelBlancoLayout);
         panelBlancoLayout.setHorizontalGroup(
             panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBlancoLayout.createSequentialGroup()
-                .addGap(46, 46, 46)
                 .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(creador)
                     .addGroup(panelBlancoLayout.createSequentialGroup()
-                        .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(idUsuario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
+                        .addGap(46, 46, 46)
                         .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(agregarUsuario)
-                            .addComponent(asignarCreador))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel4)
+                            .addComponent(creador)
+                            .addGroup(panelBlancoLayout.createSequentialGroup()
+                                .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(idUsuario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(agregarUsuario)
+                                    .addComponent(asignarCreador))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBlancoLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblError)
+                        .addGap(49, 49, 49)))
                 .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addGroup(panelBlancoLayout.createSequentialGroup()
@@ -203,7 +241,8 @@ public class VentanaReunion extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton1)
-                            .addComponent(finalizarReunion))
+                            .addComponent(finalizarReunion)
+                            .addComponent(lblError))
                         .addContainerGap())
                     .addGroup(panelBlancoLayout.createSequentialGroup()
                         .addGap(3, 3, 3)
@@ -231,6 +270,30 @@ public class VentanaReunion extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_lblAtrasMouseClicked
 
+    private void agregarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_agregarUsuarioActionPerformed
+
+    private void agregarInsumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarInsumoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_agregarInsumoActionPerformed
+
+    private void asignarCreadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_asignarCreadorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_asignarCreadorActionPerformed
+
+    private void btnAgregarPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarPagoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAgregarPagoActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void finalizarReunionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finalizarReunionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_finalizarReunionActionPerformed
+
  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -254,6 +317,7 @@ public class VentanaReunion extends javax.swing.JFrame {
     private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAtras;
+    private javax.swing.JLabel lblError;
     private javax.swing.JLabel lblfondoCeleste;
     private javax.swing.JTextField pago;
     private javax.swing.JPanel panelBlanco;

@@ -40,6 +40,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         botonEvento = new javax.swing.JButton();
         lblUsuario = new javax.swing.JLabel();
         btnCerrarSesion = new javax.swing.JButton();
+        btnInsumos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 204, 255));
@@ -90,6 +91,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        btnInsumos.setText("Insumos");
+        btnInsumos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInsumosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelBlancoLayout = new javax.swing.GroupLayout(panelBlanco);
         panelBlanco.setLayout(panelBlancoLayout);
         panelBlancoLayout.setHorizontalGroup(
@@ -101,13 +109,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                         .addComponent(btnCerrarSesion))
                     .addGroup(panelBlancoLayout.createSequentialGroup()
                         .addGap(114, 114, 114)
-                        .addComponent(botonEvento)
-                        .addGap(43, 43, 43)
-                        .addComponent(botonReunion)
-                        .addGap(39, 39, 39)
-                        .addComponent(botonCompra)
-                        .addGap(31, 31, 31)
-                        .addComponent(botonConsumicion)))
+                        .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnInsumos)
+                            .addGroup(panelBlancoLayout.createSequentialGroup()
+                                .addComponent(botonEvento)
+                                .addGap(43, 43, 43)
+                                .addComponent(botonReunion)
+                                .addGap(39, 39, 39)
+                                .addComponent(botonCompra)
+                                .addGap(31, 31, 31)
+                                .addComponent(botonConsumicion)))))
                 .addContainerGap(121, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBlancoLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -125,7 +136,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     .addComponent(botonReunion)
                     .addComponent(botonCompra)
                     .addComponent(botonConsumicion))
-                .addGap(58, 58, 58)
+                .addGap(30, 30, 30)
+                .addComponent(btnInsumos)
+                .addGap(3, 3, 3)
                 .addComponent(btnCerrarSesion)
                 .addContainerGap(130, Short.MAX_VALUE))
         );
@@ -167,6 +180,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
 
+    private void btnInsumosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsumosActionPerformed
+        
+    }//GEN-LAST:event_btnInsumosActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonCompra;
@@ -174,6 +191,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton botonEvento;
     private javax.swing.JButton botonReunion;
     private javax.swing.JButton btnCerrarSesion;
+    private javax.swing.JButton btnInsumos;
     private javax.swing.JLabel lblFondoCeleste;
     public javax.swing.JLabel lblUsuario;
     private javax.swing.JPanel panelBlanco;

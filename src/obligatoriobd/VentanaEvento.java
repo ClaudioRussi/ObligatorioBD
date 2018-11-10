@@ -222,7 +222,7 @@ public class VentanaEvento extends javax.swing.JFrame {
         //int IDUsuario, String descripcion, boolean esDiario, boolean esSemanal, boolean esMensual, boolean esAnual, Date fecha, String tipo
         Evento evnto = new Evento(ObligatorioBD.usuarioLoggeado.getId(), descripcionEvento.getText(), 
                 eventoDiario.isSelected(), eventoSemanal.isSelected(), eventoMensual.isSelected(), 
-                eventoAnual.isSelected(), clndr, ObligatorioBD.categorias[categoriaEvento.getSelectedIndex()]);
+                eventoAnual.isSelected(), clndr, ObligatorioBD.categorias[categoriaEvento.getSelectedIndex()], -1);
         
         evnto.Save();
         
