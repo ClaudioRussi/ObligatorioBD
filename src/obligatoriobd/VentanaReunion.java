@@ -49,7 +49,7 @@ public class VentanaReunion extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         pago = new javax.swing.JTextField();
         btnAgregarPago = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnVerPagos = new javax.swing.JButton();
         creador = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
@@ -122,10 +122,10 @@ public class VentanaReunion extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Ver pagos");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnVerPagos.setText("Ver pagos");
+        btnVerPagos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnVerPagosActionPerformed(evt);
             }
         });
 
@@ -200,7 +200,7 @@ public class VentanaReunion extends javax.swing.JFrame {
                                     .addComponent(agregarInsumo)))
                             .addGap(68, 68, 68))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBlancoLayout.createSequentialGroup()
-                            .addComponent(jButton1)
+                            .addComponent(btnVerPagos)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(finalizarReunion)
                             .addContainerGap()))))
@@ -240,7 +240,7 @@ public class VentanaReunion extends javax.swing.JFrame {
                             .addComponent(btnAgregarPago))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
+                            .addComponent(btnVerPagos)
                             .addComponent(finalizarReunion)
                             .addComponent(lblError))
                         .addContainerGap())
@@ -286,9 +286,9 @@ public class VentanaReunion extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAgregarPagoActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnVerPagosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerPagosActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnVerPagosActionPerformed
 
     private void finalizarReunionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finalizarReunionActionPerformed
         // TODO add your handling code here:
@@ -301,12 +301,12 @@ public class VentanaReunion extends javax.swing.JFrame {
     private javax.swing.JButton agregarUsuario;
     private javax.swing.JButton asignarCreador;
     private javax.swing.JButton btnAgregarPago;
+    private javax.swing.JButton btnVerPagos;
     private javax.swing.JSpinner cantidadInsumo;
     private javax.swing.JLabel creador;
     private javax.swing.JButton finalizarReunion;
     private javax.swing.JTextField idInsumo;
     private javax.swing.JTextField idUsuario;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;

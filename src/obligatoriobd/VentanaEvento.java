@@ -18,7 +18,7 @@ import javax.swing.ImageIcon;
  * @author Agustín
  */
 public class VentanaEvento extends javax.swing.JFrame {
-
+    public Integer idReunion = null;
     /**
      * Creates new form VentanaEvento
      */
@@ -219,21 +219,41 @@ public class VentanaEvento extends javax.swing.JFrame {
         clndr.set(Calendar.MINUTE, (Integer)minutoEvento.getValue());
         clndr.set(Calendar.SECOND, 0);
         
-        //int IDUsuario, String descripcion, boolean esDiario, boolean esSemanal, boolean esMensual, boolean esAnual, Date fecha, String tipo
-        Evento evnto = new Evento(ObligatorioBD.usuarioLoggeado.getId(), descripcionEvento.getText(), 
-                eventoDiario.isSelected(), eventoSemanal.isSelected(), eventoMensual.isSelected(), 
-                eventoAnual.isSelected(), clndr, ObligatorioBD.categorias[categoriaEvento.getSelectedIndex()], -1);
+        if(idReunion != null){
+            //int IDUsuario, String descripcion, boolean esDiario, boolean esSemanal, boolean esMensual, boolean esAnual, Date fecha, String tipo
+            Evento evnto = new Evento(ObligatorioBD.usuarioLoggeado.getId(), descripcionEvento.getText(), 
+                    eventoDiario.isSelected(), eventoSemanal.isSelected(), eventoMensual.isSelected(), 
+                    eventoAnual.isSelected(), clndr, ObligatorioBD.categorias[categoriaEvento.getSelectedIndex()], -1);
+
+            evnto.Save();
+
+            if(Evento.errorAlGuardar){
+                lblError.setText("Hubo un error al guardar el evento");
+            }
+            else{
+                lblError.setText("Se guardo el evento correctamente");
+                VentanaPrincipal vtn = new VentanaPrincipal();
+                vtn.setVisible(true);
+                this.dispose();
+            }
         
-        evnto.Save();
+       }else{
+            Evento evnto = new Evento(ObligatorioBD.usuarioLoggeado.getId(), descripcionEvento.getText(), 
+                    eventoDiario.isSelected(), eventoSemanal.isSelected(), eventoMensual.isSelected(), 
+                    eventoAnual.isSelected(), clndr, ObligatorioBD.categorias[categoriaEvento.getSelectedIndex()], idReunion);
+
+            evnto.Save();
+
+            if(Evento.errorAlGuardar){
+                lblError.setText("Hubo un error al guardar el evento");
+            }
+            else{
+                lblError.setText("Se guardo el evento correctamente");
+                VentanaPrincipal vtn = new VentanaPrincipal();
+                vtn.setVisible(true);
+                this.dispose();
+            }
         
-        if(Evento.errorAlGuardar){
-            lblError.setText("Hubo un error al guardar el evento");
-        }
-        else{
-            lblError.setText("Se guardo el evento correctamente");
-            VentanaPrincipal vtn = new VentanaPrincipal();
-            vtn.setVisible(true);
-            this.dispose();
         }
     }//GEN-LAST:event_crearEventoActionPerformed
 
