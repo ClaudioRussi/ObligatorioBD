@@ -28,10 +28,11 @@ public class VentanaInsumo extends javax.swing.JFrame {
     private void initComponents() {
 
         panelBlanco = new javax.swing.JPanel();
-        btnAgregar = new javax.swing.JButton();
+        btnCrear = new javax.swing.JButton();
         btnComprar = new javax.swing.JButton();
         btnConsumir = new javax.swing.JButton();
         btnVer = new javax.swing.JButton();
+        btnAgregar = new javax.swing.JButton();
         lblfondoCeleste = new javax.swing.JLabel();
         lblAtras = new javax.swing.JLabel();
 
@@ -40,10 +41,10 @@ public class VentanaInsumo extends javax.swing.JFrame {
         panelBlanco.setBackground(new java.awt.Color(255, 255, 255));
         panelBlanco.setPreferredSize(new java.awt.Dimension(739, 300));
 
-        btnAgregar.setText("Agregar insumo");
-        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+        btnCrear.setText("Crear insumo");
+        btnCrear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarActionPerformed(evt);
+                btnCrearActionPerformed(evt);
             }
         });
 
@@ -68,6 +69,13 @@ public class VentanaInsumo extends javax.swing.JFrame {
             }
         });
 
+        btnAgregar.setText("Agregar inventario");
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelBlancoLayout = new javax.swing.GroupLayout(panelBlanco);
         panelBlanco.setLayout(panelBlancoLayout);
         panelBlancoLayout.setHorizontalGroup(
@@ -75,20 +83,23 @@ public class VentanaInsumo extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBlancoLayout.createSequentialGroup()
                 .addContainerGap(280, Short.MAX_VALUE)
                 .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnCrear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnComprar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnConsumir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnVer, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnVer, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(279, 279, 279))
         );
         panelBlancoLayout.setVerticalGroup(
             panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBlancoLayout.createSequentialGroup()
-                .addContainerGap(63, Short.MAX_VALUE)
+                .addGap(35, 35, 35)
+                .addComponent(btnCrear)
+                .addGap(18, 18, 18)
                 .addComponent(btnAgregar)
-                .addGap(33, 33, 33)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addComponent(btnVer)
-                .addGap(33, 33, 33)
+                .addGap(18, 18, 18)
                 .addComponent(btnComprar)
                 .addGap(34, 34, 34)
                 .addComponent(btnConsumir)
@@ -145,11 +156,11 @@ public class VentanaInsumo extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_lblAtrasMouseClicked
 
-    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+    private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
         VentanaCrearInsumo vent = new VentanaCrearInsumo();
         vent.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_btnAgregarActionPerformed
+    }//GEN-LAST:event_btnCrearActionPerformed
 
     private void btnVerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerActionPerformed
         VentanaVerInsumos vent = new VentanaVerInsumos();
@@ -169,10 +180,17 @@ public class VentanaInsumo extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnConsumirActionPerformed
 
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+        VentanaAgregarInsumo vent = new VentanaAgregarInsumo();
+        vent.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnAgregarActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnComprar;
     private javax.swing.JButton btnConsumir;
+    private javax.swing.JButton btnCrear;
     private javax.swing.JButton btnVer;
     private javax.swing.JLabel lblAtras;
     private javax.swing.JLabel lblfondoCeleste;

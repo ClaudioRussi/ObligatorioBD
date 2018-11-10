@@ -179,8 +179,9 @@ public class VentanaAgregarInsumo extends javax.swing.JFrame {
     }//GEN-LAST:event_btnInsumoActionPerformed
 
     private void btnBuscarInsumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarInsumoActionPerformed
-        // TODO add your handling code here:
-        insumos = Insumo.buscarInsumosPorNombre(this.idInsumo.getText());
+
+        ArrayList<Insumo> insumos = Insumo.buscarInsumosPorNombre(this.idInsumo.getText());
+        //
         DefaultListModel demoList = new DefaultListModel();
         for(Insumo ins: insumos){
             demoList.addElement(ins.getNombre());

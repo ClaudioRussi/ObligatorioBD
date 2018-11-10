@@ -184,13 +184,13 @@ public class Insumo {
     }
     
     static public ArrayList<Insumo> buscarInsumosPorNombre(String nombre){
-        ArrayList<Insumo> insumos = null;
+        ArrayList<Insumo> insumos = new ArrayList();
         try{
             Class.forName("org.postgresql.Driver");
             Connection conexion = DriverManager.getConnection(url, PG_usuario, PG_contrasenia);
             java.sql.Statement st = conexion.createStatement();
             
-            String sql = "SELECT * FROM Insumo WHERE name LIKE  %" + nombre +"%;" ;
+            String sql = "SELECT * FROM insumo WHERE nombre LIKE '%" + nombre +"%';" ;
             ResultSet result = st.executeQuery(sql);
             while(result.next()){
                 insumos.add(new Insumo(result.getString("nombre"), result.getString("descripcion")));
