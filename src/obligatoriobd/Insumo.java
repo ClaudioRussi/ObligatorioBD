@@ -23,6 +23,7 @@ public class Insumo {
     private int idInsumo;
     private String nombre;
     private String descripcion;
+    private int cantidad = 0;
     
     public Insumo(int idInsumo, String nombre, String descripcion) {
         this.idInsumo = idInsumo;
@@ -68,6 +69,16 @@ public class Insumo {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+    
+    
     
     static public void buscarInsumoPorUsuario(ArrayList<Insumo> insumos, int idUsuario){
         Insumo insumo = null;
@@ -76,11 +87,14 @@ public class Insumo {
             Connection conexion = DriverManager.getConnection(url, PG_usuario, PG_contrasenia);
             java.sql.Statement st = conexion.createStatement();
             
-            String sql = "SELECT * FROM Insumo WHERE id_usuario = " + PG_usuario +" AND " + " cantidad_poseida >= 0;";
+            String sql = "SELECT * FROM posee, insumo WHERE id_usuario = " + idUsuario 
+                    +" AND insumo.id_insumo = posee.id_insumo AND cantidad_poseida >= 0;";
             ResultSet result = st.executeQuery(sql);
             while(result.next()){
-                insumo = (new Insumo(result.getString("nombre"), result.getString("descripcion")));
+                insumo = (new Insumo(result.getInt("id_insumo"),result.getString("nombre"), result.getString("descripcion")));
+                insumo.setCantidad(result.getInt("cantidad_poseida"));
                 insumos.add(insumo);
+                
             }
             result.close();
             st.close();

@@ -142,7 +142,7 @@ public class VentanaAgregarInsumo extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAgregarInsumoActionPerformed
 
     private void lblAtrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtrasMouseClicked
-        VentanaPrincipal vent = new VentanaPrincipal();
+        VentanaInsumo vent = new VentanaInsumo();
         vent.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_lblAtrasMouseClicked

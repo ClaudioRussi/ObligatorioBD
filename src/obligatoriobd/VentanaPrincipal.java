@@ -28,7 +28,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         //Aviso de eventos anteriores
         ArrayList<Evento> ev = new ArrayList();
         Evento.buscarEventosAnteriores(ObligatorioBD.usuarioLoggeado.getId(), ev);
-        if(!ev.isEmpty()){
+        if(!ev.isEmpty() && !ObligatorioBD.aviso){
+            ObligatorioBD.aviso = true;
             String text = "Usted posee eventos anteriores, reviselos!";
             VentanaPopUp vent = new VentanaPopUp(text);
             vent.setVisible(true);
@@ -46,8 +47,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         lblFondoCeleste = new javax.swing.JLabel();
         panelBlanco = new javax.swing.JPanel();
-        botonConsumicion = new javax.swing.JButton();
-        botonCompra = new javax.swing.JButton();
         botonReunion = new javax.swing.JButton();
         botonEvento = new javax.swing.JButton();
         lblUsuario = new javax.swing.JLabel();
@@ -60,23 +59,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblFondoCeleste.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoCeleste.jpg"))); // NOI18N
-        getContentPane().add(lblFondoCeleste, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 40, 360));
+        getContentPane().add(lblFondoCeleste, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -30, 40, 360));
 
         panelBlanco.setBackground(new java.awt.Color(255, 255, 255));
-
-        botonConsumicion.setText("Consumicion");
-        botonConsumicion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonConsumicionActionPerformed(evt);
-            }
-        });
-
-        botonCompra.setText("Compra");
-        botonCompra.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonCompraActionPerformed(evt);
-            }
-        });
 
         botonReunion.setText("Reunion");
         botonReunion.addActionListener(new java.awt.event.ActionListener() {
@@ -114,46 +99,37 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         panelBlanco.setLayout(panelBlancoLayout);
         panelBlancoLayout.setHorizontalGroup(
             panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelBlancoLayout.createSequentialGroup()
-                .addGap(114, 114, 114)
-                .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(panelBlancoLayout.createSequentialGroup()
-                        .addComponent(btnInsumos)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnCerrarSesion))
-                    .addGroup(panelBlancoLayout.createSequentialGroup()
-                        .addComponent(botonEvento)
-                        .addGap(43, 43, 43)
-                        .addComponent(botonReunion)
-                        .addGap(39, 39, 39)
-                        .addComponent(botonCompra)
-                        .addGap(31, 31, 31)
-                        .addComponent(botonConsumicion)))
-                .addContainerGap(121, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBlancoLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(lblUsuario)
                 .addGap(41, 41, 41))
+            .addGroup(panelBlancoLayout.createSequentialGroup()
+                .addGap(228, 228, 228)
+                .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnCerrarSesion)
+                    .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(botonEvento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnInsumos, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
+                        .addComponent(botonReunion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(423, Short.MAX_VALUE))
         );
         panelBlancoLayout.setVerticalGroup(
             panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBlancoLayout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addComponent(lblUsuario)
-                .addGap(58, 58, 58)
-                .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(botonEvento)
-                    .addComponent(botonReunion)
-                    .addComponent(botonCompra)
-                    .addComponent(botonConsumicion))
-                .addGap(30, 30, 30)
+                .addGap(15, 15, 15)
+                .addComponent(botonEvento)
+                .addGap(18, 18, 18)
+                .addComponent(botonReunion)
+                .addGap(18, 18, 18)
                 .addComponent(btnInsumos)
-                .addGap(3, 3, 3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addComponent(btnCerrarSesion)
-                .addContainerGap(138, Short.MAX_VALUE))
+                .addGap(49, 49, 49))
         );
 
-        getContentPane().add(panelBlanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 680, 350));
+        getContentPane().add(panelBlanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 760, 300));
 
         pack();
         setLocationRelativeTo(null);
@@ -171,20 +147,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_botonReunionActionPerformed
 
-    private void botonCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCompraActionPerformed
-        VentanaCompra ventanaCompra = new VentanaCompra();
-        ventanaCompra.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_botonCompraActionPerformed
-
-    private void botonConsumicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonConsumicionActionPerformed
-        VentanaConsumicion ventanaConsumicion = new VentanaConsumicion();
-        ventanaConsumicion.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_botonConsumicionActionPerformed
-
     private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
         ObligatorioBD.usuarioLoggeado = null; 
+        ObligatorioBD.aviso = false;
         VentanaSesion vtn = new VentanaSesion();
         vtn.setVisible(true);
         this.dispose();
@@ -198,8 +163,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botonCompra;
-    private javax.swing.JButton botonConsumicion;
     private javax.swing.JButton botonEvento;
     private javax.swing.JButton botonReunion;
     private javax.swing.JButton btnCerrarSesion;

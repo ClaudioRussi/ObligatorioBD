@@ -104,6 +104,7 @@ public class VentanaVerInsumos extends javax.swing.JFrame {
         getContentPane().add(lblfondoCeleste, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 60, -1));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnInsumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsumoActionPerformed
@@ -120,7 +121,7 @@ public class VentanaVerInsumos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnInsumoActionPerformed
 
     private void lblAtrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtrasMouseClicked
-        VentanaEvento vent = new VentanaEvento();
+        VentanaInsumo vent = new VentanaInsumo();
         vent.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_lblAtrasMouseClicked

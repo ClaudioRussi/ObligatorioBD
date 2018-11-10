@@ -15,7 +15,8 @@ public class ObligatorioBD {
     static String[] categorias = {"Reunion", "Estudio", "Trabajo", "Tarea de hogar", "Festejo"};
     
     static Usuario usuarioLoggeado;
-    
+    //Variable para avisar solo una vez eventos anteriores
+    static boolean aviso = false;
     /**
      * @param args the command line arguments
      */
