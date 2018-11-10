@@ -156,7 +156,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_botonEventoActionPerformed
 
     private void botonReunionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonReunionActionPerformed
-        VentanaCrearReunion ventanaReunion = new VentanaCrearReunion();
+        VentanaVerReuniones ventanaReunion = new VentanaVerReuniones();
         ventanaReunion.setVisible(true);
         dispose();
     }//GEN-LAST:event_botonReunionActionPerformed

@@ -66,9 +66,9 @@ public class Usuario {
         this.ultimaConexion = ultimaConexion;
     }
     
-    public Reunion crearReunion(String horaInicio, String horaFin){
-        return new Reunion(horaInicio, horaFin, this.idUsuario);
-    }
+//    public Reunion crearReunion(String horaInicio, String horaFin){
+//        return new Reunion(horaInicio, horaFin, this.idUsuario);
+//    }
     
     public void agregarAReunion(Usuario usuario, Reunion reunion/*int IDUsuario, int IDReunion*/){
         //obtener la reunion a partir de su id y lo mismo con usuario

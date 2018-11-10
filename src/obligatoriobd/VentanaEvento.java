@@ -222,7 +222,8 @@ public class VentanaEvento extends javax.swing.JFrame {
         clndr.set(Calendar.MINUTE, (Integer)minutoEvento.getValue());
         clndr.set(Calendar.SECOND, 0);
         
-        if(idReunion != null){
+        if(idReunion == null){
+            //Eventos de usuario
             //int IDUsuario, String descripcion, boolean esDiario, boolean esSemanal, boolean esMensual, boolean esAnual, Date fecha, String tipo
             Evento evnto = new Evento(ObligatorioBD.usuarioLoggeado.getId(), descripcionEvento.getText(), 
                     eventoDiario.isSelected(), eventoSemanal.isSelected(), eventoMensual.isSelected(), 
@@ -241,6 +242,7 @@ public class VentanaEvento extends javax.swing.JFrame {
             }
         
        }else{
+            //Eventos de reunion
             try{
                 Class.forName("org.postgresql.Driver");
                 Connection conexion = DriverManager.getConnection(url, PG_usuario, PG_contrasenia);
@@ -249,7 +251,8 @@ public class VentanaEvento extends javax.swing.JFrame {
                 String sql = "SELECT * FROM usuario_reunion WHERE id_reunion = " + idReunion + " AND confirmo_invitacion = true;" ;
                 ResultSet result = st.executeQuery(sql);
                 while(result.next()){
-                    Evento evnto = new Evento(result.getInt("id_usuario"), descripcionEvento.getText(), eventoDiario.isSelected(), eventoSemanal.isSelected(), eventoMensual.isSelected(), 
+                    Evento evnto = new Evento(result.getInt("id_usuario"), descripcionEvento.getText(), eventoDiario.isSelected(), 
+                            eventoSemanal.isSelected(), eventoMensual.isSelected(), 
                     eventoAnual.isSelected(), clndr, ObligatorioBD.categorias[categoriaEvento.getSelectedIndex()], result.getInt("id_reunion"));
                     evnto.Save();
 
@@ -258,14 +261,27 @@ public class VentanaEvento extends javax.swing.JFrame {
                     }
                     else{
                         lblError.setText("Se guardo el evento correctamente");
-                        VentanaPrincipal vtn = new VentanaPrincipal();
-                        vtn.setVisible(true);
-                        this.dispose();
                     }
                 }
+                
+                Evento evnto = new Evento(ObligatorioBD.usuarioLoggeado.getId(), descripcionEvento.getText(), eventoDiario.isSelected(), 
+                            eventoSemanal.isSelected(), eventoMensual.isSelected(), 
+                    eventoAnual.isSelected(), clndr, ObligatorioBD.categorias[categoriaEvento.getSelectedIndex()], this.idReunion);
+                    evnto.Save();
+
+                    if(Evento.errorAlGuardar){
+                        lblError.setText("Hubo un error al guardar el evento");
+                    }
+                    else{
+                        lblError.setText("Se guardo el evento correctamente");
+                    }
+                
                 result.close();
                 st.close();
                 conexion.close();
+                VentanaPrincipal vtn = new VentanaPrincipal();
+                vtn.setVisible(true);
+                this.dispose();
             }catch (Exception e){
                 System.out.println("ERROR DE CONEXION" + e.getMessage());
             

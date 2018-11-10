@@ -20,10 +20,6 @@ public class VentanaCrearReunion extends javax.swing.JFrame {
         initComponents();
         ImageIcon icon = new ImageIcon("src/imagenes/fondoCelesteFinoFlecha.jpg");
         this.lblfondoCeleste.setIcon(icon);
-        this.btnGroup.add(this.reunionAnual);
-        this.btnGroup.add(this.reunionDiaria);
-        this.btnGroup.add(this.reunionMensual);
-        this.btnGroup.add(this.reunionSemanal);
     }
 
     /**
@@ -40,18 +36,12 @@ public class VentanaCrearReunion extends javax.swing.JFrame {
         lblAtras = new javax.swing.JLabel();
         lblfondoCeleste = new javax.swing.JLabel();
         panelBlanco = new javax.swing.JPanel();
-        calendario = new com.toedter.calendar.JCalendar();
-        descripcionReunion = new javax.swing.JTextField();
-        reunionAnual = new javax.swing.JRadioButton();
-        reunionMensual = new javax.swing.JRadioButton();
-        horaReunion = new javax.swing.JSpinner();
-        minutoReunion = new javax.swing.JSpinner();
-        jLabel7 = new javax.swing.JLabel();
-        reunionSemanal = new javax.swing.JRadioButton();
-        reunionDiaria = new javax.swing.JRadioButton();
+        txtNombre = new javax.swing.JTextField();
         btnVerReuniones = new javax.swing.JButton();
         btnVerInvitaciones = new javax.swing.JButton();
         crearReunion = new javax.swing.JButton();
+        lblError = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         jLabel5.setText(":");
 
@@ -70,28 +60,6 @@ public class VentanaCrearReunion extends javax.swing.JFrame {
         getContentPane().add(lblfondoCeleste, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 60, -1));
 
         panelBlanco.setBackground(new java.awt.Color(255, 255, 255));
-
-        descripcionReunion.setText("Descripcion");
-
-        reunionAnual.setText("Reunion anual");
-        reunionAnual.setContentAreaFilled(false);
-
-        reunionMensual.setText("Reunion mensual");
-        reunionMensual.setContentAreaFilled(false);
-        reunionMensual.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                reunionMensualActionPerformed(evt);
-            }
-        });
-
-        jLabel7.setText(":");
-
-        reunionSemanal.setText("Reunion semanal");
-        reunionSemanal.setActionCommand("reunionSemanal");
-        reunionSemanal.setContentAreaFilled(false);
-
-        reunionDiaria.setText("Reunion Diaria");
-        reunionDiaria.setContentAreaFilled(false);
 
         btnVerReuniones.setText("Ver reuniones");
         btnVerReuniones.addActionListener(new java.awt.event.ActionListener() {
@@ -114,70 +82,48 @@ public class VentanaCrearReunion extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("Nombre:");
+
         javax.swing.GroupLayout panelBlancoLayout = new javax.swing.GroupLayout(panelBlanco);
         panelBlanco.setLayout(panelBlancoLayout);
         panelBlancoLayout.setHorizontalGroup(
             panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelBlancoLayout.createSequentialGroup()
-                .addGap(53, 53, 53)
-                .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(descripcionReunion, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(panelBlancoLayout.createSequentialGroup()
-                        .addComponent(calendario, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelBlancoLayout.createSequentialGroup()
-                                .addGap(4, 4, 4)
-                                .addComponent(horaReunion, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(4, 4, 4)
-                                .addComponent(jLabel7)
-                                .addGap(4, 4, 4)
-                                .addComponent(minutoReunion, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(reunionAnual)
-                            .addComponent(reunionDiaria)
-                            .addComponent(reunionSemanal)
-                            .addComponent(reunionMensual))))
-                .addContainerGap(313, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBlancoLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(136, 136, 136)
+                .addComponent(lblError)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 236, Short.MAX_VALUE)
                 .addComponent(btnVerInvitaciones)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnVerReuniones)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(crearReunion)
                 .addGap(8, 8, 8))
+            .addGroup(panelBlancoLayout.createSequentialGroup()
+                .addGap(53, 53, 53)
+                .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelBlancoLayout.setVerticalGroup(
             panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBlancoLayout.createSequentialGroup()
-                .addContainerGap(43, Short.MAX_VALUE)
-                .addComponent(descripcionReunion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
+                .addContainerGap(30, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelBlancoLayout.createSequentialGroup()
-                        .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(horaReunion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(panelBlancoLayout.createSequentialGroup()
-                                .addGap(3, 3, 3)
-                                .addComponent(jLabel7))
-                            .addComponent(minutoReunion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(reunionDiaria)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(reunionSemanal)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(reunionMensual)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(reunionAnual)
-                        .addGap(18, 18, 18)
+                        .addGap(38, 187, Short.MAX_VALUE)
                         .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnVerReuniones)
                             .addComponent(btnVerInvitaciones)
-                            .addComponent(crearReunion))
-                        .addContainerGap())
+                            .addComponent(crearReunion)))
                     .addGroup(panelBlancoLayout.createSequentialGroup()
-                        .addComponent(calendario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(49, 49, 49))))
+                        .addGap(208, 208, 208)
+                        .addComponent(lblError)
+                        .addGap(0, 4, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         getContentPane().add(panelBlanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 700, 300));
@@ -186,12 +132,8 @@ public class VentanaCrearReunion extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void reunionMensualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reunionMensualActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_reunionMensualActionPerformed
-
     private void lblAtrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtrasMouseClicked
-        VentanaPrincipal vent = new VentanaPrincipal();
+        VentanaVerReuniones vent = new VentanaVerReuniones();
         vent.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_lblAtrasMouseClicked
@@ -205,7 +147,16 @@ public class VentanaCrearReunion extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVerReunionesActionPerformed
 
     private void crearReunionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearReunionActionPerformed
-        // TODO add your handling code here:
+        Reunion reunion = new Reunion(this.txtNombre.getText(), "", "", ObligatorioBD.usuarioLoggeado.getId());
+        reunion.Save();
+        if(Evento.errorAlGuardar){
+            lblError.setText("Hubo un error al guardar el evento");
+        }else{
+            lblError.setText("Se guardo el evento correctamente");
+            VentanaVerReuniones vtn = new VentanaVerReuniones();
+            vtn.setVisible(true);
+            this.dispose();
+            }
     }//GEN-LAST:event_crearReunionActionPerformed
 
 
@@ -214,19 +165,13 @@ public class VentanaCrearReunion extends javax.swing.JFrame {
     private javax.swing.ButtonGroup btnGroup;
     private javax.swing.JButton btnVerInvitaciones;
     private javax.swing.JButton btnVerReuniones;
-    private com.toedter.calendar.JCalendar calendario;
     private javax.swing.JButton crearReunion;
-    private javax.swing.JTextField descripcionReunion;
-    private javax.swing.JSpinner horaReunion;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel lblAtras;
+    private javax.swing.JLabel lblError;
     private javax.swing.JLabel lblfondoCeleste;
-    private javax.swing.JSpinner minutoReunion;
     private javax.swing.JPanel panelBlanco;
-    private javax.swing.JRadioButton reunionAnual;
-    private javax.swing.JRadioButton reunionDiaria;
-    private javax.swing.JRadioButton reunionMensual;
-    private javax.swing.JRadioButton reunionSemanal;
+    private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 }
