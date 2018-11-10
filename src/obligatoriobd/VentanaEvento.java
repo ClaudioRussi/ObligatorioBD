@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package obligatoriobd;
-
+import java.sql.*;
 import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
@@ -19,6 +19,9 @@ import javax.swing.ImageIcon;
  */
 public class VentanaEvento extends javax.swing.JFrame {
     public Integer idReunion = null;
+    static String url = "jdbc:postgresql://192.168.56.1:5432/BD2018-1";
+    static String PG_usuario = "postgres"; 
+    static String PG_contrasenia = "test123";
     /**
      * Creates new form VentanaEvento
      */
@@ -238,20 +241,34 @@ public class VentanaEvento extends javax.swing.JFrame {
             }
         
        }else{
-            Evento evnto = new Evento(ObligatorioBD.usuarioLoggeado.getId(), descripcionEvento.getText(), 
-                    eventoDiario.isSelected(), eventoSemanal.isSelected(), eventoMensual.isSelected(), 
-                    eventoAnual.isSelected(), clndr, ObligatorioBD.categorias[categoriaEvento.getSelectedIndex()], idReunion);
+            try{
+                Class.forName("org.postgresql.Driver");
+                Connection conexion = DriverManager.getConnection(url, PG_usuario, PG_contrasenia);
+                java.sql.Statement st = conexion.createStatement();
 
-            evnto.Save();
+                String sql = "SELECT * FROM usuario_reunion WHERE id_reunion = " + idReunion + " AND confirmo_invitacion = true;" ;
+                ResultSet result = st.executeQuery(sql);
+                while(result.next()){
+                    Evento evnto = new Evento(result.getInt("id_usuario"), descripcionEvento.getText(), eventoDiario.isSelected(), eventoSemanal.isSelected(), eventoMensual.isSelected(), 
+                    eventoAnual.isSelected(), clndr, ObligatorioBD.categorias[categoriaEvento.getSelectedIndex()], result.getInt("id_reunion"));
+                    evnto.Save();
 
-            if(Evento.errorAlGuardar){
-                lblError.setText("Hubo un error al guardar el evento");
-            }
-            else{
-                lblError.setText("Se guardo el evento correctamente");
-                VentanaPrincipal vtn = new VentanaPrincipal();
-                vtn.setVisible(true);
-                this.dispose();
+                    if(Evento.errorAlGuardar){
+                        lblError.setText("Hubo un error al guardar el evento");
+                    }
+                    else{
+                        lblError.setText("Se guardo el evento correctamente");
+                        VentanaPrincipal vtn = new VentanaPrincipal();
+                        vtn.setVisible(true);
+                        this.dispose();
+                    }
+                }
+                result.close();
+                st.close();
+                conexion.close();
+            }catch (Exception e){
+                System.out.println("ERROR DE CONEXION" + e.getMessage());
+            
             }
         
         }
