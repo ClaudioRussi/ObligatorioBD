@@ -181,7 +181,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
 
     private void btnInsumosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsumosActionPerformed
-        
+        VentanaInsumo vent = new VentanaInsumo();
+        vent.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnInsumosActionPerformed
 
 

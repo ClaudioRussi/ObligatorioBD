@@ -52,6 +52,12 @@ public class VentanaInsumo extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnCrearInsumo, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 266, -1, -1));
+
+        lblAtras.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblAtrasMouseClicked(evt);
+            }
+        });
         getContentPane().add(lblAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 40, 30));
 
         lblfondoCeleste.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -113,6 +119,7 @@ public class VentanaInsumo extends javax.swing.JFrame {
         getContentPane().add(panelBlanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 700, 300));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCrearInsumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearInsumoActionPerformed
@@ -127,6 +134,12 @@ public class VentanaInsumo extends javax.swing.JFrame {
             this.lblInsumo.setText("Insumo guardado correctamente");
         }
     }//GEN-LAST:event_btnCrearInsumoActionPerformed
+
+    private void lblAtrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtrasMouseClicked
+        VentanaPrincipal vent = new VentanaPrincipal();
+        vent.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_lblAtrasMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCrearInsumo;
