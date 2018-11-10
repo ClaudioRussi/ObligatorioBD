@@ -26,7 +26,15 @@ public class Reunion {
     private LinkedList integrantes = new LinkedList();
     
     public Reunion(String nombre,String horaInicio, String horaFin, int IDUsuarioCreador){
-        idReunion = Reunion.id++;
+        id++;
+        idReunion = id;
+        this.idUsuarioCreador = IDUsuarioCreador;        
+        this.integrantes.add(this);
+        this.nombre = nombre;
+    }
+    
+    public Reunion(int id, String nombre,String horaInicio, String horaFin, int IDUsuarioCreador){
+        this.idReunion = id;
         this.idUsuarioCreador = IDUsuarioCreador;        
         this.integrantes.add(this);
         this.nombre = nombre;
@@ -97,7 +105,7 @@ public class Reunion {
             String sql = "SELECT * FROM reunion WHERE id_creador = "+ idUsuario;
             ResultSet result = st.executeQuery(sql);
             while(result.next()){
-                reuniones.add(new Reunion(result.getString("nombre"),result.getString("hora_inicio"),
+                reuniones.add(new Reunion(result.getInt("id_reunion"),result.getString("nombre"),result.getString("hora_inicio"),
                         result.getString("hora_fin"), result.getInt("id_creador")));
             }
             result.close();

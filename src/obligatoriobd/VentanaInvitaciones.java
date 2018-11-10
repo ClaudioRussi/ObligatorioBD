@@ -5,6 +5,7 @@
  */
 package obligatoriobd;
 
+import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 
@@ -18,12 +19,23 @@ public class VentanaInvitaciones extends javax.swing.JFrame {
     /**
      * Creates new form VentanaInvitaciones
      */
+    
     public VentanaInvitaciones() {
         initComponents();
         ImageIcon icon = new ImageIcon("src/imagenes/fondoCelesteFinoFlecha.jpg");
         this.lblfondoCeleste.setIcon(icon);
         modeloLista = new DefaultListModel();
         listaInvitaciones.setModel(modeloLista);
+        
+        //Cargo en la lista las invitaciones
+        ArrayList<UsuarioReunion> invitaciones =UsuarioReunion.buscarInvitacionesNoAceptadas(ObligatorioBD.usuarioLoggeado.getId());
+        for(UsuarioReunion invitacion  : invitaciones){
+            String elementoLista;
+            elementoLista = invitacion.getNombreReunion()+ " | "+ invitacion.getNombreCreador();
+            modeloLista.addElement(elementoLista);
+        }
+        this.listaInvitaciones.setModel(modeloLista);
+        
     }
 
     /**
@@ -107,10 +119,12 @@ public class VentanaInvitaciones extends javax.swing.JFrame {
         getContentPane().add(panelBlanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, -1, -1));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRechazarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRechazarActionPerformed
-        // TODO add your handling code here:
+        
+        
     }//GEN-LAST:event_btnRechazarActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed

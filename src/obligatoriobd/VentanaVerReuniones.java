@@ -59,6 +59,7 @@ public class VentanaVerReuniones extends javax.swing.JFrame {
         btnAbandonar = new javax.swing.JButton();
         btnCrearReunion = new javax.swing.JButton();
         btnGestionar = new javax.swing.JButton();
+        btnInvitaciones = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(779, 300));
@@ -107,16 +108,26 @@ public class VentanaVerReuniones extends javax.swing.JFrame {
             }
         });
 
+        btnInvitaciones.setText("Ver invitaciones");
+        btnInvitaciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInvitacionesActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelBlancoLayout = new javax.swing.GroupLayout(panelBlanco);
         panelBlanco.setLayout(panelBlancoLayout);
         panelBlancoLayout.setHorizontalGroup(
             panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBlancoLayout.createSequentialGroup()
-                .addGap(116, 116, 116)
                 .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelBlancoLayout.createSequentialGroup()
-                        .addGap(148, 148, 148)
+                        .addGap(116, 116, 116)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelBlancoLayout.createSequentialGroup()
+                        .addGap(52, 52, 52)
+                        .addComponent(btnInvitaciones)
+                        .addGap(133, 133, 133)
                         .addComponent(btnCrearReunion)))
                 .addGap(30, 30, 30)
                 .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -130,7 +141,9 @@ public class VentanaVerReuniones extends javax.swing.JFrame {
                 .addContainerGap(61, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
-                .addComponent(btnCrearReunion)
+                .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCrearReunion)
+                    .addComponent(btnInvitaciones))
                 .addGap(29, 29, 29))
             .addGroup(panelBlancoLayout.createSequentialGroup()
                 .addGap(113, 113, 113)
@@ -143,6 +156,7 @@ public class VentanaVerReuniones extends javax.swing.JFrame {
         getContentPane().add(panelBlanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, -1, -1));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAbandonarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbandonarActionPerformed
@@ -162,15 +176,26 @@ public class VentanaVerReuniones extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCrearReunionActionPerformed
 
     private void btnGestionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionarActionPerformed
-        VentanaReunion vent = new VentanaReunion(array.get(this.listaReuniones.getSelectedIndex()));
+        if(this.listaReuniones.getSelectedIndex() != -1){
+            VentanaReunion vent = new VentanaReunion(array.get(this.listaReuniones.getSelectedIndex()));
+            vent.setVisible(true);
+            this.dispose();
+        }
+        
+        
+    }//GEN-LAST:event_btnGestionarActionPerformed
+
+    private void btnInvitacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInvitacionesActionPerformed
+        VentanaInvitaciones vent = new VentanaInvitaciones();
         vent.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_btnGestionarActionPerformed
+    }//GEN-LAST:event_btnInvitacionesActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAbandonar;
     private javax.swing.JButton btnCrearReunion;
     private javax.swing.JButton btnGestionar;
+    private javax.swing.JButton btnInvitaciones;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAtras;
     private javax.swing.JLabel lblfondoCeleste;

@@ -25,15 +25,23 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         ImageIcon icon = new ImageIcon("src/imagenes/fondoCeleste.jpg");
         this.lblFondoCeleste.setIcon(icon);
         
-        //Aviso de eventos anteriores
+        //Checkeo de invitaciones
+        ArrayList<UsuarioReunion> users = UsuarioReunion.buscarInvitacionesNoAceptadas(ObligatorioBD.usuarioLoggeado.getId());
+        if(!users.isEmpty() && !ObligatorioBD.aviso){
+            String text = "Tiene invitaciones nuevas!";
+            VentanaPopUp vent = new VentanaPopUp(text);
+            vent.setVisible(true);
+        }
+        
+       //Aviso de eventos anteriores
         ArrayList<Evento> ev = new ArrayList();
         Evento.buscarEventosAnteriores(ObligatorioBD.usuarioLoggeado.getId(), ev);
         if(!ev.isEmpty() && !ObligatorioBD.aviso){
-            ObligatorioBD.aviso = true;
             String text = "Usted posee eventos anteriores, reviselos!";
             VentanaPopUp vent = new VentanaPopUp(text);
             vent.setVisible(true);
         }
+        ObligatorioBD.aviso = true;
         
     }
     /**

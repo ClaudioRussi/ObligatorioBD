@@ -310,6 +310,7 @@ public class VentanaReunion extends javax.swing.JFrame {
             }else{
                 st = conexion.createStatement();
                 String insertion = "INSERT INTO usuario_reunion VALUES ("+idUserAux+", "+this.reunion.getIDReunion()+", false);"; 
+                System.out.println("ID REUNION DE CLASE: " + this.reunion.getIDReunion());
                 //TEST
                 System.out.println("VA INSERCION");
                 System.out.println(insertion);
