@@ -258,7 +258,7 @@ public class Evento {
         } else{
             verdaderoIdReunion = null;
         }
-        
+        //Conexion y consulta SQL
         try{
             Class.forName("org.postgresql.Driver");
             Connection conexion = DriverManager.getConnection(url, usuario, contrasenia);
