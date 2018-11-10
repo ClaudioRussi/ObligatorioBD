@@ -10,6 +10,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -18,19 +20,32 @@ import java.util.Calendar;
 
 public class HiloCalendario implements Runnable {
     
-ArrayList<Evento> eventos;
-
+    ArrayList<Evento> eventos;
+    int sleepTime = 60000;
     public HiloCalendario(ArrayList<Evento> events){
         eventos = events;
     }
     
     @Override
     public void run() {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        Calendar cal = Calendar.getInstance();
-        
-       // Evento.buscarEventosAPartirDeFecha(cal.getTime(), eventos);
-               
+        while (true){
+            Calendar calAhora = Calendar.getInstance();
+            Calendar calMinutoAntes = Calendar.getInstance();
+            calMinutoAntes.add(Calendar.MINUTE, -1);
+            Evento.buscarEventosDeUsuarioEntreFechas(calMinutoAntes, 10 ,ObligatorioBD.usuarioLoggeado.getId(), eventos); 
+            for(Evento evnt : eventos){
+                if((evnt.getFecha().getTimeInMillis() - calAhora.getTimeInMillis()) <= 60000){
+                    VentanaNotificaciones vtn = new VentanaNotificaciones(evnt);
+                    vtn.setVisible(true);
+                }
+            }
+            try {
+                Thread.sleep(sleepTime);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(HiloCalendario.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+             
     }
     
 }
