@@ -5,6 +5,8 @@
  */
 package obligatoriobd;
 
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 
 /**
@@ -16,10 +18,28 @@ public class VentanaVerReuniones extends javax.swing.JFrame {
     /**
      * Creates new form VentanaVerReuniones
      */
+    
+    
+    DefaultListModel modeloLista;
+    ArrayList<Reunion> array = new ArrayList();    
+    
+   
+    
     public VentanaVerReuniones() {
         initComponents();
         ImageIcon icon = new ImageIcon("src/imagenes/fondoCelesteFinoFlecha.jpg");
         this.lblfondoCeleste.setIcon(icon);
+        modeloLista = new DefaultListModel();
+        //Consulta SQL
+        Reunion.buscarReunionesPorUsuario(array, ObligatorioBD.usuarioLoggeado.getId());
+        for(Reunion reunion : array){
+            String elementoLista;
+            elementoLista = reunion.getNombre();
+            modeloLista.addElement(elementoLista);
+        }
+        listaReuniones.setModel(modeloLista);
+        
+        
     }
 
     /**
@@ -35,29 +55,57 @@ public class VentanaVerReuniones extends javax.swing.JFrame {
         lblfondoCeleste = new javax.swing.JLabel();
         panelBlanco = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        listaReunones = new javax.swing.JList<>();
+        listaReuniones = new javax.swing.JList<>();
         btnAbandonar = new javax.swing.JButton();
+        btnCrearReunion = new javax.swing.JButton();
+        btnGestionar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(779, 300));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblAtras.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblAtrasMouseClicked(evt);
+            }
+        });
         getContentPane().add(lblAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 40, 30));
 
         lblfondoCeleste.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblfondoCeleste.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoCelesteFinoFlecha.jpg"))); // NOI18N
         getContentPane().add(lblfondoCeleste, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 60, -1));
 
         panelBlanco.setBackground(new java.awt.Color(255, 255, 255));
         panelBlanco.setPreferredSize(new java.awt.Dimension(739, 300));
 
-        listaReunones.setModel(new javax.swing.AbstractListModel<String>() {
+        listaReuniones.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(listaReunones);
+        jScrollPane1.setViewportView(listaReuniones);
 
         btnAbandonar.setText("Abandonar reunion");
         btnAbandonar.setActionCommand("abandonar");
+        btnAbandonar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAbandonarActionPerformed(evt);
+            }
+        });
+
+        btnCrearReunion.setText("Crear reunion");
+        btnCrearReunion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearReunionActionPerformed(evt);
+            }
+        });
+
+        btnGestionar.setText("Gestionar reunion");
+        btnGestionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGestionarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelBlancoLayout = new javax.swing.GroupLayout(panelBlanco);
         panelBlanco.setLayout(panelBlancoLayout);
@@ -65,19 +113,31 @@ public class VentanaVerReuniones extends javax.swing.JFrame {
             panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBlancoLayout.createSequentialGroup()
                 .addGap(116, 116, 116)
-                .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnAbandonar)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(224, Short.MAX_VALUE))
+                .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panelBlancoLayout.createSequentialGroup()
+                        .addGap(148, 148, 148)
+                        .addComponent(btnCrearReunion)))
+                .addGap(30, 30, 30)
+                .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnAbandonar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnGestionar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
         panelBlancoLayout.setVerticalGroup(
             panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBlancoLayout.createSequentialGroup()
-                .addContainerGap(63, Short.MAX_VALUE)
+            .addGroup(panelBlancoLayout.createSequentialGroup()
+                .addContainerGap(61, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
+                .addGap(31, 31, 31)
+                .addComponent(btnCrearReunion)
+                .addGap(29, 29, 29))
+            .addGroup(panelBlancoLayout.createSequentialGroup()
+                .addGap(113, 113, 113)
+                .addComponent(btnGestionar)
+                .addGap(18, 18, 18)
                 .addComponent(btnAbandonar)
-                .addGap(22, 22, 22))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         getContentPane().add(panelBlanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, -1, -1));
@@ -85,12 +145,36 @@ public class VentanaVerReuniones extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnAbandonarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbandonarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAbandonarActionPerformed
+
+    private void lblAtrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtrasMouseClicked
+        VentanaPrincipal vent = new VentanaPrincipal();
+        vent.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_lblAtrasMouseClicked
+
+    private void btnCrearReunionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearReunionActionPerformed
+        VentanaCrearReunion vent = new VentanaCrearReunion();
+        vent.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnCrearReunionActionPerformed
+
+    private void btnGestionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionarActionPerformed
+        VentanaReunion vent = new VentanaReunion(array.get(this.listaReuniones.getSelectedIndex()));
+        vent.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnGestionarActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAbandonar;
+    private javax.swing.JButton btnCrearReunion;
+    private javax.swing.JButton btnGestionar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAtras;
     private javax.swing.JLabel lblfondoCeleste;
-    private javax.swing.JList<String> listaReunones;
+    private javax.swing.JList<String> listaReuniones;
     private javax.swing.JPanel panelBlanco;
     // End of variables declaration//GEN-END:variables
 }

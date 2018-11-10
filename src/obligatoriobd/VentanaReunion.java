@@ -5,6 +5,7 @@
  */
 package obligatoriobd;
 
+import java.sql.*;
 import javax.swing.ImageIcon;
 
 /**
@@ -13,13 +14,20 @@ import javax.swing.ImageIcon;
  */
 public class VentanaReunion extends javax.swing.JFrame {
 
+    static boolean errorAlGuardar;
+    static String url = "jdbc:postgresql://192.168.56.1:5432/BD2018-1";
+    static String usuario = "postgres"; 
+    static String contrasenia = "test123";
     /**
      * Creates new form VentanaEvento
      */
-    public VentanaReunion() {
+    Reunion reunion;
+    public VentanaReunion(Reunion reunion) {
         initComponents();
         ImageIcon icon = new ImageIcon("src/imagenes/fondoCelesteFinoFlecha.jpg");
         this.lblfondoCeleste.setIcon(icon);
+        this.reunion = reunion;
+        
     }
 
     /**
@@ -33,11 +41,10 @@ public class VentanaReunion extends javax.swing.JFrame {
 
         jLabel5 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        finalizarReunion = new javax.swing.JButton();
         lblAtras = new javax.swing.JLabel();
         lblfondoCeleste = new javax.swing.JLabel();
         panelBlanco = new javax.swing.JPanel();
-        idUsuario = new javax.swing.JTextField();
+        txtidUsuario = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         agregarUsuario = new javax.swing.JButton();
         agregarInsumo = new javax.swing.JButton();
@@ -50,20 +57,20 @@ public class VentanaReunion extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         pago = new javax.swing.JTextField();
         btnAgregarPago = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnVerPagos = new javax.swing.JButton();
         creador = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
         asignarCreador = new javax.swing.JButton();
+        finalizarReunion = new javax.swing.JButton();
+        lblError = new javax.swing.JLabel();
+        btnAgregarEvento = new javax.swing.JButton();
 
         jLabel5.setText(":");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(521, 172, -1, -1));
-
-        finalizarReunion.setText("Finalizar Reunion");
-        getContentPane().add(finalizarReunion, new org.netbeans.lib.awtextra.AbsoluteConstraints(616, 266, -1, -1));
 
         lblAtras.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -73,14 +80,15 @@ public class VentanaReunion extends javax.swing.JFrame {
         getContentPane().add(lblAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 14, 40, 30));
 
         lblfondoCeleste.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblfondoCeleste.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoCelesteFinoFlecha.jpg"))); // NOI18N
         getContentPane().add(lblfondoCeleste, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 60, 300));
 
         panelBlanco.setBackground(new java.awt.Color(255, 255, 255));
 
-        idUsuario.setText("idUsuario");
-        idUsuario.addActionListener(new java.awt.event.ActionListener() {
+        txtidUsuario.setText("idUsuario");
+        txtidUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                idUsuarioActionPerformed(evt);
+                txtidUsuarioActionPerformed(evt);
             }
         });
 
@@ -88,9 +96,19 @@ public class VentanaReunion extends javax.swing.JFrame {
 
         agregarUsuario.setText("Agregar");
         agregarUsuario.setActionCommand("agregarUsuario");
+        agregarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregarUsuarioActionPerformed(evt);
+            }
+        });
 
         agregarInsumo.setText("Agregar");
         agregarInsumo.setActionCommand("agregarInsumo");
+        agregarInsumo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregarInsumoActionPerformed(evt);
+            }
+        });
 
         idInsumo.setText("idInsumo");
 
@@ -107,8 +125,18 @@ public class VentanaReunion extends javax.swing.JFrame {
         pago.setText("$");
 
         btnAgregarPago.setText("Agregar");
+        btnAgregarPago.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarPagoActionPerformed(evt);
+            }
+        });
 
-        jButton1.setText("Ver pagos");
+        btnVerPagos.setText("Ver pagos");
+        btnVerPagos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerPagosActionPerformed(evt);
+            }
+        });
 
         creador.setText("Asignar creador:");
 
@@ -120,51 +148,80 @@ public class VentanaReunion extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jList1);
 
         asignarCreador.setText("Asignar");
+        asignarCreador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                asignarCreadorActionPerformed(evt);
+            }
+        });
+
+        finalizarReunion.setText("Finalizar Reunion");
+        finalizarReunion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                finalizarReunionActionPerformed(evt);
+            }
+        });
+
+        btnAgregarEvento.setText("Agregar evento");
+        btnAgregarEvento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarEventoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelBlancoLayout = new javax.swing.GroupLayout(panelBlanco);
         panelBlanco.setLayout(panelBlancoLayout);
         panelBlancoLayout.setHorizontalGroup(
             panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBlancoLayout.createSequentialGroup()
-                .addGap(46, 46, 46)
                 .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(creador)
                     .addGroup(panelBlancoLayout.createSequentialGroup()
-                        .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(idUsuario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
+                        .addGap(46, 46, 46)
                         .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(agregarUsuario)
-                            .addComponent(asignarCreador))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel4)
+                            .addComponent(creador)
+                            .addGroup(panelBlancoLayout.createSequentialGroup()
+                                .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtidUsuario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(agregarUsuario)
+                                    .addComponent(asignarCreador))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBlancoLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblError)
+                        .addGap(91, 91, 91)))
                 .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addGroup(panelBlancoLayout.createSequentialGroup()
                         .addComponent(pago, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnAgregarPago))
-                    .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBlancoLayout.createSequentialGroup()
-                            .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel6)
-                                .addGroup(panelBlancoLayout.createSequentialGroup()
-                                    .addComponent(jLabel9)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jLabel2))
-                                .addGroup(panelBlancoLayout.createSequentialGroup()
-                                    .addComponent(cantidadInsumo, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(precioInsumo, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(panelBlancoLayout.createSequentialGroup()
-                                    .addComponent(idInsumo, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(agregarInsumo)))
-                            .addGap(68, 68, 68))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBlancoLayout.createSequentialGroup()
-                            .addComponent(jButton1)
-                            .addGap(136, 136, 136)))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBlancoLayout.createSequentialGroup()
+                        .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addGroup(panelBlancoLayout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel2))
+                            .addGroup(panelBlancoLayout.createSequentialGroup()
+                                .addComponent(cantidadInsumo, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(precioInsumo, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelBlancoLayout.createSequentialGroup()
+                                .addComponent(idInsumo, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(agregarInsumo)))
+                        .addGap(68, 68, 68))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBlancoLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnAgregarEvento)
+                .addGap(30, 30, 30)
+                .addComponent(btnVerPagos)
+                .addGap(18, 18, 18)
+                .addComponent(finalizarReunion)
+                .addContainerGap())
         );
         panelBlancoLayout.setVerticalGroup(
             panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -181,7 +238,7 @@ public class VentanaReunion extends javax.swing.JFrame {
                         .addComponent(jLabel4)
                         .addGap(11, 11, 11)
                         .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(idUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtidUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(agregarUsuario))))
                 .addGap(15, 15, 15)
                 .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -200,7 +257,11 @@ public class VentanaReunion extends javax.swing.JFrame {
                             .addComponent(pago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnAgregarPago))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
+                        .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnVerPagos)
+                            .addComponent(finalizarReunion)
+                            .addComponent(lblError)
+                            .addComponent(btnAgregarEvento))
                         .addContainerGap())
                     .addGroup(panelBlancoLayout.createSequentialGroup()
                         .addGap(3, 3, 3)
@@ -218,9 +279,9 @@ public class VentanaReunion extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void idUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idUsuarioActionPerformed
+    private void txtidUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtidUsuarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_idUsuarioActionPerformed
+    }//GEN-LAST:event_txtidUsuarioActionPerformed
 
     private void lblAtrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtrasMouseClicked
         VentanaPrincipal vent = new VentanaPrincipal();
@@ -228,19 +289,89 @@ public class VentanaReunion extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_lblAtrasMouseClicked
 
+    private void agregarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarUsuarioActionPerformed
+        try{
+            Class.forName("org.postgresql.Driver");
+            Connection conexion = DriverManager.getConnection(url, usuario, contrasenia);
+            java.sql.Statement st = conexion.createStatement();
+            //=Obtener la id dado el username=================
+            
+            String sql = "SELECT id_usuario FROM usuario WHERE username = '" +this.txtidUsuario.getText()+ "';";
+            ResultSet result = st.executeQuery(sql);
+            int idUserAux= -1;
+            while(result.next()){
+                 idUserAux = result.getInt("id_usuario");
+            }
+            result.close();
+            st.close();
+            if(idUserAux == -1){
+                this.lblError.setText("No existe el usuario que se quiere agregar");
+                
+            }else{
+                st = conexion.createStatement();
+                String insertion = "INSERT INTO usuario_reunion VALUES ("+idUserAux+", "+this.reunion.getIDReunion()+", false);"; 
+                //TEST
+                System.out.println("VA INSERCION");
+                System.out.println(insertion);
+                //
+                st.executeUpdate(insertion);
+                st.close();
+            
+                conexion.close();
+                errorAlGuardar = false;
+            }
+            
+            
+        }catch (SQLException e){
+            System.out.println("ERROR DE CONEXION " + e.getMessage());
+            errorAlGuardar = true;
+        }
+        catch(ClassNotFoundException e){
+            System.out.println("ERROR AL GUARDAR LA CLASE "+ e.getMessage());
+            errorAlGuardar = true;
+        }
+    }//GEN-LAST:event_agregarUsuarioActionPerformed
+
+    private void agregarInsumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarInsumoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_agregarInsumoActionPerformed
+
+    private void asignarCreadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_asignarCreadorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_asignarCreadorActionPerformed
+
+    private void btnAgregarPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarPagoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAgregarPagoActionPerformed
+
+    private void btnVerPagosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerPagosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVerPagosActionPerformed
+
+    private void finalizarReunionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finalizarReunionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_finalizarReunionActionPerformed
+
+    private void btnAgregarEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarEventoActionPerformed
+        VentanaEvento vent = new VentanaEvento();
+        vent.idReunion = reunion.getIDReunion();
+        vent.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnAgregarEventoActionPerformed
+
  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton agregarInsumo;
     private javax.swing.JButton agregarUsuario;
     private javax.swing.JButton asignarCreador;
+    private javax.swing.JButton btnAgregarEvento;
     private javax.swing.JButton btnAgregarPago;
+    private javax.swing.JButton btnVerPagos;
     private javax.swing.JSpinner cantidadInsumo;
     private javax.swing.JLabel creador;
     private javax.swing.JButton finalizarReunion;
     private javax.swing.JTextField idInsumo;
-    private javax.swing.JTextField idUsuario;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
@@ -251,9 +382,11 @@ public class VentanaReunion extends javax.swing.JFrame {
     private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAtras;
+    private javax.swing.JLabel lblError;
     private javax.swing.JLabel lblfondoCeleste;
     private javax.swing.JTextField pago;
     private javax.swing.JPanel panelBlanco;
     private javax.swing.JTextField precioInsumo;
+    private javax.swing.JTextField txtidUsuario;
     // End of variables declaration//GEN-END:variables
 }
