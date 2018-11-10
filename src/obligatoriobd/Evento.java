@@ -251,6 +251,40 @@ public class Evento {
         }
     }
     
+    
+    static public void buscarEventosAnteriores(int idUsuario, ArrayList<Evento> eventos){
+        Calendar fechaActual = Calendar.getInstance();
+        try{
+            Class.forName("org.postgresql.Driver");
+            Connection conexion = DriverManager.getConnection(url, usuario, contrasenia);
+            java.sql.Statement st = conexion.createStatement();
+            String sql = "SELECT * FROM evento WHERE fecha < timestamp '"+ Herramientas.ConvertirCalendarAString(fechaActual)
+                    +"' AND id_usuario = "+idUsuario;
+            ResultSet result = st.executeQuery(sql);
+            while(result.next()){
+                Calendar fecha = Calendar.getInstance();
+                Calendar fechaCreacion = Calendar.getInstance();
+            
+                fecha.setTimeInMillis(result.getTimestamp("fecha").getTime());
+                fechaCreacion.setTimeInMillis(result.getTimestamp("fecha_creacion").getTime());
+                eventos.add(new Evento(result.getInt("id_evento"), result.getInt("id_usuario"), 
+                        result.getString("descripcion"), result.getBoolean("es_diario"), 
+                        result.getBoolean("es_semanal"),result.getBoolean("es_mensual"),
+                        result.getBoolean("es_anual"), fecha, fechaCreacion, result.getString("tipo"), result.getInt("id_reunion")));
+            }
+            result.close();
+            st.close();
+            conexion.close();
+        }catch (SQLException e){
+            System.out.println("ERROR DE CONEXION " + e.getMessage());
+            
+        }
+        catch(ClassNotFoundException e){
+            System.out.println("ERROR AL CARGAR LA CLASE "+ e.getMessage());
+        }
+    }
+    
+    
     static public Evento buscarEventoPorId(int id){
         Evento evento = null;
         try{

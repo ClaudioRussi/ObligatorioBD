@@ -5,6 +5,8 @@
  */
 package obligatoriobd;
 
+import java.util.ArrayList;
+import java.util.Calendar;
 import javax.swing.ImageIcon;
 
 /**
@@ -22,6 +24,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         this.lblUsuario.setText(ObligatorioBD.usuarioLoggeado.getUsername());
         ImageIcon icon = new ImageIcon("src/imagenes/fondoCeleste.jpg");
         this.lblFondoCeleste.setIcon(icon);
+        
+        //Aviso de eventos anteriores
+        ArrayList<Evento> ev = new ArrayList();
+        Evento.buscarEventosAnteriores(ObligatorioBD.usuarioLoggeado.getId(), ev);
+        if(!ev.isEmpty()){
+            String text = "Usted posee eventos anteriores, reviselos!";
+            VentanaPopUp vent = new VentanaPopUp(text);
+            vent.setVisible(true);
+        }
+        
     }
     /**
      * This method is called from within the constructor to initialize the form.
