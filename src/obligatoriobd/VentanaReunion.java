@@ -5,6 +5,7 @@
  */
 package obligatoriobd;
 
+import java.sql.*;
 import javax.swing.ImageIcon;
 
 /**
@@ -13,6 +14,10 @@ import javax.swing.ImageIcon;
  */
 public class VentanaReunion extends javax.swing.JFrame {
 
+    static boolean errorAlGuardar;
+    static String url = "jdbc:postgresql://192.168.56.1:5432/BD2018-1";
+    static String usuario = "postgres"; 
+    static String contrasenia = "test123";
     /**
      * Creates new form VentanaEvento
      */
@@ -39,7 +44,7 @@ public class VentanaReunion extends javax.swing.JFrame {
         lblAtras = new javax.swing.JLabel();
         lblfondoCeleste = new javax.swing.JLabel();
         panelBlanco = new javax.swing.JPanel();
-        idUsuario = new javax.swing.JTextField();
+        txtidUsuario = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         agregarUsuario = new javax.swing.JButton();
         agregarInsumo = new javax.swing.JButton();
@@ -80,10 +85,10 @@ public class VentanaReunion extends javax.swing.JFrame {
 
         panelBlanco.setBackground(new java.awt.Color(255, 255, 255));
 
-        idUsuario.setText("idUsuario");
-        idUsuario.addActionListener(new java.awt.event.ActionListener() {
+        txtidUsuario.setText("idUsuario");
+        txtidUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                idUsuarioActionPerformed(evt);
+                txtidUsuarioActionPerformed(evt);
             }
         });
 
@@ -177,7 +182,7 @@ public class VentanaReunion extends javax.swing.JFrame {
                             .addGroup(panelBlancoLayout.createSequentialGroup()
                                 .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(idUsuario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE))
+                                    .addComponent(txtidUsuario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
                                 .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(agregarUsuario)
@@ -212,9 +217,9 @@ public class VentanaReunion extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBlancoLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnAgregarEvento)
-                .addGap(36, 36, 36)
+                .addGap(30, 30, 30)
                 .addComponent(btnVerPagos)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(finalizarReunion)
                 .addContainerGap())
         );
@@ -233,7 +238,7 @@ public class VentanaReunion extends javax.swing.JFrame {
                         .addComponent(jLabel4)
                         .addGap(11, 11, 11)
                         .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(idUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtidUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(agregarUsuario))))
                 .addGap(15, 15, 15)
                 .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -274,9 +279,9 @@ public class VentanaReunion extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void idUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idUsuarioActionPerformed
+    private void txtidUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtidUsuarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_idUsuarioActionPerformed
+    }//GEN-LAST:event_txtidUsuarioActionPerformed
 
     private void lblAtrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtrasMouseClicked
         VentanaPrincipal vent = new VentanaPrincipal();
@@ -285,7 +290,46 @@ public class VentanaReunion extends javax.swing.JFrame {
     }//GEN-LAST:event_lblAtrasMouseClicked
 
     private void agregarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarUsuarioActionPerformed
-        // TODO add your handling code here:
+        try{
+            Class.forName("org.postgresql.Driver");
+            Connection conexion = DriverManager.getConnection(url, usuario, contrasenia);
+            java.sql.Statement st = conexion.createStatement();
+            //=Obtener la id dado el username=================
+            
+            String sql = "SELECT id_usuario FROM usuario WHERE username = '" +this.txtidUsuario.getText()+ "';";
+            ResultSet result = st.executeQuery(sql);
+            int idUserAux= -1;
+            while(result.next()){
+                 idUserAux = result.getInt("id_usuario");
+            }
+            result.close();
+            st.close();
+            if(idUserAux == -1){
+                this.lblError.setText("No existe el usuario que se quiere agregar");
+                
+            }else{
+                st = conexion.createStatement();
+                String insertion = "INSERT INTO usuario_reunion VALUES ("+idUserAux+", "+this.reunion.getIDReunion()+", false);"; 
+                //TEST
+                System.out.println("VA INSERCION");
+                System.out.println(insertion);
+                //
+                st.executeUpdate(insertion);
+                st.close();
+            
+                conexion.close();
+                errorAlGuardar = false;
+            }
+            
+            
+        }catch (SQLException e){
+            System.out.println("ERROR DE CONEXION " + e.getMessage());
+            errorAlGuardar = true;
+        }
+        catch(ClassNotFoundException e){
+            System.out.println("ERROR AL GUARDAR LA CLASE "+ e.getMessage());
+            errorAlGuardar = true;
+        }
     }//GEN-LAST:event_agregarUsuarioActionPerformed
 
     private void agregarInsumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarInsumoActionPerformed
@@ -328,7 +372,6 @@ public class VentanaReunion extends javax.swing.JFrame {
     private javax.swing.JLabel creador;
     private javax.swing.JButton finalizarReunion;
     private javax.swing.JTextField idInsumo;
-    private javax.swing.JTextField idUsuario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
@@ -344,5 +387,6 @@ public class VentanaReunion extends javax.swing.JFrame {
     private javax.swing.JTextField pago;
     private javax.swing.JPanel panelBlanco;
     private javax.swing.JTextField precioInsumo;
+    private javax.swing.JTextField txtidUsuario;
     // End of variables declaration//GEN-END:variables
 }
