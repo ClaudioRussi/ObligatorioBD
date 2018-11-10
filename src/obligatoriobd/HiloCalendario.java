@@ -10,6 +10,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -21,7 +22,10 @@ import java.util.logging.Logger;
 public class HiloCalendario implements Runnable {
     
     ArrayList<Evento> eventos;
-    int sleepTime = 60000;
+    HashMap<Integer, Evento> eventosProximos = new HashMap();
+    
+    public int sleepTime = 60000;
+    public int tiempoAvisoMin = 1;
     public HiloCalendario(ArrayList<Evento> events){
         eventos = events;
     }
@@ -32,13 +36,26 @@ public class HiloCalendario implements Runnable {
             if(ObligatorioBD.usuarioLoggeado != null){
                 Calendar calAhora = Calendar.getInstance();
                 Calendar calMinutoAntes = Calendar.getInstance();
-                calMinutoAntes.add(Calendar.MINUTE, -1);
+                calMinutoAntes.add(Calendar.MINUTE, -tiempoAvisoMin);
                 eventos.clear();
                 Evento.buscarEventosDeUsuarioEntreFechas(calMinutoAntes, 10 ,ObligatorioBD.usuarioLoggeado.getId(), eventos); 
                 for(Evento evnt : eventos){
-                    if((evnt.getFecha().getTimeInMillis() - calAhora.getTimeInMillis()) <= 60000){
-                        VentanaNotificaciones vtn = new VentanaNotificaciones(evnt);
-                        vtn.setVisible(true);
+                    if((evnt.getFecha().getTimeInMillis() - calAhora.getTimeInMillis()) <= (tiempoAvisoMin*60000)){
+                        if(eventosProximos.containsKey(evnt.getIDEvento())){
+                            if(evnt.getFecha().getTimeInMillis()-calAhora.getTimeInMillis() <= 60000){
+                                eventosProximos.remove(evnt.getIDEvento());
+                                evnt.Delete();
+                                VentanaNotificaciones vtn = new VentanaNotificaciones(evnt);
+                                vtn.setVisible(true);
+                            }
+                            
+                        }
+                        else{
+                            eventosProximos.put(evnt.getIDEvento(), evnt);
+                            VentanaNotificaciones vtn = new VentanaNotificaciones(evnt);
+                            vtn.setVisible(true);
+                        }
+                        
                     }
                 }
                 
