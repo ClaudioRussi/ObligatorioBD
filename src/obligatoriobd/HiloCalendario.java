@@ -10,6 +10,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -37,7 +39,11 @@ public class HiloCalendario implements Runnable {
                     vtn.setVisible(true);
                 }
             }
-            Thread.sleep(sleepTime);
+            try {
+                Thread.sleep(sleepTime);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(HiloCalendario.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
              
     }
