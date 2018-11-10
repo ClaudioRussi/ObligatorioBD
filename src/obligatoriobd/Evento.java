@@ -192,7 +192,7 @@ public class Evento {
             Class.forName("org.postgresql.Driver");
             Connection conexion = DriverManager.getConnection(url, usuario, contrasenia);
             java.sql.Statement st = conexion.createStatement();
-            String sql = "SELECT * FROM evento WHERE fecha >= "+ Herramientas.ConvertirCalendarAString(miFecha);
+            String sql = "SELECT * FROM evento WHERE fecha >= timestamp '"+ Herramientas.ConvertirCalendarAString(miFecha)+"'";
             ResultSet result = st.executeQuery(sql);
             while(result.next()){
                 Calendar fecha = Calendar.getInstance();
@@ -225,7 +225,8 @@ public class Evento {
             Class.forName("org.postgresql.Driver");
             Connection conexion = DriverManager.getConnection(url, usuario, contrasenia);
             java.sql.Statement st = conexion.createStatement();
-            String sql = "SELECT * FROM evento WHERE fecha >= "+ Herramientas.ConvertirCalendarAString(miFecha)+"AND fecha <= "+ Herramientas.ConvertirCalendarAString(cotaSuperior) +" AND id_usuario = "+idUsuario;
+            String sql = "SELECT * FROM evento WHERE fecha >= timestamp '"+ Herramientas.ConvertirCalendarAString(miFecha)
+                    +"' AND fecha <= timestamp '"+ Herramientas.ConvertirCalendarAString(cotaSuperior) +"' AND id_usuario = "+idUsuario;
             ResultSet result = st.executeQuery(sql);
             while(result.next()){
                 Calendar fecha = Calendar.getInstance();

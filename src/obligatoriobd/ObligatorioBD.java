@@ -37,8 +37,7 @@ public class ObligatorioBD {
         
         
         
-        Thread calendario = new Thread(new HiloCalendario(eventos));
-        calendario.start();*/
+        */
         
         
          
@@ -91,7 +90,9 @@ public class ObligatorioBD {
 
         VentanaSesion vent = new VentanaSesion();
         vent.setVisible(true);
-        
+        //Hilo que analiza eventos
+        Thread calendario = new Thread(new HiloCalendario(eventos));
+        calendario.start();
                 
     }
     

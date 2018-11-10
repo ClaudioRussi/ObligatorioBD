@@ -29,21 +29,26 @@ public class HiloCalendario implements Runnable {
     @Override
     public void run() {
         while (true){
-            Calendar calAhora = Calendar.getInstance();
-            Calendar calMinutoAntes = Calendar.getInstance();
-            calMinutoAntes.add(Calendar.MINUTE, -1);
-            Evento.buscarEventosDeUsuarioEntreFechas(calMinutoAntes, 10 ,ObligatorioBD.usuarioLoggeado.getId(), eventos); 
-            for(Evento evnt : eventos){
-                if((evnt.getFecha().getTimeInMillis() - calAhora.getTimeInMillis()) <= 60000){
-                    VentanaNotificaciones vtn = new VentanaNotificaciones(evnt);
-                    vtn.setVisible(true);
+            if(ObligatorioBD.usuarioLoggeado != null){
+                Calendar calAhora = Calendar.getInstance();
+                Calendar calMinutoAntes = Calendar.getInstance();
+                calMinutoAntes.add(Calendar.MINUTE, -1);
+                eventos.clear();
+                Evento.buscarEventosDeUsuarioEntreFechas(calMinutoAntes, 10 ,ObligatorioBD.usuarioLoggeado.getId(), eventos); 
+                for(Evento evnt : eventos){
+                    if((evnt.getFecha().getTimeInMillis() - calAhora.getTimeInMillis()) <= 60000){
+                        VentanaNotificaciones vtn = new VentanaNotificaciones(evnt);
+                        vtn.setVisible(true);
+                    }
                 }
+                
             }
+            
             try {
-                Thread.sleep(sleepTime);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(HiloCalendario.class.getName()).log(Level.SEVERE, null, ex);
-            }
+                    Thread.sleep(sleepTime);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(HiloCalendario.class.getName()).log(Level.SEVERE, null, ex);
+                }
         }
              
     }
