@@ -60,7 +60,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblFondoCeleste.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoCeleste.jpg"))); // NOI18N
-        getContentPane().add(lblFondoCeleste, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 40, -1));
+        getContentPane().add(lblFondoCeleste, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 40, 360));
 
         panelBlanco.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -146,11 +146,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     .addComponent(botonReunion)
                     .addComponent(botonCompra)
                     .addComponent(botonConsumicion))
-                .addGap(58, 58, 58)
-                .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCerrarSesion)
-                    .addComponent(btnInsumos))
-                .addContainerGap(130, Short.MAX_VALUE))
+                .addGap(30, 30, 30)
+                .addComponent(btnInsumos)
+                .addGap(3, 3, 3)
+                .addComponent(btnCerrarSesion)
+                .addContainerGap(138, Short.MAX_VALUE))
         );
 
         getContentPane().add(panelBlanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 680, 350));

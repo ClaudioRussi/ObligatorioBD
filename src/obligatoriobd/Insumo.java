@@ -69,6 +69,27 @@ public class Insumo {
         this.descripcion = descripcion;
     }
     
+    static public void buscarInsumoPorUsuario(ArrayList<Insumo> insumos, int idUsuario){
+        Insumo insumo = null;
+        try{
+            Class.forName("org.postgresql.Driver");
+            Connection conexion = DriverManager.getConnection(url, PG_usuario, PG_contrasenia);
+            java.sql.Statement st = conexion.createStatement();
+            
+            String sql = "SELECT * FROM Insumo WHERE id_usuario = " + PG_usuario +" AND " + " cantidad_poseida >= 0;";
+            ResultSet result = st.executeQuery(sql);
+            while(result.next()){
+                insumo = (new Insumo(result.getString("nombre"), result.getString("descripcion")));
+                insumos.add(insumo);
+            }
+            result.close();
+            st.close();
+            conexion.close();
+        }catch (Exception e){
+            System.out.println("ERROR DE CONEXION" + e.getMessage());
+            
+        }
+    }
     
     public Insumo buscarInsumoPorId(int ID){
         Insumo insumo = null;
