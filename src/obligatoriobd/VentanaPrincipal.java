@@ -48,7 +48,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblFondoCeleste.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoCeleste.jpg"))); // NOI18N
-        getContentPane().add(lblFondoCeleste, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 40, -1));
+        getContentPane().add(lblFondoCeleste, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 40, 360));
 
         panelBlanco.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -140,7 +140,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addComponent(btnInsumos)
                 .addGap(3, 3, 3)
                 .addComponent(btnCerrarSesion)
-                .addContainerGap(130, Short.MAX_VALUE))
+                .addContainerGap(138, Short.MAX_VALUE))
         );
 
         getContentPane().add(panelBlanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 680, 350));
@@ -181,7 +181,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
 
     private void btnInsumosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsumosActionPerformed
-        VentanaInsumo vent = new VentanaInsumo();
+        VentanaAgregarInsumo vent = new VentanaAgregarInsumo();
         vent.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnInsumosActionPerformed

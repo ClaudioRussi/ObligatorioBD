@@ -76,9 +76,7 @@ public class VentanaVerInsumos extends javax.swing.JFrame {
             .addGroup(panelBlancoLayout.createSequentialGroup()
                 .addGap(96, 96, 96)
                 .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBlancoLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnInsumo))
+                    .addComponent(btnInsumo, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(244, Short.MAX_VALUE))
         );

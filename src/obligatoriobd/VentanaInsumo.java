@@ -1,12 +1,9 @@
-package obligatoriobd;
-
-import javax.swing.ImageIcon;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package obligatoriobd;
 
 /**
  *
@@ -19,8 +16,6 @@ public class VentanaInsumo extends javax.swing.JFrame {
      */
     public VentanaInsumo() {
         initComponents();
-        ImageIcon icon = new ImageIcon("src/imagenes/fondoCelesteFinoFlecha.jpg");
-        this.lblfondoCeleste.setIcon(icon);
     }
 
     /**
@@ -32,124 +27,154 @@ public class VentanaInsumo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnCrearInsumo = new javax.swing.JButton();
-        lblAtras = new javax.swing.JLabel();
-        lblfondoCeleste = new javax.swing.JLabel();
         panelBlanco = new javax.swing.JPanel();
-        txtDescripcion = new javax.swing.JTextField();
-        txtNombre = new javax.swing.JTextField();
-        nombrelbl = new javax.swing.JLabel();
-        descripcionlbl = new javax.swing.JLabel();
-        lblInsumo = new javax.swing.JLabel();
+        btnAgregar = new javax.swing.JButton();
+        btnComprar = new javax.swing.JButton();
+        btnConsumir = new javax.swing.JButton();
+        btnVer = new javax.swing.JButton();
+        lblfondoCeleste = new javax.swing.JLabel();
+        lblAtras = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnCrearInsumo.setText("Crear");
-        btnCrearInsumo.addActionListener(new java.awt.event.ActionListener() {
+        panelBlanco.setBackground(new java.awt.Color(255, 255, 255));
+        panelBlanco.setPreferredSize(new java.awt.Dimension(739, 300));
+
+        btnAgregar.setText("Agregar insumo");
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCrearInsumoActionPerformed(evt);
+                btnAgregarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnCrearInsumo, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 266, -1, -1));
+
+        btnComprar.setText("Comprar insumo");
+        btnComprar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnComprarActionPerformed(evt);
+            }
+        });
+
+        btnConsumir.setText("Consumir insumo");
+        btnConsumir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsumirActionPerformed(evt);
+            }
+        });
+
+        btnVer.setText("Ver insumos");
+        btnVer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelBlancoLayout = new javax.swing.GroupLayout(panelBlanco);
+        panelBlanco.setLayout(panelBlancoLayout);
+        panelBlancoLayout.setHorizontalGroup(
+            panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBlancoLayout.createSequentialGroup()
+                .addContainerGap(280, Short.MAX_VALUE)
+                .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnComprar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnConsumir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnVer, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(279, 279, 279))
+        );
+        panelBlancoLayout.setVerticalGroup(
+            panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelBlancoLayout.createSequentialGroup()
+                .addGap(61, 61, 61)
+                .addComponent(btnAgregar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addComponent(btnVer)
+                .addGap(33, 33, 33)
+                .addComponent(btnComprar)
+                .addGap(34, 34, 34)
+                .addComponent(btnConsumir)
+                .addGap(45, 45, 45))
+        );
+
+        lblfondoCeleste.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblfondoCeleste.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoCelesteFinoFlecha.jpg"))); // NOI18N
 
         lblAtras.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblAtrasMouseClicked(evt);
             }
         });
-        getContentPane().add(lblAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 40, 30));
 
-        lblfondoCeleste.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblfondoCeleste.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoCelesteFinoFlecha.jpg"))); // NOI18N
-        getContentPane().add(lblfondoCeleste, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 60, 300));
-
-        panelBlanco.setBackground(new java.awt.Color(255, 255, 255));
-
-        txtDescripcion.setText("descripcionInsumo");
-
-        txtNombre.setText("nombreInsumo");
-
-        nombrelbl.setText("Nombre:");
-
-        descripcionlbl.setText("Descripcion:");
-
-        javax.swing.GroupLayout panelBlancoLayout = new javax.swing.GroupLayout(panelBlanco);
-        panelBlanco.setLayout(panelBlancoLayout);
-        panelBlancoLayout.setHorizontalGroup(
-            panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelBlancoLayout.createSequentialGroup()
-                .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelBlancoLayout.createSequentialGroup()
-                        .addGap(58, 58, 58)
-                        .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelBlancoLayout.createSequentialGroup()
-                                .addComponent(nombrelbl)
-                                .addGap(35, 35, 35)
-                                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(panelBlancoLayout.createSequentialGroup()
-                                .addComponent(descripcionlbl)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(panelBlancoLayout.createSequentialGroup()
-                        .addGap(260, 260, 260)
-                        .addComponent(lblInsumo)))
-                .addContainerGap(412, Short.MAX_VALUE))
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 799, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(lblfondoCeleste, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(10, 10, 10)
+                            .addComponent(lblAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(panelBlanco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
-        panelBlancoLayout.setVerticalGroup(
-            panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelBlancoLayout.createSequentialGroup()
-                .addGap(89, 89, 89)
-                .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelBlancoLayout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(nombrelbl))
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelBlancoLayout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(descripcionlbl))
-                    .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 134, Short.MAX_VALUE)
-                .addComponent(lblInsumo)
-                .addGap(19, 19, 19))
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(lblfondoCeleste)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(10, 10, 10)
+                            .addComponent(lblAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(panelBlanco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
-
-        getContentPane().add(panelBlanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 700, 300));
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCrearInsumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearInsumoActionPerformed
-        // TODO add your handling code here:
-        Insumo insmo = new Insumo(this.txtNombre.getText(), this.txtDescripcion.getText());
-        insmo.Save();
-        if(Insumo.errorAlGuardar){
-            System.out.println("Hubo un problema al guardar");
-            this.lblInsumo.setText("Hubo un erro al guardar");
-        }
-        else{
-            this.lblInsumo.setText("Insumo guardado correctamente");
-        }
-    }//GEN-LAST:event_btnCrearInsumoActionPerformed
-
     private void lblAtrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtrasMouseClicked
-        VentanaPrincipal vent = new VentanaPrincipal();
+        VentanaEvento vent = new VentanaEvento();
         vent.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_lblAtrasMouseClicked
 
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+        VentanaAgregarInsumo vent = new VentanaAgregarInsumo();
+        vent.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnAgregarActionPerformed
+
+    private void btnVerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerActionPerformed
+        VentanaVerInsumos vent = new VentanaVerInsumos();
+        vent.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnVerActionPerformed
+
+    private void btnComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarActionPerformed
+        VentanaCompra vent = new VentanaCompra();
+        vent.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnComprarActionPerformed
+
+    private void btnConsumirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsumirActionPerformed
+        VentanaConsumicion vent = new VentanaConsumicion();
+        vent.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnConsumirActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCrearInsumo;
-    private javax.swing.JLabel descripcionlbl;
+    private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton btnComprar;
+    private javax.swing.JButton btnConsumir;
+    private javax.swing.JButton btnVer;
     private javax.swing.JLabel lblAtras;
-    private javax.swing.JLabel lblInsumo;
     private javax.swing.JLabel lblfondoCeleste;
-    private javax.swing.JLabel nombrelbl;
     private javax.swing.JPanel panelBlanco;
-    private javax.swing.JTextField txtDescripcion;
-    private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 }
