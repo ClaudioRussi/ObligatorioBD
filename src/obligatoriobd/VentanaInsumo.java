@@ -84,9 +84,9 @@ public class VentanaInsumo extends javax.swing.JFrame {
         panelBlancoLayout.setVerticalGroup(
             panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBlancoLayout.createSequentialGroup()
-                .addGap(61, 61, 61)
+                .addContainerGap(63, Short.MAX_VALUE)
                 .addComponent(btnAgregar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addGap(33, 33, 33)
                 .addComponent(btnVer)
                 .addGap(33, 33, 33)
                 .addComponent(btnComprar)
@@ -146,7 +146,7 @@ public class VentanaInsumo extends javax.swing.JFrame {
     }//GEN-LAST:event_lblAtrasMouseClicked
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        VentanaAgregarInsumo vent = new VentanaAgregarInsumo();
+        VentanaCrearInsumo vent = new VentanaCrearInsumo();
         vent.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnAgregarActionPerformed

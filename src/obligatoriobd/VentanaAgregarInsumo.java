@@ -1,12 +1,12 @@
-package obligatoriobd;
-
-import javax.swing.ImageIcon;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package obligatoriobd;
+
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 
 /**
  *
@@ -14,13 +14,23 @@ import javax.swing.ImageIcon;
  */
 public class VentanaAgregarInsumo extends javax.swing.JFrame {
 
+    DefaultListModel modeloLista;
+    ArrayList<Insumo> array = new ArrayList();
+    ArrayList<Insumo> insumos;
     /**
-     * Creates new form VentanaInsumo
+     * Creates new form VentanaAgregarInsumo2
      */
     public VentanaAgregarInsumo() {
-        initComponents();
-        ImageIcon icon = new ImageIcon("src/imagenes/fondoCelesteFinoFlecha.jpg");
-        this.lblfondoCeleste.setIcon(icon);
+        initComponents();        initComponents();
+        modeloLista = new DefaultListModel();
+        //Consulta SQL
+        Insumo.buscarInsumoPorUsuario(array, ObligatorioBD.usuarioLoggeado.getId());
+        for(Insumo insumo : array){
+            String elementoLista;
+            elementoLista = insumo.getNombre()+ " | " + insumo.getDescripcion();
+            modeloLista.addElement(elementoLista);
+        }
+        listaInsumos.setModel(modeloLista); 
     }
 
     /**
@@ -32,44 +42,52 @@ public class VentanaAgregarInsumo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblAtras = new javax.swing.JLabel();
         lblfondoCeleste = new javax.swing.JLabel();
         panelBlanco = new javax.swing.JPanel();
-        txtDescripcion = new javax.swing.JTextField();
-        txtNombre = new javax.swing.JTextField();
-        nombrelbl = new javax.swing.JLabel();
-        descripcionlbl = new javax.swing.JLabel();
-        lblInsumo = new javax.swing.JLabel();
-        btnAgregarInsumo = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        listaInsumos = new javax.swing.JList<>();
+        btnInsumo = new javax.swing.JButton();
+        spnCantidad = new javax.swing.JSpinner();
+        lblCantidad = new javax.swing.JLabel();
+        idInsumo = new javax.swing.JTextField();
+        btnBuscarInsumo = new javax.swing.JButton();
+        lblError = new javax.swing.JLabel();
+        lblAtras = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblAtras.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblAtrasMouseClicked(evt);
-            }
-        });
-        getContentPane().add(lblAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 40, 30));
-
         lblfondoCeleste.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblfondoCeleste.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoCelesteFinoFlecha.jpg"))); // NOI18N
-        getContentPane().add(lblfondoCeleste, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 60, 300));
+        getContentPane().add(lblfondoCeleste, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 60, -1));
 
         panelBlanco.setBackground(new java.awt.Color(255, 255, 255));
+        panelBlanco.setPreferredSize(new java.awt.Dimension(739, 300));
 
-        txtDescripcion.setText("descripcionInsumo");
+        listaInsumos.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(listaInsumos);
 
-        txtNombre.setText("nombreInsumo");
-
-        nombrelbl.setText("Nombre:");
-
-        descripcionlbl.setText("Descripcion:");
-
-        btnAgregarInsumo.setText("Agregar");
-        btnAgregarInsumo.addActionListener(new java.awt.event.ActionListener() {
+        btnInsumo.setText("Agregar insumo");
+        btnInsumo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarInsumoActionPerformed(evt);
+                btnInsumoActionPerformed(evt);
+            }
+        });
+
+        spnCantidad.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+
+        lblCantidad.setText("Cantidad:");
+
+        idInsumo.setText("Insumo");
+
+        btnBuscarInsumo.setText("Buscar");
+        btnBuscarInsumo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarInsumoActionPerformed(evt);
             }
         });
 
@@ -78,68 +96,61 @@ public class VentanaAgregarInsumo extends javax.swing.JFrame {
         panelBlancoLayout.setHorizontalGroup(
             panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBlancoLayout.createSequentialGroup()
+                .addGap(96, 96, 96)
                 .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelBlancoLayout.createSequentialGroup()
-                        .addGap(58, 58, 58)
-                        .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelBlancoLayout.createSequentialGroup()
-                                .addComponent(nombrelbl)
-                                .addGap(35, 35, 35)
-                                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(panelBlancoLayout.createSequentialGroup()
-                                .addComponent(descripcionlbl)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(idInsumo, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(btnBuscarInsumo))
                     .addGroup(panelBlancoLayout.createSequentialGroup()
-                        .addGap(260, 260, 260)
-                        .addComponent(lblInsumo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 359, Short.MAX_VALUE)
-                        .addComponent(btnAgregarInsumo)))
-                .addContainerGap())
+                        .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(panelBlancoLayout.createSequentialGroup()
+                                .addComponent(lblError)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnInsumo))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(spnCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblCantidad))))
+                .addContainerGap(179, Short.MAX_VALUE))
         );
         panelBlancoLayout.setVerticalGroup(
             panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelBlancoLayout.createSequentialGroup()
-                .addGap(89, 89, 89)
-                .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelBlancoLayout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(nombrelbl))
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelBlancoLayout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(descripcionlbl))
-                    .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 134, Short.MAX_VALUE)
-                .addComponent(lblInsumo)
-                .addGap(19, 19, 19))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBlancoLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnAgregarInsumo)
-                .addContainerGap())
+                .addContainerGap(32, Short.MAX_VALUE)
+                .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(idInsumo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscarInsumo))
+                .addGap(27, 27, 27)
+                .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panelBlancoLayout.createSequentialGroup()
+                        .addComponent(lblCantidad)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(spnCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelBlancoLayout.createSequentialGroup()
+                        .addGap(13, 13, Short.MAX_VALUE)
+                        .addComponent(btnInsumo)
+                        .addGap(28, 28, 28))
+                    .addGroup(panelBlancoLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(lblError)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
-        getContentPane().add(panelBlanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 700, 300));
+        getContentPane().add(panelBlanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, -1, -1));
+
+        lblAtras.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblAtrasMouseClicked(evt);
+            }
+        });
+        getContentPane().add(lblAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 40, 30));
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnAgregarInsumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarInsumoActionPerformed
-        // TODO add your handling code here:
-        Insumo insmo = new Insumo(this.txtNombre.getText(), this.txtDescripcion.getText());
-        insmo.Save();
-        if(Insumo.errorAlGuardar){
-            System.out.println("Hubo un problema al guardar");
-            this.lblInsumo.setText("Hubo un erro al guardar");
-        }
-        else{
-            this.lblInsumo.setText("Insumo guardado correctamente");
-        }
-    }//GEN-LAST:event_btnAgregarInsumoActionPerformed
 
     private void lblAtrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtrasMouseClicked
         VentanaInsumo vent = new VentanaInsumo();
@@ -147,15 +158,48 @@ public class VentanaAgregarInsumo extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_lblAtrasMouseClicked
 
+    private void btnInsumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsumoActionPerformed
+        //si el insumo esta en la bd tabla posee agregar cantidad sino agregarlo todo
+        //posee tiene id insumo, id usuario y cantidad
+        Insumo ins = insumos.get(this.listaInsumos.getSelectedIndex());
+        Posee posee = Posee.buscarPoseePorInsumo(ins.getIDInsumo(), ObligatorioBD.usuarioLoggeado.getId());
+        if(posee != null){
+            posee.setCantidad(posee.getCantidad() + (int)this.spnCantidad.getValue());
+        }
+        else{
+            posee = new Posee(ins.getIDInsumo(), ObligatorioBD.usuarioLoggeado.getId(), (int)this.spnCantidad.getValue());
+        }
+        posee.Save();
+        if(Posee.errorAlGuardar){
+            this.lblError.setText("Error al guardar.");
+        }
+        else{
+            this.lblError.setText("Se ha guardado correctamente.");
+        }
+    }//GEN-LAST:event_btnInsumoActionPerformed
+
+    private void btnBuscarInsumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarInsumoActionPerformed
+        // TODO add your handling code here:
+        insumos = Insumo.buscarInsumosPorNombre(this.idInsumo.getText());
+        DefaultListModel demoList = new DefaultListModel();
+        for(Insumo ins: insumos){
+            demoList.addElement(ins.getNombre());
+        }
+        this.listaInsumos.setModel(demoList);
+    }//GEN-LAST:event_btnBuscarInsumoActionPerformed
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAgregarInsumo;
-    private javax.swing.JLabel descripcionlbl;
+    private javax.swing.JButton btnBuscarInsumo;
+    private javax.swing.JButton btnInsumo;
+    private javax.swing.JTextField idInsumo;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAtras;
-    private javax.swing.JLabel lblInsumo;
+    private javax.swing.JLabel lblCantidad;
+    private javax.swing.JLabel lblError;
     private javax.swing.JLabel lblfondoCeleste;
-    private javax.swing.JLabel nombrelbl;
+    private javax.swing.JList<String> listaInsumos;
     private javax.swing.JPanel panelBlanco;
-    private javax.swing.JTextField txtDescripcion;
-    private javax.swing.JTextField txtNombre;
+    private javax.swing.JSpinner spnCantidad;
     // End of variables declaration//GEN-END:variables
 }
