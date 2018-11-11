@@ -7,6 +7,7 @@ package obligatoriobd;
 
 import java.sql.*;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -83,14 +84,41 @@ public class Compra {
         this.cantidadComprada = cantidadComprada;
     }
     
-   static public Compra buscarCompraPorIds(int idCompra){
+    
+    
+    static public ArrayList<Compra> buscarComprasPorUsuario(int idUsuario){
+        ArrayList<Compra> compras = new ArrayList();
+        try{
+            Class.forName("org.postgresql.Driver");
+            Connection conexion = DriverManager.getConnection(url, PG_usuario, PG_contrasenia);
+            java.sql.Statement st = conexion.createStatement();
+            
+            String sql = "SELECT * FROM compra WHERE id_usuario = " + idUsuario + ";" ;
+            ResultSet result = st.executeQuery(sql);
+            while(result.next()){
+                Calendar fecha = Calendar.getInstance();
+                fecha.setTimeInMillis(result.getTimestamp("fecha").getTime());
+                
+                compras.add(new Compra(result.getInt("id_usuario"), result.getInt("id_insumo"), result.getInt("precio_compra") ,
+                        fecha, result.getInt("precio_compra")));
+            }
+            result.close();
+            st.close();
+            conexion.close();
+        }catch (Exception e){
+            System.out.println("ERROR DE CONEXION" + e.getMessage());
+            
+        }
+        return compras;
+    }
+   static public Compra buscarCompra(int idUsuario, int idInsumo, Calendar fechaRecibida){
         Compra compra = null;
         try{
             Class.forName("org.postgresql.Driver");
             Connection conexion = DriverManager.getConnection(url, PG_usuario, PG_contrasenia);
             java.sql.Statement st = conexion.createStatement();
             
-            String sql = "SELECT * FROM compra WHERE id_insumo = " + idCompra + ";" ;
+            String sql = "SELECT * FROM compra WHERE id_usuario = " + idUsuario +" AND id_insumo = "+ idInsumo +" AND fecha '"+ Herramientas.ConvertirCalendarAString(fechaRecibida) +"' ;" ;
             ResultSet result = st.executeQuery(sql);
             while(result.next()){
                 Calendar fecha = Calendar.getInstance();

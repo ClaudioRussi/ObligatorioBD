@@ -5,17 +5,27 @@
  */
 package obligatoriobd;
 
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+
 /**
  *
  * @author kevin
  */
 public class VentanaVerCompras extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form VentanaVerCompras
      */
     public VentanaVerCompras() {
         initComponents();
+        ArrayList<Compra> compras = Compra.buscarComprasPorUsuario(ObligatorioBD.usuarioLoggeado.getId());
+        DefaultListModel modeloLista = new DefaultListModel();
+        for(Compra com: compras){
+            Insumo ins = Insumo.buscarInsumoPorId(com.idInsumo);
+            modeloLista.addElement(String.format(ins.getNombre()+" | "+com.cantidadComprada+" | "+com.precioCompra+" | "+Herramientas.ConvertirCalendarAString(com.fecha)));
+        }
+        this.lstInsumos.setModel(modeloLista);
     }
 
     /**
@@ -29,7 +39,7 @@ public class VentanaVerCompras extends javax.swing.JFrame {
 
         panelBlanco = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        listaInsumos = new javax.swing.JList<>();
+        lstInsumos = new javax.swing.JList<>();
         jLabel1 = new javax.swing.JLabel();
         lblAtras = new javax.swing.JLabel();
         lblfondoCeleste = new javax.swing.JLabel();
@@ -40,9 +50,9 @@ public class VentanaVerCompras extends javax.swing.JFrame {
         panelBlanco.setBackground(new java.awt.Color(255, 255, 255));
         panelBlanco.setPreferredSize(new java.awt.Dimension(739, 300));
 
-        jScrollPane1.setViewportView(listaInsumos);
+        jScrollPane1.setViewportView(lstInsumos);
 
-        jLabel1.setText("Compra");
+        jLabel1.setText("Insumo | Cantidad | Precio | Fecha");
 
         javax.swing.GroupLayout panelBlancoLayout = new javax.swing.GroupLayout(panelBlanco);
         panelBlanco.setLayout(panelBlancoLayout);
@@ -58,7 +68,7 @@ public class VentanaVerCompras extends javax.swing.JFrame {
         panelBlancoLayout.setVerticalGroup(
             panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBlancoLayout.createSequentialGroup()
-                .addContainerGap(31, Short.MAX_VALUE)
+                .addContainerGap(32, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -122,7 +132,7 @@ public class VentanaVerCompras extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAtras;
     private javax.swing.JLabel lblfondoCeleste;
-    private javax.swing.JList<String> listaInsumos;
+    private javax.swing.JList<String> lstInsumos;
     private javax.swing.JPanel panelBlanco;
     // End of variables declaration//GEN-END:variables
 }
