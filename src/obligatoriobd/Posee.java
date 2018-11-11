@@ -119,4 +119,24 @@ public class Posee {
             errorAlGuardar = true;
         }
     }
+    
+    public void Delete(){
+        try{
+            Class.forName("org.postgresql.Driver");
+            Connection conexion = DriverManager.getConnection(ObligatorioBD.url, ObligatorioBD.usuario, 
+                    ObligatorioBD.contrasenia);
+            java.sql.Statement st = conexion.createStatement();
+            
+            String Update = "DELETE FROM posee WHERE id_insumo = "+ this.idInsumo+" AND id_usuario = "+ this.idUsuario +";";
+            st.executeUpdate(Update);
+            
+            st.close();
+            conexion.close();
+        }catch (SQLException e){
+            System.out.println("ERROR DE CONEXION " + e.getMessage());
+        }
+        catch(ClassNotFoundException e){
+            System.out.println("ERROR AL GUARDAR LA CLASE "+ e.getMessage());
+        }
+    }
 }

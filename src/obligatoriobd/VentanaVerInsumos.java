@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
 public class VentanaVerInsumos extends javax.swing.JFrame {
 
     DefaultListModel modeloLista;
-    ArrayList<Insumo> array = new ArrayList();
+    ArrayList<Insumo> insumos = new ArrayList();
     /**
      * Creates new form VerInsumos
      */
@@ -24,8 +24,8 @@ public class VentanaVerInsumos extends javax.swing.JFrame {
         initComponents();
         modeloLista = new DefaultListModel();
         //Consulta SQL
-        Insumo.buscarInsumoPorUsuario(array, ObligatorioBD.usuarioLoggeado.getId());
-        for(Insumo insumo : array){
+        Insumo.buscarInsumoPorUsuario(insumos, ObligatorioBD.usuarioLoggeado.getId());
+        for(Insumo insumo : insumos){
             String elementoLista;
             elementoLista = insumo.getNombre()+ " | " + insumo.getDescripcion() + " | "+ insumo.getCantidad();
             modeloLista.addElement(elementoLista);
@@ -112,14 +112,21 @@ public class VentanaVerInsumos extends javax.swing.JFrame {
     private void btnInsumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsumoActionPerformed
         int pos;
         int res;
-        res = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea eliminar este evento?");
-        if (res == 0){
-            pos = listaInsumos.getSelectedIndex();
-            modeloLista.remove(pos);
-            Insumo insumo = array.get(pos);
-            array.remove(pos);
-            insumo.Delete();
+        Posee posee;
+        if(this.listaInsumos.getSelectedIndex() != -1){
+            res = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea eliminar este evento?");
+            if (res == 0){
+                pos = listaInsumos.getSelectedIndex();
+                modeloLista.remove(pos);
+                Insumo insumo = insumos.get(pos);
+                insumos.remove(pos);
+                posee = Posee.buscarPoseePorInsumo(insumo.getIDInsumo(), ObligatorioBD.usuarioLoggeado.getId());
+                posee.Delete();
+                //insumo.Delete();
+                
+            }
         }
+        
     }//GEN-LAST:event_btnInsumoActionPerformed
 
     private void lblAtrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtrasMouseClicked

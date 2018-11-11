@@ -198,7 +198,9 @@ public class VentanaInsumo extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnVerComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerComprasActionPerformed
-        
+        VentanaVerCompras vent = new VentanaVerCompras();
+        vent.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnVerComprasActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
