@@ -201,4 +201,33 @@ public class Reunion {
        
     }
     
+    public static boolean verificarGestion (int idUser, int idReunion){
+        int idUs = -1;
+        try{
+            Class.forName("org.postgresql.Driver");
+            Connection conexion = DriverManager.getConnection(ObligatorioBD.url, ObligatorioBD.usuario, ObligatorioBD.contrasenia);
+            java.sql.Statement st = conexion.createStatement();
+            
+            //Toda las reuniones a las que pertenece el usuario
+            String sql = "SELECT * FROM gestiona WHERE gestiona.id_usuario = "+idUser
+                    +" AND gestiona.id_reunion = "+ idReunion;
+            ResultSet result = st.executeQuery(sql);
+            while(result.next()){
+                idUs = result.getInt("id_usuario");
+            }
+            
+            
+            result.close();
+            st.close();
+            conexion.close();
+        }catch (SQLException e){
+            System.out.println("ERROR DE CONEXION " + e.getMessage());
+        }
+        catch(ClassNotFoundException e){
+            System.out.println("ERROR AL CARGAR LA CLASE "+ e.getMessage());
+        }
+        
+        return idUs == idUser;
+    }
+    
 }

@@ -33,6 +33,7 @@ public class VentanaInsumo extends javax.swing.JFrame {
         btnConsumir = new javax.swing.JButton();
         btnVer = new javax.swing.JButton();
         btnAgregar = new javax.swing.JButton();
+        btnVerCompras = new javax.swing.JButton();
         lblfondoCeleste = new javax.swing.JLabel();
         lblAtras = new javax.swing.JLabel();
 
@@ -76,6 +77,13 @@ public class VentanaInsumo extends javax.swing.JFrame {
             }
         });
 
+        btnVerCompras.setText("Ver compras realizadas");
+        btnVerCompras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerComprasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelBlancoLayout = new javax.swing.GroupLayout(panelBlanco);
         panelBlanco.setLayout(panelBlancoLayout);
         panelBlancoLayout.setHorizontalGroup(
@@ -87,23 +95,26 @@ public class VentanaInsumo extends javax.swing.JFrame {
                     .addComponent(btnComprar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnConsumir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnVer, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnVerCompras, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(279, 279, 279))
         );
         panelBlancoLayout.setVerticalGroup(
             panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBlancoLayout.createSequentialGroup()
-                .addGap(35, 35, 35)
+                .addGap(45, 45, 45)
                 .addComponent(btnCrear)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnAgregar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnVer)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnComprar)
-                .addGap(34, 34, 34)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnVerCompras)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnConsumir)
-                .addGap(45, 45, 45))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         lblfondoCeleste.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -186,12 +197,19 @@ public class VentanaInsumo extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnAgregarActionPerformed
 
+    private void btnVerComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerComprasActionPerformed
+        VentanaVerCompras vent = new VentanaVerCompras();
+        vent.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnVerComprasActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnComprar;
     private javax.swing.JButton btnConsumir;
     private javax.swing.JButton btnCrear;
     private javax.swing.JButton btnVer;
+    private javax.swing.JButton btnVerCompras;
     private javax.swing.JLabel lblAtras;
     private javax.swing.JLabel lblfondoCeleste;
     private javax.swing.JPanel panelBlanco;

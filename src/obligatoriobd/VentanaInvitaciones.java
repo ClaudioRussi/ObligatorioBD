@@ -16,7 +16,7 @@ import javax.swing.ImageIcon;
 public class VentanaInvitaciones extends javax.swing.JFrame {
 
     DefaultListModel modeloLista;
-    ArrayList<UsuarioReunion> array = new ArrayList();
+    ArrayList<UsuarioReunion> invitaciones;
     /**
      * Creates new form VentanaInvitaciones
      */
@@ -29,7 +29,8 @@ public class VentanaInvitaciones extends javax.swing.JFrame {
         listaInvitaciones.setModel(modeloLista);
         
         //Cargo en la lista las invitaciones
-        ArrayList<UsuarioReunion> invitaciones = UsuarioReunion.buscarInvitacionesNoAceptadas(ObligatorioBD.usuarioLoggeado.getId());
+        //ArrayList<UsuarioReunion> invitaciones
+        invitaciones = UsuarioReunion.buscarInvitacionesNoAceptadas(ObligatorioBD.usuarioLoggeado.getId());
         for(UsuarioReunion invitacion  : invitaciones){
             String elementoLista;
             elementoLista = invitacion.getIdReunion() +" | "+invitacion.getNombreReunion()+ " | "+ invitacion.getNombreCreador();
@@ -75,11 +76,6 @@ public class VentanaInvitaciones extends javax.swing.JFrame {
         panelBlanco.setBackground(new java.awt.Color(255, 255, 255));
         panelBlanco.setPreferredSize(new java.awt.Dimension(739, 300));
 
-        listaInvitaciones.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane1.setViewportView(listaInvitaciones);
 
         btnConfirmar.setText("Confirmar");
@@ -139,8 +135,10 @@ public class VentanaInvitaciones extends javax.swing.JFrame {
     private void btnRechazarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRechazarActionPerformed
         if(this.listaInvitaciones.getSelectedIndex() != -1){
             //Tomo el id de la fila seleccionada 
-            int idReunion = Character.getNumericValue(this.listaInvitaciones.getSelectedValue().charAt(0));
-            UsuarioReunion.rechazarInvitacion(ObligatorioBD.usuarioLoggeado.getId(), idReunion);
+            
+            UsuarioReunion ur =invitaciones.get(this.listaInvitaciones.getSelectedIndex());
+            
+            UsuarioReunion.rechazarInvitacion(ObligatorioBD.usuarioLoggeado.getId(), ur.getIdReunion());
             
             //Elimino visualmente el elemento de la lista
             modeloLista.remove(this.listaInvitaciones.getSelectedIndex());
@@ -153,8 +151,8 @@ public class VentanaInvitaciones extends javax.swing.JFrame {
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         if(this.listaInvitaciones.getSelectedIndex() != -1){
             //Tomo el id de la fila seleccionada 
-            int idReunion = Character.getNumericValue(this.listaInvitaciones.getSelectedValue().charAt(0));
-            UsuarioReunion.aceptarInvitacion(ObligatorioBD.usuarioLoggeado.getId(), idReunion);
+            UsuarioReunion ur =invitaciones.get(this.listaInvitaciones.getSelectedIndex());
+            UsuarioReunion.aceptarInvitacion(ObligatorioBD.usuarioLoggeado.getId(), ur.getIdReunion());
             
             //Elimino visualmente el elemento de la lista
             modeloLista.remove(this.listaInvitaciones.getSelectedIndex());

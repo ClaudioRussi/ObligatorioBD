@@ -114,7 +114,7 @@ public class Compra {
             Class.forName("org.postgresql.Driver");
             Connection conexion = DriverManager.getConnection(url, PG_usuario, PG_contrasenia);
             java.sql.Statement st = conexion.createStatement();
-            String insertion = "INSERT INTO compra VALUES ("+this.idUsuario+" ,"+this.idInsumo+", "
+            String insertion = "INSERT INTO compra VALUES ("+this.idInsumo+" ,"+this.idUsuario+", "
                     +this.precioCompra+", '"+ Herramientas.ConvertirCalendarAString(fecha) +"', "
                     +this.cantidadComprada+");";
             st.executeUpdate(insertion);

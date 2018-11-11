@@ -48,7 +48,7 @@ public class Posee {
         this.cantidad = cantidad;
     }
     
-    public Posee(int IDInsumo, int IDUsuario, int cantidad){
+    public Posee(int idInsumo, int idUsuario, int cantidad){
         this.idInsumo = idInsumo;
         this.idUsuario = idUsuario;
         this.cantidad = cantidad;
@@ -81,7 +81,10 @@ public class Posee {
             Class.forName("org.postgresql.Driver");
             Connection conexion = DriverManager.getConnection(ObligatorioBD.url, ObligatorioBD.usuario, ObligatorioBD.contrasenia);
             java.sql.Statement st = conexion.createStatement();
-            String insertion = "INSERT INTO posee VALUES ("+this.idInsumo+" ,"+this.idUsuario+", "+this.cantidad+") ;";
+            
+            System.out.println("IDS EN ORDEN====> "+ this.idInsumo+ " | "+this.idUsuario+" | " +this.cantidad);
+            
+            String insertion = "INSERT INTO posee VALUES ("+this.idInsumo+" ,"+this.idUsuario+", "+this.cantidad+");";
             st.executeUpdate(insertion);
             st.close();
             conexion.close();
@@ -101,7 +104,7 @@ public class Posee {
             Class.forName("org.postgresql.Driver");
             Connection conexion = DriverManager.getConnection(ObligatorioBD.url, ObligatorioBD.usuario, ObligatorioBD.contrasenia);
             java.sql.Statement st = conexion.createStatement();
-            String insertion = "UPDATE posee SET cantidad = " + this.cantidad+" WHERE id_usuario = "+
+            String insertion = "UPDATE posee SET cantidad_poseida = " + this.cantidad+" WHERE id_usuario = "+
                     idUsuario+" AND id_insumo ="+ idInsumo;
             st.executeUpdate(insertion);
             st.close();
@@ -114,6 +117,26 @@ public class Posee {
         catch(ClassNotFoundException e){
             System.out.println("ERROR AL CARGAR LA CLASE "+ e.getMessage());
             errorAlGuardar = true;
+        }
+    }
+    
+    public void Delete(){
+        try{
+            Class.forName("org.postgresql.Driver");
+            Connection conexion = DriverManager.getConnection(ObligatorioBD.url, ObligatorioBD.usuario, 
+                    ObligatorioBD.contrasenia);
+            java.sql.Statement st = conexion.createStatement();
+            
+            String Update = "DELETE FROM posee WHERE id_insumo = "+ this.idInsumo+" AND id_usuario = "+ this.idUsuario +";";
+            st.executeUpdate(Update);
+            
+            st.close();
+            conexion.close();
+        }catch (SQLException e){
+            System.out.println("ERROR DE CONEXION " + e.getMessage());
+        }
+        catch(ClassNotFoundException e){
+            System.out.println("ERROR AL GUARDAR LA CLASE "+ e.getMessage());
         }
     }
 }
