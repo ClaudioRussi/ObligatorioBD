@@ -284,7 +284,7 @@ public class VentanaReunion extends javax.swing.JFrame {
     }//GEN-LAST:event_txtidUsuarioActionPerformed
 
     private void lblAtrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtrasMouseClicked
-        VentanaPrincipal vent = new VentanaPrincipal();
+        VentanaVerReuniones vent = new VentanaVerReuniones();
         vent.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_lblAtrasMouseClicked

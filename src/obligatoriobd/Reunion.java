@@ -101,13 +101,34 @@ public class Reunion {
             Class.forName("org.postgresql.Driver");
             Connection conexion = DriverManager.getConnection(ObligatorioBD.url, ObligatorioBD.usuario, ObligatorioBD.contrasenia);
             java.sql.Statement st = conexion.createStatement();
+            
+            //Codigo antiguo: SOlo obtiene las reuniones que fueron CREADAS por el usuario
 
-            String sql = "SELECT * FROM reunion WHERE id_creador = "+ idUsuario;
+//            String sql = "SELECT * FROM reunion WHERE id_creador = "+ idUsuario;
+//            ResultSet result = st.executeQuery(sql);
+//            while(result.next()){
+//                reuniones.add(new Reunion(result.getInt("id_reunion"),result.getString("nombre"),result.getString("hora_inicio"),
+//                        result.getString("hora_fin"), result.getInt("id_creador")));
+//            }
+            
+            //Toda las reuniones a las que pertenece el usuario
+            String sql = "SELECT reunion.id_reunion, reunion.nombre, reunion.id_creador\n" +
+"                   FROM reunion, usuario, usuario_reunion \n" +
+"                   WHERE usuario_reunion.id_usuario = usuario.id_usuario\n" +
+"                   AND usuario_reunion.id_reunion = reunion.id_reunion\n" +
+"                   AND usuario_reunion.id_usuario ="+idUsuario+"\n AND usuario_reunion.confirmo_invitacion = true" +
+"                   UNION\n" +
+                    "SELECT reunion.id_reunion, reunion.nombre, reunion.id_creador\n" +
+                    "FROM reunion\n" +
+                    "WHERE id_creador = "+idUsuario+"\n" +
+                    "";
             ResultSet result = st.executeQuery(sql);
             while(result.next()){
-                reuniones.add(new Reunion(result.getInt("id_reunion"),result.getString("nombre"),result.getString("hora_inicio"),
-                        result.getString("hora_fin"), result.getInt("id_creador")));
+                reuniones.add(new Reunion(result.getInt("id_reunion"),result.getString("nombre"),null,
+                        null, result.getInt("id_creador")));
             }
+            
+            
             result.close();
             st.close();
             conexion.close();

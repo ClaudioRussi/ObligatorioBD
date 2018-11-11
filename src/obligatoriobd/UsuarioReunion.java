@@ -51,12 +51,12 @@ public class UsuarioReunion {
             java.sql.Statement st = conexion.createStatement();
            
            //HACIENDO REUNION CON LAS OTRAS TABLAS PARA OBTENER DATOS AMIGABLES AL USUARIO
-           String sql = "SELECT usuario_reunion.id_usuario, usuario_reunion.id_reunion, confirmo_invitacion, username, nombre FROM usuario_reunion, usuario, reunion WHERE usuario_reunion.id_usuario = usuario.id_usuario AND usuario_reunion.id_reunion = reunion.id_reunion AND usuario_reunion.id_usuario = " + idUsuario 
-                   +" AND confirmo_invitacion = false";
+           String sql = "SELECT usuario_reunion.id_usuario, usuario_reunion.id_reunion, confirmo_invitacion, username, nombre, id_creador FROM usuario_reunion, usuario, reunion WHERE usuario_reunion.id_usuario = usuario.id_usuario AND usuario_reunion.id_reunion = reunion.id_reunion AND usuario_reunion.id_usuario = " + idUsuario + " AND confirmo_invitacion = false";
             ResultSet result = st.executeQuery(sql);
             while(result.next()){
                 invitaciones.add(new UsuarioReunion(result.getInt("id_usuario"), result.getInt("id_reunion"), 
-                        result.getBoolean("confirmo_invitacion"), result.getString("username"),result.getString("nombre")));
+                        result.getBoolean("confirmo_invitacion"), result.getString("nombre"),
+                        UsuarioReunion.getCreador(result.getInt("id_creador"))));
             }
             result.close();
             st.close();
@@ -72,6 +72,33 @@ public class UsuarioReunion {
         return invitaciones;
     }
     
+    public static String getCreador(int idCreador){
+        String creador = "";
+        try{
+            Class.forName("org.postgresql.Driver");
+            Connection conexion = DriverManager.getConnection(url, usuario, contrasenia);
+            java.sql.Statement st = conexion.createStatement();
+           
+           //HACIENDO REUNION CON LAS OTRAS TABLAS PARA OBTENER DATOS AMIGABLES AL USUARIO
+           String sql = "SELECT * FROM usuario WHERE id_usuario = "+ idCreador+" ;";
+            ResultSet result = st.executeQuery(sql);
+            while(result.next()){
+                creador = result.getString("username");
+            }
+            result.close();
+            st.close();
+            conexion.close();
+        }catch (SQLException e){
+            System.out.println("ERROR DE CONEXION " + e.getMessage());
+            
+        }
+        catch(ClassNotFoundException e){
+            System.out.println("ERROR AL CARGAR LA CLASE "+ e.getMessage());
+        }
+        
+        return creador;
+        
+    }
     public static void aceptarInvitacion(int idUsuario, int idReunion){
          try{
             Class.forName("org.postgresql.Driver");
@@ -96,6 +123,25 @@ public class UsuarioReunion {
         catch(ClassNotFoundException e){
             System.out.println("ERROR AL GUARDAR LA CLASE "+ e.getMessage());
             errorAlGuardar = true;
+        }
+    }
+    
+    public static void rechazarInvitacion(int idUsuario, int idReunion){
+        try{
+            Class.forName("org.postgresql.Driver");
+            Connection conexion = DriverManager.getConnection(url, usuario,contrasenia);
+            java.sql.Statement st = conexion.createStatement();
+            
+            String Update = "DELETE FROM usuario_reunion WHERE id_reunion = "+ idReunion+" AND id_usuario = "+ idUsuario+";";
+            
+            st.executeUpdate(Update);
+            st.close();
+            conexion.close();
+        }catch (SQLException e){
+            System.out.println("ERROR DE CONEXION " + e.getMessage());
+        }
+        catch(ClassNotFoundException e){
+            System.out.println("ERROR AL GUARDAR LA CLASE "+ e.getMessage());
         }
     }
     

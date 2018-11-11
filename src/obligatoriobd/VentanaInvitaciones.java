@@ -137,7 +137,16 @@ public class VentanaInvitaciones extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRechazarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRechazarActionPerformed
-        
+        if(this.listaInvitaciones.getSelectedIndex() != -1){
+            //Tomo el id de la fila seleccionada 
+            int idReunion = Character.getNumericValue(this.listaInvitaciones.getSelectedValue().charAt(0));
+            UsuarioReunion.rechazarInvitacion(ObligatorioBD.usuarioLoggeado.getId(), idReunion);
+            
+            //Elimino visualmente el elemento de la lista
+            modeloLista.remove(this.listaInvitaciones.getSelectedIndex());
+            this.listaInvitaciones.setModel(modeloLista);
+            
+        }
         
     }//GEN-LAST:event_btnRechazarActionPerformed
 
