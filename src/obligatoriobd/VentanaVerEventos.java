@@ -35,7 +35,7 @@ public class VentanaVerEventos extends javax.swing.JFrame {
                     Herramientas.ConvertirCalendarAString(evento.getFecha());
             modeloLista.addElement(elementoLista);
         }
-        listaEventos.setModel(modeloLista);        
+        listaEventos.setModel(modeloLista);      
     }
 
     /**
@@ -53,6 +53,7 @@ public class VentanaVerEventos extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         listaEventos = new javax.swing.JList<>();
         btnConfirmar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(739, 300));
@@ -86,6 +87,8 @@ public class VentanaVerEventos extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("Tipo | Descripción | Fecha");
+
         javax.swing.GroupLayout panelBlancoLayout = new javax.swing.GroupLayout(panelBlanco);
         panelBlanco.setLayout(panelBlancoLayout);
         panelBlancoLayout.setHorizontalGroup(
@@ -97,13 +100,17 @@ public class VentanaVerEventos extends javax.swing.JFrame {
                         .addComponent(btnConfirmar))
                     .addGroup(panelBlancoLayout.createSequentialGroup()
                         .addGap(116, 116, 116)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(224, Short.MAX_VALUE))
         );
         panelBlancoLayout.setVerticalGroup(
             panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBlancoLayout.createSequentialGroup()
-                .addContainerGap(63, Short.MAX_VALUE)
+                .addContainerGap(38, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
                 .addComponent(btnConfirmar)
@@ -137,6 +144,7 @@ public class VentanaVerEventos extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfirmar;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAtras;
     private javax.swing.JLabel lblfondoCeleste;

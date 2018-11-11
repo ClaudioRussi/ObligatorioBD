@@ -41,6 +41,8 @@ public class VentanaCrearInsumo extends javax.swing.JFrame {
         descripcionlbl = new javax.swing.JLabel();
         lblInsumo = new javax.swing.JLabel();
         btnCrearInsumo = new javax.swing.JButton();
+        lblDatosInsumo = new javax.swing.JLabel();
+        lblError = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -58,10 +60,6 @@ public class VentanaCrearInsumo extends javax.swing.JFrame {
 
         panelBlanco.setBackground(new java.awt.Color(255, 255, 255));
 
-        txtDescripcion.setText("descripcionInsumo");
-
-        txtNombre.setText("nombreInsumo");
-
         nombrelbl.setText("Nombre:");
 
         descripcionlbl.setText("Descripcion:");
@@ -73,6 +71,8 @@ public class VentanaCrearInsumo extends javax.swing.JFrame {
             }
         });
 
+        lblDatosInsumo.setText("Datos del insumo:");
+
         javax.swing.GroupLayout panelBlancoLayout = new javax.swing.GroupLayout(panelBlanco);
         panelBlanco.setLayout(panelBlancoLayout);
         panelBlancoLayout.setHorizontalGroup(
@@ -81,7 +81,7 @@ public class VentanaCrearInsumo extends javax.swing.JFrame {
                 .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelBlancoLayout.createSequentialGroup()
                         .addGap(58, 58, 58)
-                        .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(panelBlancoLayout.createSequentialGroup()
                                 .addComponent(nombrelbl)
                                 .addGap(35, 35, 35)
@@ -89,7 +89,9 @@ public class VentanaCrearInsumo extends javax.swing.JFrame {
                             .addGroup(panelBlancoLayout.createSequentialGroup()
                                 .addComponent(descripcionlbl)
                                 .addGap(18, 18, 18)
-                                .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblDatosInsumo)
+                            .addComponent(lblError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(panelBlancoLayout.createSequentialGroup()
                         .addGap(260, 260, 260)
@@ -101,7 +103,9 @@ public class VentanaCrearInsumo extends javax.swing.JFrame {
         panelBlancoLayout.setVerticalGroup(
             panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBlancoLayout.createSequentialGroup()
-                .addGap(89, 89, 89)
+                .addGap(60, 60, 60)
+                .addComponent(lblDatosInsumo)
+                .addGap(18, 18, 18)
                 .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelBlancoLayout.createSequentialGroup()
                         .addGap(3, 3, 3)
@@ -113,7 +117,9 @@ public class VentanaCrearInsumo extends javax.swing.JFrame {
                         .addGap(3, 3, 3)
                         .addComponent(descripcionlbl))
                     .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 134, Short.MAX_VALUE)
+                .addGap(25, 25, 25)
+                .addComponent(lblError)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
                 .addComponent(lblInsumo)
                 .addGap(19, 19, 19))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBlancoLayout.createSequentialGroup()
@@ -151,6 +157,8 @@ public class VentanaCrearInsumo extends javax.swing.JFrame {
     private javax.swing.JButton btnCrearInsumo;
     private javax.swing.JLabel descripcionlbl;
     private javax.swing.JLabel lblAtras;
+    private javax.swing.JLabel lblDatosInsumo;
+    private javax.swing.JLabel lblError;
     private javax.swing.JLabel lblInsumo;
     private javax.swing.JLabel lblfondoCeleste;
     private javax.swing.JLabel nombrelbl;

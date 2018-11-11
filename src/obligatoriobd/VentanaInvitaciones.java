@@ -56,7 +56,7 @@ public class VentanaInvitaciones extends javax.swing.JFrame {
         listaInvitaciones = new javax.swing.JList<>();
         btnConfirmar = new javax.swing.JButton();
         btnRechazar = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        lblDesc = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(739, 300));
@@ -92,7 +92,7 @@ public class VentanaInvitaciones extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("ID | Reunion | Invitador");
+        lblDesc.setText("ID | Reunion | Invitador");
 
         javax.swing.GroupLayout panelBlancoLayout = new javax.swing.GroupLayout(panelBlanco);
         panelBlanco.setLayout(panelBlancoLayout);
@@ -109,14 +109,14 @@ public class VentanaInvitaciones extends javax.swing.JFrame {
                         .addGap(116, 116, 116)
                         .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(lblDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(224, Short.MAX_VALUE))
         );
         panelBlancoLayout.setVerticalGroup(
             panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBlancoLayout.createSequentialGroup()
                 .addContainerGap(38, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                .addComponent(lblDesc)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
@@ -171,9 +171,9 @@ public class VentanaInvitaciones extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfirmar;
     private javax.swing.JButton btnRechazar;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAtras;
+    private javax.swing.JLabel lblDesc;
     private javax.swing.JLabel lblfondoCeleste;
     private javax.swing.JList<String> listaInvitaciones;
     private javax.swing.JPanel panelBlanco;
