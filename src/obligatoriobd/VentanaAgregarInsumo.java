@@ -159,6 +159,7 @@ public class VentanaAgregarInsumo extends javax.swing.JFrame {
         //si el insumo esta en la bd tabla posee agregar cantidad sino agregarlo todo
         //posee tiene id insumo, id usuario y cantidad
         Insumo ins = insumos.get(this.listaInsumos.getSelectedIndex());
+        
         Posee posee = Posee.buscarPoseePorInsumo(ins.getIDInsumo(), ObligatorioBD.usuarioLoggeado.getId());
         if(posee != null){
             posee.setCantidad(posee.getCantidad() + (int)this.spnCantidad.getValue());
@@ -173,7 +174,7 @@ public class VentanaAgregarInsumo extends javax.swing.JFrame {
         else{
             posee = new Posee(ins.getIDInsumo(), ObligatorioBD.usuarioLoggeado.getId(), (int)this.spnCantidad.getValue());
             
-             posee.Save();
+            posee.Save();
             if(Posee.errorAlGuardar){
                 this.lblError.setText("Error al guardar.");
             }

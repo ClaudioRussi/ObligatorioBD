@@ -216,7 +216,7 @@ public class Insumo {
             String sql = "SELECT * FROM insumo WHERE nombre LIKE '%" + nombre +"%';" ;
             ResultSet result = st.executeQuery(sql);
             while(result.next()){
-                insumos.add(new Insumo(result.getString("nombre"), result.getString("descripcion")));
+                insumos.add(new Insumo(result.getInt("id_insumo"),result.getString("nombre"), result.getString("descripcion")));
             }
             result.close();
             st.close();
