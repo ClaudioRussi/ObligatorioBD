@@ -60,6 +60,7 @@ public class VentanaVerReuniones extends javax.swing.JFrame {
         btnCrearReunion = new javax.swing.JButton();
         btnGestionar = new javax.swing.JButton();
         btnInvitaciones = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(779, 300));
@@ -115,6 +116,8 @@ public class VentanaVerReuniones extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("Reuniones");
+
         javax.swing.GroupLayout panelBlancoLayout = new javax.swing.GroupLayout(panelBlanco);
         panelBlanco.setLayout(panelBlancoLayout);
         panelBlancoLayout.setHorizontalGroup(
@@ -122,13 +125,15 @@ public class VentanaVerReuniones extends javax.swing.JFrame {
             .addGroup(panelBlancoLayout.createSequentialGroup()
                 .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelBlancoLayout.createSequentialGroup()
-                        .addGap(116, 116, 116)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelBlancoLayout.createSequentialGroup()
                         .addGap(52, 52, 52)
                         .addComponent(btnInvitaciones)
                         .addGap(133, 133, 133)
-                        .addComponent(btnCrearReunion)))
+                        .addComponent(btnCrearReunion))
+                    .addGroup(panelBlancoLayout.createSequentialGroup()
+                        .addGap(116, 116, 116)
+                        .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(30, 30, 30)
                 .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnAbandonar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -138,7 +143,9 @@ public class VentanaVerReuniones extends javax.swing.JFrame {
         panelBlancoLayout.setVerticalGroup(
             panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBlancoLayout.createSequentialGroup()
-                .addContainerGap(61, Short.MAX_VALUE)
+                .addContainerGap(38, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
                 .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -196,6 +203,7 @@ public class VentanaVerReuniones extends javax.swing.JFrame {
     private javax.swing.JButton btnCrearReunion;
     private javax.swing.JButton btnGestionar;
     private javax.swing.JButton btnInvitaciones;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAtras;
     private javax.swing.JLabel lblfondoCeleste;

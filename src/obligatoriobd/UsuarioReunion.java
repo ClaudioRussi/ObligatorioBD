@@ -49,7 +49,6 @@ public class UsuarioReunion {
             Class.forName("org.postgresql.Driver");
             Connection conexion = DriverManager.getConnection(url, usuario, contrasenia);
             java.sql.Statement st = conexion.createStatement();
-           // String sql = "SELECT * FROM usuario_reunion WHERE id_usuario = " + idUsuario +" AND confirmo_invitacion = false";
            
            //HACIENDO REUNION CON LAS OTRAS TABLAS PARA OBTENER DATOS AMIGABLES AL USUARIO
            String sql = "SELECT usuario_reunion.id_usuario, usuario_reunion.id_reunion, confirmo_invitacion, username, nombre FROM usuario_reunion, usuario, reunion WHERE usuario_reunion.id_usuario = usuario.id_usuario AND usuario_reunion.id_reunion = reunion.id_reunion AND usuario_reunion.id_usuario = " + idUsuario 
@@ -71,6 +70,33 @@ public class UsuarioReunion {
         }
         
         return invitaciones;
+    }
+    
+    public static void aceptarInvitacion(int idUsuario, int idReunion){
+         try{
+            Class.forName("org.postgresql.Driver");
+            Connection conexion = DriverManager.getConnection(url, usuario,contrasenia);
+            java.sql.Statement st = conexion.createStatement();
+            
+            String insertion = "UPDATE usuario_reunion SET confirmo_invitacion = true WHERE " +
+                    "id_usuario = " + idUsuario+" AND id_reunion = "+idReunion;
+            //TEST
+            System.out.println("VA UPDATE");
+            System.out.println(insertion);
+            //
+            
+            st.executeUpdate(insertion);
+            st.close();
+            conexion.close();
+            errorAlGuardar = false;
+        }catch (SQLException e){
+            System.out.println("ERROR DE CONEXION " + e.getMessage());
+            errorAlGuardar = true;
+        }
+        catch(ClassNotFoundException e){
+            System.out.println("ERROR AL GUARDAR LA CLASE "+ e.getMessage());
+            errorAlGuardar = true;
+        }
     }
     
     public int getIdUsuario() {

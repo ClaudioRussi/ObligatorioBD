@@ -16,6 +16,7 @@ import javax.swing.ImageIcon;
 public class VentanaInvitaciones extends javax.swing.JFrame {
 
     DefaultListModel modeloLista;
+    ArrayList<UsuarioReunion> array = new ArrayList();
     /**
      * Creates new form VentanaInvitaciones
      */
@@ -28,10 +29,10 @@ public class VentanaInvitaciones extends javax.swing.JFrame {
         listaInvitaciones.setModel(modeloLista);
         
         //Cargo en la lista las invitaciones
-        ArrayList<UsuarioReunion> invitaciones =UsuarioReunion.buscarInvitacionesNoAceptadas(ObligatorioBD.usuarioLoggeado.getId());
+        ArrayList<UsuarioReunion> invitaciones = UsuarioReunion.buscarInvitacionesNoAceptadas(ObligatorioBD.usuarioLoggeado.getId());
         for(UsuarioReunion invitacion  : invitaciones){
             String elementoLista;
-            elementoLista = invitacion.getNombreReunion()+ " | "+ invitacion.getNombreCreador();
+            elementoLista = invitacion.getIdReunion() +" | "+invitacion.getNombreReunion()+ " | "+ invitacion.getNombreCreador();
             modeloLista.addElement(elementoLista);
         }
         this.listaInvitaciones.setModel(modeloLista);
@@ -54,10 +55,17 @@ public class VentanaInvitaciones extends javax.swing.JFrame {
         listaInvitaciones = new javax.swing.JList<>();
         btnConfirmar = new javax.swing.JButton();
         btnRechazar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(739, 300));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblAtras.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblAtrasMouseClicked(evt);
+            }
+        });
         getContentPane().add(lblAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 40, 30));
 
         lblfondoCeleste.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -88,6 +96,8 @@ public class VentanaInvitaciones extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("ID | Reunion | Invitador");
+
         javax.swing.GroupLayout panelBlancoLayout = new javax.swing.GroupLayout(panelBlanco);
         panelBlanco.setLayout(panelBlancoLayout);
         panelBlancoLayout.setHorizontalGroup(
@@ -101,13 +111,17 @@ public class VentanaInvitaciones extends javax.swing.JFrame {
                         .addComponent(btnConfirmar))
                     .addGroup(panelBlancoLayout.createSequentialGroup()
                         .addGap(116, 116, 116)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(224, Short.MAX_VALUE))
         );
         panelBlancoLayout.setVerticalGroup(
             panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBlancoLayout.createSequentialGroup()
-                .addContainerGap(63, Short.MAX_VALUE)
+                .addContainerGap(38, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
                 .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -128,12 +142,28 @@ public class VentanaInvitaciones extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRechazarActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-        // TODO add your handling code here:
+        if(this.listaInvitaciones.getSelectedIndex() != -1){
+            //Tomo el id de la fila seleccionada 
+            int idReunion = Character.getNumericValue(this.listaInvitaciones.getSelectedValue().charAt(0));
+            UsuarioReunion.aceptarInvitacion(ObligatorioBD.usuarioLoggeado.getId(), idReunion);
+            
+            //Elimino visualmente el elemento de la lista
+            modeloLista.remove(this.listaInvitaciones.getSelectedIndex());
+            this.listaInvitaciones.setModel(modeloLista);
+            
+        }
     }//GEN-LAST:event_btnConfirmarActionPerformed
+
+    private void lblAtrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtrasMouseClicked
+        VentanaVerReuniones vent = new VentanaVerReuniones();
+        vent.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_lblAtrasMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfirmar;
     private javax.swing.JButton btnRechazar;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAtras;
     private javax.swing.JLabel lblfondoCeleste;
