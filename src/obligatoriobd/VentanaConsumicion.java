@@ -15,7 +15,8 @@ import javax.swing.ImageIcon;
  * @author Agustín
  */
 public class VentanaConsumicion extends javax.swing.JFrame {
-    ArrayList<Insumo> insumos;
+    DefaultListModel modeloLista;
+    ArrayList<Insumo> insumos = new ArrayList();
     /**
      * Creates new form VentanaEvento
      */
@@ -23,6 +24,7 @@ public class VentanaConsumicion extends javax.swing.JFrame {
         initComponents();
         ImageIcon icon = new ImageIcon("src/imagenes/fondoCelesteFinoFlecha.jpg");
         this.lblfondoCeleste.setIcon(icon);
+        modeloLista = new DefaultListModel();
     }
 
     /**
@@ -36,7 +38,6 @@ public class VentanaConsumicion extends javax.swing.JFrame {
 
         jLabel5 = new javax.swing.JLabel();
         idInsumo = new javax.swing.JTextField();
-        btnBuscarInsumo = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         lstInsumos = new javax.swing.JList<>();
         lblInsumos = new javax.swing.JLabel();
@@ -47,6 +48,7 @@ public class VentanaConsumicion extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         fldCantidadInsumo = new javax.swing.JSpinner();
         btnRegistrarConsumicion = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
 
         jLabel5.setText(":");
 
@@ -58,14 +60,6 @@ public class VentanaConsumicion extends javax.swing.JFrame {
 
         idInsumo.setText("Insumo");
         getContentPane().add(idInsumo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 30, 140, -1));
-
-        btnBuscarInsumo.setText("Buscar");
-        btnBuscarInsumo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarInsumoActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnBuscarInsumo, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 30, -1, -1));
 
         lstInsumos.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(lstInsumos);
@@ -98,16 +92,27 @@ public class VentanaConsumicion extends javax.swing.JFrame {
             }
         });
 
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelBlancoLayout = new javax.swing.GroupLayout(panelBlanco);
         panelBlanco.setLayout(panelBlancoLayout);
         panelBlancoLayout.setHorizontalGroup(
             panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBlancoLayout.createSequentialGroup()
-                .addGap(288, 288, 288)
-                .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addComponent(fldCantidadInsumo, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(354, Short.MAX_VALUE))
+                .addGap(258, 258, 258)
+                .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel6)
+                        .addComponent(fldCantidadInsumo, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelBlancoLayout.createSequentialGroup()
+                        .addComponent(btnBuscar)
+                        .addGap(5, 5, 5)))
+                .addContainerGap(366, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBlancoLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnRegistrarConsumicion)
@@ -116,11 +121,13 @@ public class VentanaConsumicion extends javax.swing.JFrame {
         panelBlancoLayout.setVerticalGroup(
             panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBlancoLayout.createSequentialGroup()
-                .addGap(67, 67, 67)
+                .addGap(29, 29, 29)
+                .addComponent(btnBuscar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(fldCantidadInsumo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 159, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 147, Short.MAX_VALUE)
                 .addComponent(btnRegistrarConsumicion)
                 .addContainerGap())
         );
@@ -131,23 +138,48 @@ public class VentanaConsumicion extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnRegistrarConsumicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarConsumicionActionPerformed
-
-    }//GEN-LAST:event_btnRegistrarConsumicionActionPerformed
-
-    private void btnBuscarInsumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarInsumoActionPerformed
-    }//GEN-LAST:event_btnBuscarInsumoActionPerformed
-
     private void lblAtrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtrasMouseClicked
         VentanaInsumo vent = new VentanaInsumo();
         vent.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_lblAtrasMouseClicked
 
+    private void btnRegistrarConsumicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarConsumicionActionPerformed
+        Insumo ins = insumos.get(this.lstInsumos.getSelectedIndex());
+        Posee posee = Posee.buscarPoseePorInsumo(ins.getIDInsumo(), ObligatorioBD.usuarioLoggeado.getId());
+        if(posee != null){
+            if(posee.getCantidad() >= (int)this.fldCantidadInsumo.getValue()){
+                posee.setCantidad(posee.getCantidad()-(int)this.fldCantidadInsumo.getValue());
+                posee.Update();
+                if(Posee.errorAlGuardar){
+                    this.lblError.setText("Error al guardar.");
+                }
+                else{
+                    this.lblError.setText("Se ha guardado correctamente.");
+                }
+            }
+            else{
+                this.lblError.setText("No tienes insumos suficientes.");
+            }
+        }
+    }//GEN-LAST:event_btnRegistrarConsumicionActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        Insumo.buscarInsumoPorUsuarioYNombre(insumos, ObligatorioBD.usuarioLoggeado.getId(),this.idInsumo.getText());
+        modeloLista.clear();
+        for(Insumo ins: insumos){
+            modeloLista.addElement(ins.getNombre());
+        }
+        if(insumos.isEmpty()){
+            this.lblError.setText("No se encontraron insumos");
+        }
+        this.lstInsumos.setModel(modeloLista);
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBuscarInsumo;
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnRegistrarConsumicion;
     private javax.swing.JSpinner fldCantidadInsumo;
     private javax.swing.JTextField idInsumo;
