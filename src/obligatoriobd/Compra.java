@@ -110,13 +110,12 @@ public class Compra {
     }
     
     public void Save(){
-        System.out.println(dtf.parse(new Date().toString()));
         try{
             Class.forName("org.postgresql.Driver");
             Connection conexion = DriverManager.getConnection(url, PG_usuario, PG_contrasenia);
             java.sql.Statement st = conexion.createStatement();
             String insertion = "INSERT INTO compra VALUES ("+this.idUsuario+" ,"+this.idInsumo+", "
-                    +this.precioCompra+", '"+ dtf.parse(this.fecha.toString()) +"', "
+                    +this.precioCompra+", '"+ Herramientas.ConvertirCalendarAString(fecha) +"', "
                     +this.cantidadComprada+");";
             st.executeUpdate(insertion);
             st.close();

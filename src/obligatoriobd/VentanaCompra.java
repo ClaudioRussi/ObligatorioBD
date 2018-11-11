@@ -182,8 +182,29 @@ public class VentanaCompra extends javax.swing.JFrame {
         clndr.set(Calendar.SECOND, 0);
         
         Insumo ins = insumos.get(this.lstInsumos.getSelectedIndex());
+        Posee posee = Posee.buscarPoseePorInsumo(ins.getIDInsumo(), ObligatorioBD.usuarioLoggeado.getId());
+        if(posee != null){
+            posee.setCantidad(posee.getCantidad() + (int)this.fldCantidadInsumo.getValue());
+            posee.Update();
+            if(Posee.errorAlGuardar){
+                this.lblError.setText("Error al guardar.");
+            }
+            else{
+                this.lblError.setText("Se ha guardado correctamente.");
+            }
+        }
+        else{
+            posee = new Posee(ins.getIDInsumo(), ObligatorioBD.usuarioLoggeado.getId(), (int)this.fldCantidadInsumo.getValue());
+            posee.Save();
+            if(Posee.errorAlGuardar){
+                this.lblError.setText("Error al guardar.");
+            }
+            else{
+                this.lblError.setText("Se ha guardado correctamente.");
+            }
+        }
         Compra compr = new Compra(ObligatorioBD.usuarioLoggeado.getId(), ins.getIDInsumo(),
-                Integer.parseInt(this.fldPrecioCompra.getText()),clndr ,(Integer)this.fldCantidadInsumo.getValue());
+                Integer.parseInt(this.fldPrecioCompra.getText()), clndr ,(Integer)this.fldCantidadInsumo.getValue());
         compr.Save();
         if(Compra.errorAlGuardar){
             this.lblError.setText("Hubo un error al guardar la compra.");

@@ -173,7 +173,7 @@ public class VentanaAgregarInsumo extends javax.swing.JFrame {
         else{
             posee = new Posee(ins.getIDInsumo(), ObligatorioBD.usuarioLoggeado.getId(), (int)this.spnCantidad.getValue());
             
-             posee.Save();
+            posee.Save();
             if(Posee.errorAlGuardar){
                 this.lblError.setText("Error al guardar.");
             }
