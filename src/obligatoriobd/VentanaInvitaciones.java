@@ -141,8 +141,9 @@ public class VentanaInvitaciones extends javax.swing.JFrame {
             UsuarioReunion.rechazarInvitacion(ObligatorioBD.usuarioLoggeado.getId(), ur.getIdReunion());
             
             //Elimino visualmente el elemento de la lista
+            UsuarioReunion urAux = invitaciones.get(this.listaInvitaciones.getSelectedIndex());
             modeloLista.remove(this.listaInvitaciones.getSelectedIndex());
-            this.listaInvitaciones.setModel(modeloLista);
+            invitaciones.remove(urAux);
             
         }
         

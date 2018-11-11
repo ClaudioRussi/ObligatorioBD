@@ -15,7 +15,7 @@ import javax.swing.DefaultListModel;
 public class VentanaAgregarInsumo extends javax.swing.JFrame {
 
     DefaultListModel modeloLista;
-    ArrayList<Insumo> array = new ArrayList();
+    //ArrayList<Insumo> array = new ArrayList();
     ArrayList<Insumo> insumos = new ArrayList();
     /**
      * Creates new form VentanaAgregarInsumo2
@@ -24,14 +24,7 @@ public class VentanaAgregarInsumo extends javax.swing.JFrame {
         initComponents();        
         modeloLista = new DefaultListModel();
         //Consulta SQL
-        //No sabemos para que esta
-//        Insumo.buscarInsumoPorUsuario(array, ObligatorioBD.usuarioLoggeado.getId());
-//        for(Insumo insumo : array){
-//            String elementoLista;
-//            elementoLista = insumo.getNombre()+ " | " + insumo.getDescripcion();
-//            modeloLista.addElement(elementoLista);
-//        }
-//        listaInsumos.setModel(modeloLista); 
+        
     }
 
     /**

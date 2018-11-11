@@ -145,6 +145,25 @@ public class UsuarioReunion {
         }
     }
     
+    public static void abandonarReunion(int idUsuario, int idReunion){
+        try{
+            Class.forName("org.postgresql.Driver");
+            Connection conexion = DriverManager.getConnection(ObligatorioBD.url, ObligatorioBD.usuario,ObligatorioBD.contrasenia);
+            java.sql.Statement st = conexion.createStatement();
+            
+            String Update = "DELETE FROM usuario_reunion WHERE id_reunion = "+ idReunion+" AND id_usuario = "+ idUsuario+";";
+            
+            st.executeUpdate(Update);
+            st.close();
+            conexion.close();
+        }catch (SQLException e){
+            System.out.println("ERROR DE CONEXION " + e.getMessage());
+        }
+        catch(ClassNotFoundException e){
+            System.out.println("ERROR AL GUARDAR LA CLASE "+ e.getMessage());
+        }
+    }
+    
     public int getIdUsuario() {
         return idUsuario;
     }

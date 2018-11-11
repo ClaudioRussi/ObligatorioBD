@@ -34,7 +34,7 @@ public class VentanaVerReuniones extends javax.swing.JFrame {
         Reunion.buscarReunionesPorUsuario(reuniones, ObligatorioBD.usuarioLoggeado.getId());
         for(Reunion reunion : reuniones){
             String elementoLista;
-            elementoLista = reunion.getNombre();
+            elementoLista = reunion.getIDReunion()+" | " +reunion.getNombre();
             modeloLista.addElement(elementoLista);
         }
         listaReuniones.setModel(modeloLista);
@@ -112,7 +112,7 @@ public class VentanaVerReuniones extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Reuniones");
+        jLabel1.setText("ID | Reuniones");
 
         javax.swing.GroupLayout panelBlancoLayout = new javax.swing.GroupLayout(panelBlanco);
         panelBlanco.setLayout(panelBlancoLayout);
@@ -169,7 +169,19 @@ public class VentanaVerReuniones extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAbandonarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbandonarActionPerformed
-        // TODO add your handling code here:
+         if(this.listaReuniones.getSelectedIndex() >= 0){
+            //Tomo el id de la fila seleccionada 
+            
+            Reunion reunion = reuniones.get(this.listaReuniones.getSelectedIndex());
+            
+            UsuarioReunion.abandonarReunion(ObligatorioBD.usuarioLoggeado.getId(), reunion.getIDReunion());
+            
+            //Elimino visualmente el elemento de la lista
+            Reunion reunionAux = reuniones.get(this.listaReuniones.getSelectedIndex());
+            modeloLista.remove(this.listaReuniones.getSelectedIndex());
+            reuniones.remove(reunion);
+            
+        }
     }//GEN-LAST:event_btnAbandonarActionPerformed
 
     private void lblAtrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtrasMouseClicked
