@@ -95,4 +95,25 @@ public class Posee {
             errorAlGuardar = true;
         }
     }
+    
+    public void Update(){
+        try{
+            Class.forName("org.postgresql.Driver");
+            Connection conexion = DriverManager.getConnection(ObligatorioBD.url, ObligatorioBD.usuario, ObligatorioBD.contrasenia);
+            java.sql.Statement st = conexion.createStatement();
+            String insertion = "UPDATE posee SET cantidad = " + this.cantidad+" WHERE id_usuario = "+
+                    idUsuario+" AND id_insumo ="+ idInsumo;
+            st.executeUpdate(insertion);
+            st.close();
+            conexion.close();
+            errorAlGuardar = false;
+        }catch (SQLException e){
+            System.out.println("ERROR DE CONEXION " + e.getMessage());
+            errorAlGuardar = true;
+        }
+        catch(ClassNotFoundException e){
+            System.out.println("ERROR AL CARGAR LA CLASE "+ e.getMessage());
+            errorAlGuardar = true;
+        }
+    }
 }

@@ -141,7 +141,7 @@ public class Compra {
             String insertion = "UPDATE compra SET id_usuario = "+this.idUsuario+", id_insumo = "+
                     this.idInsumo+", precio_compra = "+this.precioCompra+", fecha = '"+
                     Herramientas.ConvertirCalendarAString(fecha) +"', cantidad_comprada =  "+this.cantidadComprada+" WHERE id_usuario ="+
-                    idUsuario+",id_insumo ="+ idInsumo + ",fecha =" + Herramientas.ConvertirCalendarAString(fecha);;
+                    idUsuario+" AND id_insumo ="+ idInsumo + " AND fecha =" + Herramientas.ConvertirCalendarAString(fecha);
             st.executeUpdate(insertion);
             st.close();
             conexion.close();
@@ -159,8 +159,8 @@ public class Compra {
             Class.forName("org.postgresql.Driver");
             Connection conexion = DriverManager.getConnection(url, PG_usuario, PG_contrasenia);
             java.sql.Statement st = conexion.createStatement();
-            String Update = "DELETE FROM compra WHERE id_usuario ="+ idUsuario+",id_insumo ="+ idInsumo + 
-                    ",fecha =" + Herramientas.ConvertirCalendarAString(fecha);
+            String Update = "DELETE FROM compra WHERE id_usuario ="+ idUsuario+" AND id_insumo ="+ idInsumo + 
+                    " AND fecha =" + Herramientas.ConvertirCalendarAString(fecha);
             st.executeUpdate(Update);
             st.close();
             conexion.close();
