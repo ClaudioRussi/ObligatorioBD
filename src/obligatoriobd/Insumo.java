@@ -112,12 +112,12 @@ public class Insumo {
             Connection conexion = DriverManager.getConnection(url, PG_usuario, PG_contrasenia);
             java.sql.Statement st = conexion.createStatement();
             
-            String sql = "SELECT * FROM compra_reunion, insumo WHERE compra_reunion.id_reunion = " + idReunion 
+            String sql = "SELECT insumo.id_insumo, insumo.nombre, insumo.descripcion, compra_reunion.cantidad_comprada FROM compra_reunion, insumo WHERE compra_reunion.id_reunion = " + idReunion 
                     +" AND insumo.id_insumo = compra_reunion.id_insumo";
             ResultSet result = st.executeQuery(sql);
             while(result.next()){
-                insumo = (new Insumo(result.getInt("insumo.id_insumo"),result.getString("insumo.nombre"), result.getString("insumo.descripcion")));
-                insumo.setCantidad(result.getInt("compra_reunion.cantidad_comprada"));
+                insumo = (new Insumo(result.getInt("id_insumo"),result.getString("nombre"), result.getString("descripcion")));
+                insumo.setCantidad(result.getInt("cantidad_comprada"));
                 insumos.add(insumo);
                 
             }

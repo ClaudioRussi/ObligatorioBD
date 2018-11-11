@@ -209,7 +209,7 @@ public class VentanaReunion extends javax.swing.JFrame {
                             .addComponent(btnAgregarInsumo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnVerInsumo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBlancoLayout.createSequentialGroup()
-                        .addContainerGap(407, Short.MAX_VALUE)
+                        .addContainerGap(417, Short.MAX_VALUE)
                         .addComponent(btnAgregarEvento)
                         .addGap(30, 30, 30)
                         .addComponent(btnVerPagos)
@@ -256,10 +256,10 @@ public class VentanaReunion extends javax.swing.JFrame {
                 .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(asignarCreador))
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
 
-        getContentPane().add(panelBlanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 700, 300));
+        getContentPane().add(panelBlanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 820, 320));
 
         pack();
         setLocationRelativeTo(null);
@@ -343,11 +343,15 @@ public class VentanaReunion extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAgregarEventoActionPerformed
 
     private void btnAgregarInsumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarInsumoActionPerformed
-        // TODO add your handling code here:
+        VentanaCompra vent = new VentanaCompra(reunion);
+        vent.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnAgregarInsumoActionPerformed
 
     private void btnVerInsumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerInsumoActionPerformed
-        // TODO add your handling code here:
+        VentanaVerInsumos vent = new VentanaVerInsumos(reunion);
+        vent.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnVerInsumoActionPerformed
 
  

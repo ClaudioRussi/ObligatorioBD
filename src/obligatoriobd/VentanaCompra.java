@@ -209,7 +209,7 @@ public class VentanaCompra extends javax.swing.JFrame {
         clndr.set(Calendar.HOUR_OF_DAY, (Integer)this.horaCompra.getValue());
         clndr.set(Calendar.MINUTE, (Integer)this.minutoCompra.getValue());
         clndr.set(Calendar.SECOND, 0);
-        if(reunion != null){
+        if(reunion == null){
             Insumo ins = insumos.get(this.lstInsumos.getSelectedIndex());
             Posee posee = Posee.buscarPoseePorInsumo(ins.getIDInsumo(), ObligatorioBD.usuarioLoggeado.getId());
             if(posee != null){
