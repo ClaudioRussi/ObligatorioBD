@@ -81,7 +81,7 @@ public class Usuario {
 //        return new Evento(this.idUsuario, descripcion, esDiario, esSemanal, esMensual, esAnual, fecha, tipo, idReunion);
 //    }
     
-    public Usuario buscarUserPorId(int id){
+    static public Usuario buscarUserPorId(int id){
         Usuario user = null;
         try{
             Class.forName("org.postgresql.Driver");

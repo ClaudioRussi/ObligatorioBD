@@ -31,9 +31,9 @@ public class VentanaReunion extends javax.swing.JFrame {
         initComponents();
         ImageIcon icon = new ImageIcon("src/imagenes/fondoCelesteFinoFlecha.jpg");
         this.lblfondoCeleste.setIcon(icon);
-        modeloLista = new DefaultListModel();
-        
         this.reunion = reunion;
+        
+        modeloLista = new DefaultListModel();
         
         UsuarioReunion.obtenerIntegrantes(creadores, reunion.getIDReunion());
         for(Usuario user : creadores){
@@ -79,7 +79,6 @@ public class VentanaReunion extends javax.swing.JFrame {
         jLabel5.setText(":");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(900, 400));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(521, 172, -1, -1));
 
@@ -95,8 +94,6 @@ public class VentanaReunion extends javax.swing.JFrame {
         getContentPane().add(lblfondoCeleste, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 60, 300));
 
         panelBlanco.setBackground(new java.awt.Color(255, 255, 255));
-        panelBlanco.setPreferredSize(new java.awt.Dimension(900, 400));
-        panelBlanco.setRequestFocusEnabled(false);
 
         txtidUsuario.setText("idUsuario");
         txtidUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -212,7 +209,7 @@ public class VentanaReunion extends javax.swing.JFrame {
                             .addComponent(btnAgregarInsumo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnVerInsumo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBlancoLayout.createSequentialGroup()
-                        .addContainerGap(417, Short.MAX_VALUE)
+                        .addContainerGap(407, Short.MAX_VALUE)
                         .addComponent(btnAgregarEvento)
                         .addGap(30, 30, 30)
                         .addComponent(btnVerPagos)
@@ -259,10 +256,10 @@ public class VentanaReunion extends javax.swing.JFrame {
                 .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(asignarCreador))
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
-        getContentPane().add(panelBlanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 820, 310));
+        getContentPane().add(panelBlanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 700, 300));
 
         pack();
         setLocationRelativeTo(null);
@@ -323,7 +320,7 @@ public class VentanaReunion extends javax.swing.JFrame {
     }//GEN-LAST:event_agregarUsuarioActionPerformed
 
     private void asignarCreadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_asignarCreadorActionPerformed
-        
+        // TODO add your handling code here:
     }//GEN-LAST:event_asignarCreadorActionPerformed
 
     private void btnAgregarPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarPagoActionPerformed
@@ -346,7 +343,7 @@ public class VentanaReunion extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAgregarEventoActionPerformed
 
     private void btnAgregarInsumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarInsumoActionPerformed
-        
+        // TODO add your handling code here:
     }//GEN-LAST:event_btnAgregarInsumoActionPerformed
 
     private void btnVerInsumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerInsumoActionPerformed
