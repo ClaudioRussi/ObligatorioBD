@@ -162,6 +162,13 @@ public class VentanaAgregarInsumo extends javax.swing.JFrame {
         Posee posee = Posee.buscarPoseePorInsumo(ins.getIDInsumo(), ObligatorioBD.usuarioLoggeado.getId());
         if(posee != null){
             posee.setCantidad(posee.getCantidad() + (int)this.spnCantidad.getValue());
+            posee.Update();
+            if(Posee.errorAlGuardar){
+                this.lblError.setText("Error al guardar.");
+            }
+            else{
+                this.lblError.setText("Se ha guardado correctamente.");
+            }
         }
         else{
             posee = new Posee(ins.getIDInsumo(), ObligatorioBD.usuarioLoggeado.getId(), (int)this.spnCantidad.getValue());
