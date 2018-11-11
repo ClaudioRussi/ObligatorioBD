@@ -27,10 +27,22 @@ public class VentanaVerInsumos extends javax.swing.JFrame {
         Insumo.buscarInsumoPorUsuario(insumos, ObligatorioBD.usuarioLoggeado.getId());
         for(Insumo insumo : insumos){
             String elementoLista;
-            elementoLista = insumo.getNombre()+ " | " + insumo.getDescripcion() + " | "+ insumo.getCantidad();
+            elementoLista = insumo.getIDInsumo() + " | " +insumo.getNombre()+ " | " + insumo.getDescripcion() + " | "+ insumo.getCantidad();
             modeloLista.addElement(elementoLista);
         }
         listaInsumos.setModel(modeloLista);  
+    }
+    
+    public VentanaVerInsumos(Reunion reunion){
+        initComponents();
+        modeloLista = new DefaultListModel();
+        Insumo.buscarInsumoPorReunion(insumos, reunion.getIDReunion());
+        for(Insumo insumo: insumos){
+            String elementoLista;
+            elementoLista = insumo.getIDInsumo() + " | " +insumo.getNombre()+ " | " + insumo.getDescripcion() + " | "+ insumo.getCantidad();
+            modeloLista.addElement(elementoLista);
+        }
+        listaInsumos.setModel(modeloLista);
     }
 
     /**
