@@ -35,7 +35,7 @@ public class Usuario {
         this.contrasenia = contrasenia;
     }    
     
-    private Usuario(String username, int id, Date ultimaConexion, String contrasenia){
+    public Usuario(String username, int id, Date ultimaConexion, String contrasenia){
         idUsuario = id;
         this.username = username;
         this.ultimaConexion = ultimaConexion;

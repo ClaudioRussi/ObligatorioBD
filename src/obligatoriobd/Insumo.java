@@ -138,7 +138,7 @@ public class Insumo {
             String sql = "SELECT * FROM Insumo WHERE id_insumo = " + ID +";" ;
             ResultSet result = st.executeQuery(sql);
             while(result.next()){
-                insumo = (new Insumo(result.getString("nombre"), result.getString("descripcion")));
+                insumo = (new Insumo(result.getInt("id_insumo"),result.getString("nombre"), result.getString("descripcion")));
             }
             result.close();
             st.close();

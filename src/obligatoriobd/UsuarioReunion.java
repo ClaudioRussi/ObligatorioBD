@@ -164,6 +164,33 @@ public class UsuarioReunion {
         }
     }
     
+    public static void obtenerIntegrantes(ArrayList<Usuario> usuarios, int idReunion){
+        try{
+            Class.forName("org.postgresql.Driver");
+            Connection conexion = DriverManager.getConnection(ObligatorioBD.url, ObligatorioBD.usuario, ObligatorioBD.contrasenia);
+            java.sql.Statement st = conexion.createStatement();
+            //Toda las reuniones a las que pertenece el usuario
+            
+            String sql = "SELECT * FROM usuario_reunion, usuario WHERE usuario_reunion.id_reunion = "+
+                    idReunion + " AND usuario_reunion.id_usuario = usuario.id_usuario";
+            ResultSet result = st.executeQuery(sql);
+            while(result.next()){
+                usuarios.add(new Usuario(result.getString("username"),result.getInt("id_usuario"),null,
+                         result.getString("contrasenia")));
+            }
+            
+            
+            result.close();
+            st.close();
+            conexion.close();
+        }catch (SQLException e){
+            System.out.println("ERROR DE CONEXION " + e.getMessage());
+        }
+        catch(ClassNotFoundException e){
+            System.out.println("ERROR AL CARGAR LA CLASE "+ e.getMessage());
+        }
+    }
+    
     public int getIdUsuario() {
         return idUsuario;
     }

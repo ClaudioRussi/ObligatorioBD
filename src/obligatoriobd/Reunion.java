@@ -101,16 +101,6 @@ public class Reunion {
             Class.forName("org.postgresql.Driver");
             Connection conexion = DriverManager.getConnection(ObligatorioBD.url, ObligatorioBD.usuario, ObligatorioBD.contrasenia);
             java.sql.Statement st = conexion.createStatement();
-            
-            //Codigo antiguo: SOlo obtiene las reuniones que fueron CREADAS por el usuario
-
-//            String sql = "SELECT * FROM reunion WHERE id_creador = "+ idUsuario;
-//            ResultSet result = st.executeQuery(sql);
-//            while(result.next()){
-//                reuniones.add(new Reunion(result.getInt("id_reunion"),result.getString("nombre"),result.getString("hora_inicio"),
-//                        result.getString("hora_fin"), result.getInt("id_creador")));
-//            }
-            
             //Toda las reuniones a las que pertenece el usuario
             String sql = "SELECT reunion.id_reunion, reunion.nombre, reunion.id_creador\n" +
 "                   FROM reunion, usuario, usuario_reunion \n" +

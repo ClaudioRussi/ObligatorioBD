@@ -100,7 +100,7 @@ public class Compra {
                 fecha.setTimeInMillis(result.getTimestamp("fecha").getTime());
                 
                 compras.add(new Compra(result.getInt("id_usuario"), result.getInt("id_insumo"), result.getInt("precio_compra") ,
-                        fecha, result.getInt("precio_compra")));
+                        fecha, result.getInt("cantidad_comprada")));
             }
             result.close();
             st.close();
