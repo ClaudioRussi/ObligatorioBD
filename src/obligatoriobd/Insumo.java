@@ -112,7 +112,7 @@ public class Insumo {
             java.sql.Statement st = conexion.createStatement();
             
             String sql = "SELECT * FROM posee, insumo WHERE id_usuario = " + idUsuario 
-                    +" AND insumo.id_insumo = posee.id_insumo AND cantidad_poseida >= 0 AND nombre LIKE '%" + nombre + "%';";
+                    +" AND insumo.id_insumo = posee.id_insumo AND cantidad_poseida >= 0 AND LOWER(nombre) LIKE '%" + nombre.toLowerCase() + "%';";
             ResultSet result = st.executeQuery(sql);
             while(result.next()){
                 insumo = (new Insumo(result.getInt("id_insumo"),result.getString("nombre"), result.getString("descripcion")));
@@ -213,7 +213,7 @@ public class Insumo {
             Connection conexion = DriverManager.getConnection(url, PG_usuario, PG_contrasenia);
             java.sql.Statement st = conexion.createStatement();
             
-            String sql = "SELECT * FROM insumo WHERE nombre LIKE '%" + nombre +"%';" ;
+            String sql = "SELECT * FROM insumo WHERE LOWER(nombre) LIKE '%" + nombre.toLowerCase() +"%';" ;
             ResultSet result = st.executeQuery(sql);
             while(result.next()){
                 insumos.add(new Insumo(result.getInt("id_insumo"),result.getString("nombre"), result.getString("descripcion")));

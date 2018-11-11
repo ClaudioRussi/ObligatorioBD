@@ -100,7 +100,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Insumo | Descripci&#xf3;n | Cantidad"/>
+            <Property name="text" type="java.lang.String" value="ID | Insumo | Descripci&#xf3;n | Cantidad"/>
           </Properties>
         </Component>
       </SubComponents>

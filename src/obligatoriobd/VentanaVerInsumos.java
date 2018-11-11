@@ -65,7 +65,7 @@ public class VentanaVerInsumos extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Insumo | Descripción | Cantidad");
+        jLabel1.setText("ID | Insumo | Descripción | Cantidad");
 
         javax.swing.GroupLayout panelBlancoLayout = new javax.swing.GroupLayout(panelBlanco);
         panelBlanco.setLayout(panelBlancoLayout);

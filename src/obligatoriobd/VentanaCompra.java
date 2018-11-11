@@ -50,9 +50,11 @@ public class VentanaCompra extends javax.swing.JFrame {
         horaCompra = new javax.swing.JSpinner();
         jLabel6 = new javax.swing.JLabel();
         fldCantidadInsumo = new javax.swing.JSpinner();
-        fldPrecioCompra = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         btnRegistrarCompra = new javax.swing.JButton();
+        fldPrecioCompra = new javax.swing.JSpinner();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         jLabel5.setText(":");
 
@@ -102,9 +104,13 @@ public class VentanaCompra extends javax.swing.JFrame {
 
         jLabel7.setText(":");
 
+        minutoCompra.setModel(new javax.swing.SpinnerNumberModel(0, 0, 59, 1));
+
+        horaCompra.setModel(new javax.swing.SpinnerNumberModel(0, 0, 23, 1));
+
         jLabel6.setText("Cantidad:");
 
-        fldPrecioCompra.setText("$");
+        fldCantidadInsumo.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
 
         jLabel2.setText("Precio:");
         jLabel2.setToolTipText("");
@@ -116,12 +122,18 @@ public class VentanaCompra extends javax.swing.JFrame {
             }
         });
 
+        fldPrecioCompra.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+
+        jLabel1.setText("Hora");
+
+        jLabel3.setText("Minutos");
+
         javax.swing.GroupLayout panelBlancoLayout = new javax.swing.GroupLayout(panelBlanco);
         panelBlanco.setLayout(panelBlancoLayout);
         panelBlancoLayout.setHorizontalGroup(
             panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBlancoLayout.createSequentialGroup()
-                .addContainerGap(297, Short.MAX_VALUE)
+                .addContainerGap(293, Short.MAX_VALUE)
                 .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnRegistrarCompra)
                     .addGroup(panelBlancoLayout.createSequentialGroup()
@@ -129,25 +141,34 @@ public class VentanaCompra extends javax.swing.JFrame {
                         .addGap(37, 37, 37)
                         .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelBlancoLayout.createSequentialGroup()
-                                .addComponent(horaCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(7, 7, 7)
-                                .addComponent(jLabel7)
-                                .addGap(6, 6, 6)
-                                .addComponent(minutoCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(panelBlancoLayout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addGap(23, 23, 23)
                                 .addComponent(jLabel2))
                             .addGroup(panelBlancoLayout.createSequentialGroup()
                                 .addComponent(fldCantidadInsumo, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(12, 12, 12)
-                                .addComponent(fldPrecioCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(fldPrecioCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelBlancoLayout.createSequentialGroup()
+                                .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(panelBlancoLayout.createSequentialGroup()
+                                        .addComponent(horaCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(7, 7, 7)
+                                        .addComponent(jLabel7))
+                                    .addComponent(jLabel1))
+                                .addGap(6, 6, 6)
+                                .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(minutoCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addGap(33, 33, 33))
         );
         panelBlancoLayout.setVerticalGroup(
             panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBlancoLayout.createSequentialGroup()
-                .addContainerGap(89, Short.MAX_VALUE)
+                .addContainerGap(56, Short.MAX_VALUE)
+                .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelBlancoLayout.createSequentialGroup()
                         .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -159,7 +180,7 @@ public class VentanaCompra extends javax.swing.JFrame {
                             .addComponent(jLabel6)
                             .addComponent(jLabel2))
                         .addGap(6, 6, 6)
-                        .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(fldCantidadInsumo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(fldPrecioCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(calendario, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -204,7 +225,7 @@ public class VentanaCompra extends javax.swing.JFrame {
             }
         }
         Compra compr = new Compra(ObligatorioBD.usuarioLoggeado.getId(), ins.getIDInsumo(),
-                Integer.parseInt(this.fldPrecioCompra.getText()), clndr ,(Integer)this.fldCantidadInsumo.getValue());
+                (int)this.fldPrecioCompra.getValue(), clndr ,(Integer)this.fldCantidadInsumo.getValue());
         compr.Save();
         if(Compra.errorAlGuardar){
             this.lblError.setText("Hubo un error al guardar la compra.");
@@ -242,10 +263,12 @@ public class VentanaCompra extends javax.swing.JFrame {
     private javax.swing.JButton btnRegistrarCompra;
     private com.toedter.calendar.JCalendar calendario;
     private javax.swing.JSpinner fldCantidadInsumo;
-    private javax.swing.JTextField fldPrecioCompra;
+    private javax.swing.JSpinner fldPrecioCompra;
     private javax.swing.JSpinner horaCompra;
     private javax.swing.JTextField idInsumo;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
