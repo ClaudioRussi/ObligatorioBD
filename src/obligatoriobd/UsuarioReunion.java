@@ -17,8 +17,8 @@ import java.sql.*;
 //Usuario/Reunion (idUsuario, idReunion, confirmoInvitacion)
 
 public class UsuarioReunion {
-    int idUsuario;
-    int idReunion;
+    private int idUsuario;
+    private int idReunion;
     boolean confirmoInvitacion;
     private String nombreReunion;
     private String nombreCreador;
