@@ -16,21 +16,22 @@ public class VentanaAgregarInsumo extends javax.swing.JFrame {
 
     DefaultListModel modeloLista;
     ArrayList<Insumo> array = new ArrayList();
-    ArrayList<Insumo> insumos;
+    ArrayList<Insumo> insumos = new ArrayList();
     /**
      * Creates new form VentanaAgregarInsumo2
      */
     public VentanaAgregarInsumo() {
-        initComponents();        initComponents();
+        initComponents();        
         modeloLista = new DefaultListModel();
         //Consulta SQL
-        Insumo.buscarInsumoPorUsuario(array, ObligatorioBD.usuarioLoggeado.getId());
-        for(Insumo insumo : array){
-            String elementoLista;
-            elementoLista = insumo.getNombre()+ " | " + insumo.getDescripcion();
-            modeloLista.addElement(elementoLista);
-        }
-        listaInsumos.setModel(modeloLista); 
+        //No sabemos para que esta
+//        Insumo.buscarInsumoPorUsuario(array, ObligatorioBD.usuarioLoggeado.getId());
+//        for(Insumo insumo : array){
+//            String elementoLista;
+//            elementoLista = insumo.getNombre()+ " | " + insumo.getDescripcion();
+//            modeloLista.addElement(elementoLista);
+//        }
+//        listaInsumos.setModel(modeloLista); 
     }
 
     /**
@@ -64,11 +65,6 @@ public class VentanaAgregarInsumo extends javax.swing.JFrame {
         panelBlanco.setBackground(new java.awt.Color(255, 255, 255));
         panelBlanco.setPreferredSize(new java.awt.Dimension(739, 300));
 
-        listaInsumos.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane1.setViewportView(listaInsumos);
 
         btnInsumo.setText("Agregar insumo");
@@ -150,6 +146,7 @@ public class VentanaAgregarInsumo extends javax.swing.JFrame {
         getContentPane().add(lblAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 40, 30));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void lblAtrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtrasMouseClicked
@@ -168,19 +165,21 @@ public class VentanaAgregarInsumo extends javax.swing.JFrame {
         }
         else{
             posee = new Posee(ins.getIDInsumo(), ObligatorioBD.usuarioLoggeado.getId(), (int)this.spnCantidad.getValue());
+            
+             posee.Save();
+            if(Posee.errorAlGuardar){
+                this.lblError.setText("Error al guardar.");
+            }
+            else{
+                this.lblError.setText("Se ha guardado correctamente.");
+            }
         }
-        posee.Save();
-        if(Posee.errorAlGuardar){
-            this.lblError.setText("Error al guardar.");
-        }
-        else{
-            this.lblError.setText("Se ha guardado correctamente.");
-        }
+       
     }//GEN-LAST:event_btnInsumoActionPerformed
 
     private void btnBuscarInsumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarInsumoActionPerformed
 
-        ArrayList<Insumo> insumos = Insumo.buscarInsumosPorNombre(this.idInsumo.getText());
+        insumos = Insumo.buscarInsumosPorNombre(this.idInsumo.getText());
         //
         DefaultListModel demoList = new DefaultListModel();
         for(Insumo ins: insumos){

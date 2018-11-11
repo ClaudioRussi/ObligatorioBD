@@ -80,11 +80,6 @@ public class VentanaVerReuniones extends javax.swing.JFrame {
         panelBlanco.setBackground(new java.awt.Color(255, 255, 255));
         panelBlanco.setPreferredSize(new java.awt.Dimension(739, 300));
 
-        listaReuniones.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane1.setViewportView(listaReuniones);
 
         btnAbandonar.setText("Abandonar reunion");
