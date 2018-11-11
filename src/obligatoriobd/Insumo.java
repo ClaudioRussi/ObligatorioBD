@@ -104,6 +104,32 @@ public class Insumo {
             
         }
     }
+    
+    static public void buscarInsumoPorReunion(ArrayList<Insumo> insumos, int idReunion){
+        Insumo insumo = null;
+        try{
+            Class.forName("org.postgresql.Driver");
+            Connection conexion = DriverManager.getConnection(url, PG_usuario, PG_contrasenia);
+            java.sql.Statement st = conexion.createStatement();
+            
+            String sql = "SELECT * FROM compra_reunion, insumo WHERE compra_reunion.id_reunion = " + idReunion 
+                    +" AND insumo.id_insumo = compra_reunion.id_insumo";
+            ResultSet result = st.executeQuery(sql);
+            while(result.next()){
+                insumo = (new Insumo(result.getInt("insumo.id_insumo"),result.getString("insumo.nombre"), result.getString("insumo.descripcion")));
+                insumo.setCantidad(result.getInt("compra_reunion.cantidad_comprada"));
+                insumos.add(insumo);
+                
+            }
+            result.close();
+            st.close();
+            conexion.close();
+        }catch (Exception e){
+            System.out.println("ERROR DE CONEXION" + e.getMessage());
+            
+        }
+    }
+    
     static public void buscarInsumoPorUsuarioYNombre(ArrayList<Insumo> insumos, int idUsuario, String nombre){
         Insumo insumo = null;
         try{

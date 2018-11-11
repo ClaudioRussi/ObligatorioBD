@@ -16,10 +16,18 @@ import javax.swing.ImageIcon;
  */
 public class VentanaCompra extends javax.swing.JFrame {
     ArrayList<Insumo> insumos;
+    Reunion reunion = null;
     /**
      * Creates new form VentanaEvento
      */
     public VentanaCompra() {
+        initComponents();
+        ImageIcon icon = new ImageIcon("src/imagenes/fondoCelesteFinoFlecha.jpg");
+        this.lblfondoCeleste.setIcon(icon);
+    }
+    
+    public VentanaCompra(Reunion reunion) {
+        this.reunion = reunion;
         initComponents();
         ImageIcon icon = new ImageIcon("src/imagenes/fondoCelesteFinoFlecha.jpg");
         this.lblfondoCeleste.setIcon(icon);
@@ -201,38 +209,50 @@ public class VentanaCompra extends javax.swing.JFrame {
         clndr.set(Calendar.HOUR_OF_DAY, (Integer)this.horaCompra.getValue());
         clndr.set(Calendar.MINUTE, (Integer)this.minutoCompra.getValue());
         clndr.set(Calendar.SECOND, 0);
+        if(reunion != null){
+            Insumo ins = insumos.get(this.lstInsumos.getSelectedIndex());
+            Posee posee = Posee.buscarPoseePorInsumo(ins.getIDInsumo(), ObligatorioBD.usuarioLoggeado.getId());
+            if(posee != null){
+                posee.setCantidad(posee.getCantidad() + (int)this.fldCantidadInsumo.getValue());
+                posee.Update();
+                if(Posee.errorAlGuardar){
+                    this.lblError.setText("Error al guardar.");
+                }
+                else{
+                    this.lblError.setText("Se ha guardado correctamente.");
+                }
+            }
+            else{
+                posee = new Posee(ins.getIDInsumo(), ObligatorioBD.usuarioLoggeado.getId(), (int)this.fldCantidadInsumo.getValue());
+                posee.Save();
+                if(Posee.errorAlGuardar){
+                    this.lblError.setText("Error al guardar.");
+                }
+                else{
+                    this.lblError.setText("Se ha guardado correctamente.");
+                }
+            }
+            Compra compr = new Compra(ObligatorioBD.usuarioLoggeado.getId(), ins.getIDInsumo(),
+                    (int)this.fldPrecioCompra.getValue(), clndr ,(Integer)this.fldCantidadInsumo.getValue());
+            compr.Save();
+            if(Compra.errorAlGuardar){
+                this.lblError.setText("Hubo un error al guardar la compra.");
+            }
+            else{
+                this.lblError.setText("Se guardo la compra correctamente.");
+            }
+        }
+        else{
+            Insumo ins = insumos.get(this.lstInsumos.getSelectedIndex());
+            CompraReunion compra = new CompraReunion(insumos.get(this.lstInsumos.getSelectedIndex()).getIDInsumo(), reunion.getIDReunion(), ObligatorioBD.usuarioLoggeado.getId(), (int)this.fldCantidadInsumo.getValue(), (int)this.fldPrecioCompra.getValue());
+            compra.Save();
+            if(CompraReunion.errorAlGuardar){
+                this.lblError.setText("Error al guardar.");
+            }else{
+                this.lblError.setText("Se ha guardado correctamente.");
+            }
+        }
         
-        Insumo ins = insumos.get(this.lstInsumos.getSelectedIndex());
-        Posee posee = Posee.buscarPoseePorInsumo(ins.getIDInsumo(), ObligatorioBD.usuarioLoggeado.getId());
-        if(posee != null){
-            posee.setCantidad(posee.getCantidad() + (int)this.fldCantidadInsumo.getValue());
-            posee.Update();
-            if(Posee.errorAlGuardar){
-                this.lblError.setText("Error al guardar.");
-            }
-            else{
-                this.lblError.setText("Se ha guardado correctamente.");
-            }
-        }
-        else{
-            posee = new Posee(ins.getIDInsumo(), ObligatorioBD.usuarioLoggeado.getId(), (int)this.fldCantidadInsumo.getValue());
-            posee.Save();
-            if(Posee.errorAlGuardar){
-                this.lblError.setText("Error al guardar.");
-            }
-            else{
-                this.lblError.setText("Se ha guardado correctamente.");
-            }
-        }
-        Compra compr = new Compra(ObligatorioBD.usuarioLoggeado.getId(), ins.getIDInsumo(),
-                (int)this.fldPrecioCompra.getValue(), clndr ,(Integer)this.fldCantidadInsumo.getValue());
-        compr.Save();
-        if(Compra.errorAlGuardar){
-            this.lblError.setText("Hubo un error al guardar la compra.");
-        }
-        else{
-            this.lblError.setText("Se guardo la compra correctamente.");
-        }
     }//GEN-LAST:event_btnRegistrarCompraActionPerformed
 
     private void btnBuscarInsumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarInsumoActionPerformed
