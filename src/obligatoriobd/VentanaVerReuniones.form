@@ -81,7 +81,6 @@
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Component id="btnAbandonar" max="32767" attributes="0"/>
                                       <Component id="btnGestionar" max="32767" attributes="0"/>
-                                      <Component id="btnBorarReunion" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -115,8 +114,6 @@
                   <Component id="btnGestionar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="btnAbandonar" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="btnBorarReunion" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btnCrearReunion" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -186,11 +183,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblError">
-        </Component>
-        <Component class="javax.swing.JButton" name="btnBorarReunion">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Borrar reuni&#xf3;n"/>
-          </Properties>
         </Component>
       </SubComponents>
     </Container>

@@ -347,7 +347,10 @@ public class VentanaReunion extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVerPagosActionPerformed
 
     private void finalizarReunionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finalizarReunionActionPerformed
-        // TODO add your handling code here:
+        this.reunion.Delete();
+        VentanaPrincipal vent = new VentanaPrincipal();
+        vent.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_finalizarReunionActionPerformed
 
     private void btnAgregarEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarEventoActionPerformed
