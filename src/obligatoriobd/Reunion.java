@@ -220,6 +220,32 @@ public class Reunion {
         return idUs == idUser;
     }
     
+    public static void asignarCreador(Usuario usuario, Reunion reunion){
+        try{
+            Class.forName("org.postgresql.Driver");
+            Connection conexion = DriverManager.getConnection(ObligatorioBD.url, ObligatorioBD.usuario, 
+                    ObligatorioBD.contrasenia);
+            java.sql.Statement st = conexion.createStatement();
+            
+            String insertion = "INSERT INTO gestiona VALUES ("+usuario.getId()+", "+ reunion.getIDReunion() +");";
+            //TEST
+            System.out.println("VA INSERCION");
+            System.out.println(insertion);
+            //
+            st.executeUpdate(insertion);
+            st.close();
+            conexion.close();
+            errorAlGuardar = false;
+        }catch (SQLException e){
+            System.out.println("ERROR DE CONEXION " + e.getMessage());
+            errorAlGuardar = true;
+        }
+        catch(ClassNotFoundException e){
+            System.out.println("ERROR AL GUARDAR LA CLASE "+ e.getMessage());
+            errorAlGuardar = true;
+        }
+    }
+    
     
     
 }
