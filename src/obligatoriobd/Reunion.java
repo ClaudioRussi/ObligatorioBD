@@ -205,8 +205,6 @@ public class Reunion {
             while(result.next()){
                 idUs = result.getInt("id_usuario");
             }
-            
-            
             result.close();
             st.close();
             conexion.close();

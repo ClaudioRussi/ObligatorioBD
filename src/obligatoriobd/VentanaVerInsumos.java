@@ -17,6 +17,8 @@ public class VentanaVerInsumos extends javax.swing.JFrame {
 
     DefaultListModel modeloLista;
     ArrayList<Insumo> insumos = new ArrayList();
+    ArrayList<CompraReunion> compras = new ArrayList();
+    Reunion reunion = null;
     /**
      * Creates new form VerInsumos
      */
@@ -34,9 +36,10 @@ public class VentanaVerInsumos extends javax.swing.JFrame {
     }
     
     public VentanaVerInsumos(Reunion reunion){
+        this.reunion = reunion;
         initComponents();
         modeloLista = new DefaultListModel();
-        Insumo.buscarInsumoPorReunion(insumos, reunion.getIDReunion());
+        Insumo.buscarInsumosYComprasPorReunion(insumos, compras ,reunion.getIDReunion());
         for(Insumo insumo: insumos){
             String elementoLista;
             elementoLista = insumo.getIDInsumo() + " | " +insumo.getNombre()+ " | " + insumo.getDescripcion() + " | "+ insumo.getCantidad();
@@ -126,24 +129,45 @@ public class VentanaVerInsumos extends javax.swing.JFrame {
         int res;
         Posee posee;
         if(this.listaInsumos.getSelectedIndex() != -1){
-            res = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea eliminar este evento?");
+            res = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea eliminar este insumo?");
             if (res == 0){
-                pos = listaInsumos.getSelectedIndex();
-                modeloLista.remove(pos);
-                Insumo insumo = insumos.get(pos);
-                insumos.remove(pos);
-                posee = Posee.buscarPoseePorInsumo(insumo.getIDInsumo(), ObligatorioBD.usuarioLoggeado.getId());
-                posee.Delete();
-                //insumo.Delete();
-                
+                if(reunion == null){
+                    pos = listaInsumos.getSelectedIndex();
+                    modeloLista.remove(pos);
+                    Insumo insumo = insumos.get(pos);
+                    insumos.remove(pos);
+                    posee = Posee.buscarPoseePorInsumo(insumo.getIDInsumo(), ObligatorioBD.usuarioLoggeado.getId());
+                    posee.Delete();
+                    //insumo.Delete();
+                }
+                else{
+                    if(Reunion.verificarGestion(ObligatorioBD.usuarioLoggeado.getId(), reunion.getIDReunion()))
+                    {
+                        pos = listaInsumos.getSelectedIndex();
+                        modeloLista.remove(pos);
+                        Insumo insumo = insumos.get(pos);
+                        insumos.remove(pos);
+                        compras.get(pos).Delete();
+                        compras.remove(pos);
+                    }
+                    else{
+                        this.lblError.setText("No tienes permisos para eliminar");
+                    }
+                }
             }
         }
         
     }//GEN-LAST:event_btnInsumoActionPerformed
 
     private void lblAtrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtrasMouseClicked
-        VentanaInsumo vent = new VentanaInsumo();
-        vent.setVisible(true);
+        if(reunion == null){
+            VentanaInsumo vent = new VentanaInsumo();
+            vent.setVisible(true);
+        }
+        else{
+            VentanaReunion vent = new VentanaReunion(reunion);
+            vent.setVisible(true);
+        }
         this.dispose();
     }//GEN-LAST:event_lblAtrasMouseClicked
 
