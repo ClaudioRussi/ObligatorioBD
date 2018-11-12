@@ -36,13 +36,14 @@ public class VentanaVerInsumos extends javax.swing.JFrame {
     }
     
     public VentanaVerInsumos(Reunion reunion){
+        this.jLabel1.setText("ID | Nombre | Descripcion | Cantidad | ID Comprador");
         this.reunion = reunion;
         initComponents();
         modeloLista = new DefaultListModel();
         Insumo.buscarInsumosYComprasPorReunion(insumos, compras ,reunion.getIDReunion());
         for(Insumo insumo: insumos){
             String elementoLista;
-            elementoLista = insumo.getIDInsumo() + " | " +insumo.getNombre()+ " | " + insumo.getDescripcion() + " | "+ insumo.getCantidad();
+            elementoLista = insumo.getIDInsumo() + " | " +insumo.getNombre()+ " | " + insumo.getDescripcion() + " | "+ insumo.getCantidad()+" | "+compras.get(insumos.indexOf(insumo)).getIdUsuario();
             modeloLista.addElement(elementoLista);
         }
         listaInsumos.setModel(modeloLista);

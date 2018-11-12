@@ -99,7 +99,7 @@ public class CompraReunion {
             String sql = "SELECT * FROM compra_reunion WHERE compra_reunion.id_reunion = " + idReunion +" AND compra_reunion.id_insumo = "+ idInsumo + " AND idUsuario = " + idUsuario ;
             ResultSet result = st.executeQuery(sql);
             while(result.next()){
-                compr = new CompraReunion(result.getInt("idInsumo"),result.getInt("idReunion"),result.getInt("idUsuario"),result.getInt("cantidad_comprada"),result.getInt("precio"));
+                compr = new CompraReunion(result.getInt("id_insumo"),result.getInt("id_reunion"),result.getInt("id_usuario"),result.getInt("cantidad_comprada"),result.getInt("precio"));
                 
             }
             result.close();
