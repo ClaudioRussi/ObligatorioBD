@@ -123,19 +123,24 @@ public class VentanaPagos extends javax.swing.JFrame {
 
     private void btnRechazarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRechazarActionPerformed
         // TODO add your handling code here:
-        Pago pago = pagos.get(listaPagos.getSelectedIndex());
-        pago.Delete();
-        pagos.remove(listaPagos.getSelectedIndex());
-        model.remove(listaPagos.getSelectedIndex());
+        if(this.listaPagos.getSelectedIndex() >= 0){
+            Pago pago = pagos.get(listaPagos.getSelectedIndex());
+            pago.Delete();
+            pagos.remove(listaPagos.getSelectedIndex());
+            model.remove(listaPagos.getSelectedIndex()); 
+        }
+        
     }//GEN-LAST:event_btnRechazarActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         // TODO add your handling code here:
-        Pago pago = pagos.get(listaPagos.getSelectedIndex());
-        pago.setAceptado(true);
-        pago.Update();
-        pagos.remove(listaPagos.getSelectedIndex());
-        model.remove(listaPagos.getSelectedIndex());
+        if(this.listaPagos.getSelectedIndex() >= 0){
+            Pago pago = pagos.get(listaPagos.getSelectedIndex());
+            pago.setAceptado(true);
+            pago.Update();
+            pagos.remove(listaPagos.getSelectedIndex());
+            model.remove(listaPagos.getSelectedIndex());
+        }
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     private void lblAtrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtrasMouseClicked

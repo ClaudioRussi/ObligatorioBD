@@ -6,6 +6,7 @@
 package obligatoriobd;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 
@@ -262,6 +263,10 @@ public class VentanaVerReuniones extends javax.swing.JFrame {
 
     private void btnAgregarPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarPagoActionPerformed
         // TODO add your handling code here:
+        if(this.listaReuniones.getSelectedIndex() >= 0){
+            Pago pago = new Pago((int) this.spPago.getValue(), Calendar.getInstance(), ObligatorioBD.usuarioLoggeado.getId(),reuniones.get(this.listaReuniones.getSelectedIndex()).getIDReunion(),false);
+            pago.Save();
+        }
     }//GEN-LAST:event_btnAgregarPagoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
