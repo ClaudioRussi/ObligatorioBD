@@ -5,6 +5,8 @@
  */
 package obligatoriobd;
 
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 
 /**
@@ -12,7 +14,8 @@ import javax.swing.ImageIcon;
  * @author Agustín
  */
 public class VentanaPagos extends javax.swing.JFrame {
-
+    ArrayList<Pago> pagos = new ArrayList();
+    DefaultListModel model = new DefaultListModel();
     /**
      * Creates new form VentanaPagos
      */
@@ -22,6 +25,17 @@ public class VentanaPagos extends javax.swing.JFrame {
         this.reunion = reunion;
         ImageIcon icon = new ImageIcon("src/imagenes/fondoCelesteFinoFlecha.jpg");
         this.lblfondoCeleste.setIcon(icon);
+        
+        Pago.buscarPagosPorReunion(reunion.getIDReunion(), pagos);
+        
+        for(Pago pago:pagos){
+            if(!pago.isAceptado()){
+                Usuario usr = Usuario.buscarUserPorId(pago.idUsuario);
+                model.addElement(usr.getUsername()+" | $"+pago.precio+" | "+Herramientas.ConvertirCalendarAString(pago.fecha)); 
+            }
+            
+        }
+        listaPagos.setModel(model);
     }
 
     /**
@@ -58,11 +72,6 @@ public class VentanaPagos extends javax.swing.JFrame {
         panelBlanco.setBackground(new java.awt.Color(255, 255, 255));
         panelBlanco.setPreferredSize(new java.awt.Dimension(739, 300));
 
-        listaPagos.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane1.setViewportView(listaPagos);
 
         btnConfirmar.setText("Confirmar");
@@ -114,10 +123,19 @@ public class VentanaPagos extends javax.swing.JFrame {
 
     private void btnRechazarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRechazarActionPerformed
         // TODO add your handling code here:
+        Pago pago = pagos.get(listaPagos.getSelectedIndex());
+        pago.Delete();
+        pagos.remove(listaPagos.getSelectedIndex());
+        model.remove(listaPagos.getSelectedIndex());
     }//GEN-LAST:event_btnRechazarActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         // TODO add your handling code here:
+        Pago pago = pagos.get(listaPagos.getSelectedIndex());
+        pago.setAceptado(true);
+        pago.Update();
+        pagos.remove(listaPagos.getSelectedIndex());
+        model.remove(listaPagos.getSelectedIndex());
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     private void lblAtrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtrasMouseClicked

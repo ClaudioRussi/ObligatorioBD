@@ -160,7 +160,6 @@ public class Compra {
     }
    
     public void Update(){
-        System.out.println(dtf.parse(new Date().toString()));
         try{
             Class.forName("org.postgresql.Driver");
             Connection conexion = DriverManager.getConnection(url, PG_usuario, PG_contrasenia);
