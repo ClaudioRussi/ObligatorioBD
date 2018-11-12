@@ -61,9 +61,6 @@ public class VentanaReunion extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         agregarUsuario = new javax.swing.JButton();
         btnAgregarInsumo = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        pago = new javax.swing.JTextField();
-        btnAgregarPago = new javax.swing.JButton();
         btnVerPagos = new javax.swing.JButton();
         creador = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -116,17 +113,6 @@ public class VentanaReunion extends javax.swing.JFrame {
         btnAgregarInsumo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgregarInsumoActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setText("Agregar pago:");
-
-        pago.setText("$");
-
-        btnAgregarPago.setText("Agregar");
-        btnAgregarPago.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarPagoActionPerformed(evt);
             }
         });
 
@@ -196,11 +182,6 @@ public class VentanaReunion extends javax.swing.JFrame {
                                     .addComponent(asignarCreador))))
                         .addGap(54, 54, 54)
                         .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelBlancoLayout.createSequentialGroup()
-                                .addComponent(pago, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnAgregarPago))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(finalizarReunion, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(panelBlancoLayout.createSequentialGroup()
@@ -212,25 +193,17 @@ public class VentanaReunion extends javax.swing.JFrame {
                                         .addComponent(btnVerPagos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(btnVerInsumo, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE))))
                             .addComponent(lblOtrasOpciones, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(53, Short.MAX_VALUE))))
         );
         panelBlancoLayout.setVerticalGroup(
             panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBlancoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(panelBlancoLayout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(pago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnAgregarPago)))
-                    .addGroup(panelBlancoLayout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(11, 11, 11)
-                        .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtidUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(agregarUsuario))))
+                .addGap(15, 15, 15)
+                .addComponent(jLabel4)
+                .addGap(11, 11, 11)
+                .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtidUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(agregarUsuario))
                 .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelBlancoLayout.createSequentialGroup()
                         .addGap(22, 22, 22)
@@ -254,7 +227,7 @@ public class VentanaReunion extends javax.swing.JFrame {
                         .addComponent(finalizarReunion)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblError, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(83, Short.MAX_VALUE))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
 
         getContentPane().add(panelBlanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 740, 300));
@@ -341,10 +314,6 @@ public class VentanaReunion extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_asignarCreadorActionPerformed
 
-    private void btnAgregarPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarPagoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAgregarPagoActionPerformed
-
     private void btnVerPagosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerPagosActionPerformed
         VentanaPagos vent = new VentanaPagos(reunion);
         vent.setVisible(true);
@@ -384,12 +353,10 @@ public class VentanaReunion extends javax.swing.JFrame {
     private javax.swing.JButton asignarCreador;
     private javax.swing.JButton btnAgregarEvento;
     private javax.swing.JButton btnAgregarInsumo;
-    private javax.swing.JButton btnAgregarPago;
     private javax.swing.JButton btnVerInsumo;
     private javax.swing.JButton btnVerPagos;
     private javax.swing.JLabel creador;
     private javax.swing.JButton finalizarReunion;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
@@ -398,7 +365,6 @@ public class VentanaReunion extends javax.swing.JFrame {
     private javax.swing.JLabel lblOtrasOpciones;
     private javax.swing.JLabel lblfondoCeleste;
     private javax.swing.JList<String> listaCreadores;
-    private javax.swing.JTextField pago;
     private javax.swing.JPanel panelBlanco;
     private javax.swing.JTextField txtidUsuario;
     // End of variables declaration//GEN-END:variables
