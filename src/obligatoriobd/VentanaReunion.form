@@ -106,10 +106,6 @@
                               <Component id="finalizarReunion" min="-2" pref="244" max="-2" attributes="0"/>
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="1" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <Component id="lblOtrasOpciones" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
-                                      </Group>
                                       <Component id="btnAgregarInsumo" alignment="1" min="-2" pref="130" max="-2" attributes="0"/>
                                       <Component id="btnAgregarEvento" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
                                   </Group>
@@ -120,6 +116,10 @@
                                   </Group>
                               </Group>
                           </Group>
+                          <EmptySpace max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Component id="lblOtrasOpciones" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
