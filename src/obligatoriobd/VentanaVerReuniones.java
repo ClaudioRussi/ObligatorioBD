@@ -64,8 +64,8 @@ public class VentanaVerReuniones extends javax.swing.JFrame {
         lblError = new javax.swing.JLabel();
         btnBorarReunion = new javax.swing.JButton();
         btnAgregarPago = new javax.swing.JButton();
-        pago = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        spPago = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(779, 300));
@@ -116,7 +116,7 @@ public class VentanaVerReuniones extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("ID | Reunión");
+        jLabel1.setText("ID | Reunión | Pago");
 
         btnBorarReunion.setText("Borrar reunión");
         btnBorarReunion.addActionListener(new java.awt.event.ActionListener() {
@@ -132,9 +132,9 @@ public class VentanaVerReuniones extends javax.swing.JFrame {
             }
         });
 
-        pago.setText("$");
-
         jLabel2.setText("Agregar pago:");
+
+        spPago.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
 
         javax.swing.GroupLayout panelBlancoLayout = new javax.swing.GroupLayout(panelBlanco);
         panelBlanco.setLayout(panelBlancoLayout);
@@ -149,18 +149,19 @@ public class VentanaVerReuniones extends javax.swing.JFrame {
                             .addComponent(jLabel1))
                         .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelBlancoLayout.createSequentialGroup()
-                                .addGap(29, 29, 29)
-                                .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(btnAbandonar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnGestionar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(panelBlancoLayout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelBlancoLayout.createSequentialGroup()
-                                        .addComponent(pago, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(btnAgregarPago)))))
+                                        .addGap(88, 88, 88)
+                                        .addComponent(btnAgregarPago))))
+                            .addGroup(panelBlancoLayout.createSequentialGroup()
+                                .addGap(29, 29, 29)
+                                .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(spPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(btnAbandonar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(btnGestionar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(panelBlancoLayout.createSequentialGroup()
                         .addComponent(lblError, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -185,8 +186,8 @@ public class VentanaVerReuniones extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(pago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAgregarPago))
+                    .addComponent(btnAgregarPago)
+                    .addComponent(spPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(51, 51, 51)
                 .addComponent(btnGestionar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -277,7 +278,7 @@ public class VentanaVerReuniones extends javax.swing.JFrame {
     private javax.swing.JLabel lblError;
     private javax.swing.JLabel lblfondoCeleste;
     private javax.swing.JList<String> listaReuniones;
-    private javax.swing.JTextField pago;
     private javax.swing.JPanel panelBlanco;
+    private javax.swing.JSpinner spPago;
     // End of variables declaration//GEN-END:variables
 }
