@@ -16,8 +16,10 @@ public class VentanaPagos extends javax.swing.JFrame {
     /**
      * Creates new form VentanaPagos
      */
-    public VentanaPagos() {
+    Reunion reunion;
+    public VentanaPagos(Reunion reunion) {
         initComponents();
+        this.reunion = reunion;
         ImageIcon icon = new ImageIcon("src/imagenes/fondoCelesteFinoFlecha.jpg");
         this.lblfondoCeleste.setIcon(icon);
     }
@@ -41,6 +43,12 @@ public class VentanaPagos extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblAtras.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblAtrasMouseClicked(evt);
+            }
+        });
         getContentPane().add(lblAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 40, 30));
 
         lblfondoCeleste.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -111,6 +119,12 @@ public class VentanaPagos extends javax.swing.JFrame {
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnConfirmarActionPerformed
+
+    private void lblAtrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtrasMouseClicked
+        VentanaReunion vent = new VentanaReunion(reunion);
+        vent.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_lblAtrasMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

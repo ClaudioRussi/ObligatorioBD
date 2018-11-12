@@ -191,6 +191,8 @@ public class Reunion {
        
     }
     
+    
+    
     public static boolean verificarGestion (int idUser, int idReunion){
         int idUs = -1;
         try{

@@ -36,9 +36,9 @@ public class VentanaVerInsumos extends javax.swing.JFrame {
     }
     
     public VentanaVerInsumos(Reunion reunion){
+        initComponents();
         this.jLabel1.setText("ID | Nombre | Descripcion | Cantidad | ID Comprador");
         this.reunion = reunion;
-        initComponents();
         modeloLista = new DefaultListModel();
         Insumo.buscarInsumosYComprasPorReunion(insumos, compras ,reunion.getIDReunion());
         for(Insumo insumo: insumos){

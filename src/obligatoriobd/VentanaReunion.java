@@ -331,6 +331,7 @@ public class VentanaReunion extends javax.swing.JFrame {
     private void asignarCreadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_asignarCreadorActionPerformed
         if(this.listaCreadores.getSelectedIndex() >= 0){
             Usuario usuario = creadores.get(this.listaCreadores.getSelectedIndex());
+            //Me auto asigno como creador
             Reunion.asignarCreador(usuario, reunion);
             if(Reunion.errorAlGuardar == true){
                 this.lblError.setText("El usuario ya gestiona el grupo");
@@ -345,7 +346,9 @@ public class VentanaReunion extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAgregarPagoActionPerformed
 
     private void btnVerPagosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerPagosActionPerformed
-        // TODO add your handling code here:
+        VentanaPagos vent = new VentanaPagos(reunion);
+        vent.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnVerPagosActionPerformed
 
     private void finalizarReunionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finalizarReunionActionPerformed

@@ -150,6 +150,7 @@ public class VentanaCrearReunion extends javax.swing.JFrame {
     private void crearReunionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearReunionActionPerformed
         Reunion reunion = new Reunion(this.txtNombre.getText(), "", "", ObligatorioBD.usuarioLoggeado.getId());
         reunion.Save();
+        Reunion.asignarCreador(ObligatorioBD.usuarioLoggeado, reunion);
         if(Evento.errorAlGuardar){
             lblError.setText("Hubo un error al guardar el evento");
         }else{

@@ -96,7 +96,7 @@ public class CompraReunion {
             Connection conexion = DriverManager.getConnection(ObligatorioBD.url, ObligatorioBD.usuario, ObligatorioBD.contrasenia);
             java.sql.Statement st = conexion.createStatement();
             
-            String sql = "SELECT * FROM compra_reunion WHERE compra_reunion.id_reunion = " + idReunion +" AND compra_reunion.id_insumo = "+ idInsumo + " AND idUsuario = " + idUsuario ;
+            String sql = "SELECT * FROM compra_reunion WHERE compra_reunion.id_reunion = " + idReunion +" AND compra_reunion.id_insumo = "+ idInsumo + " AND id_usuario = " + idUsuario ;
             ResultSet result = st.executeQuery(sql);
             while(result.next()){
                 compr = new CompraReunion(result.getInt("id_insumo"),result.getInt("id_reunion"),result.getInt("id_usuario"),result.getInt("cantidad_comprada"),result.getInt("precio"));
