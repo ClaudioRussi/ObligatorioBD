@@ -296,12 +296,12 @@ public class VentanaReunion extends javax.swing.JFrame {
                 this.lblError.setText("No existe el usuario que se quiere agregar");
                 
             }else{
-                ArrayList<Usuario> usuarios = new ArrayList();
-                UsuarioReunion.obtenerIntegrantes(usuarios, this.reunion.getIDReunion());
-                if(usuarios.contains(Usuario.buscarUserPorId(Integer.parseInt(this.txtidUsuario.getText())))){
-                    this.lblError.setText("Ya ha sido agregado anteriormente.");
-                }
-                else{
+//                ArrayList<Usuario> usuarios = new ArrayList();
+//                UsuarioReunion.obtenerIntegrantes(usuarios, this.reunion.getIDReunion());
+//                if(usuarios.contains(Usuario.buscarUserPorId(idUserAux))){
+//                    this.lblError.setText("Ya ha sido agregado anteriormente.");
+//                }
+//                 else{
                     st = conexion.createStatement();
                     String insertion = "INSERT INTO usuario_reunion VALUES ("+idUserAux+", "+this.reunion.getIDReunion()+", false);"; 
                     System.out.println("ID REUNION DE CLASE: " + this.reunion.getIDReunion());
@@ -315,7 +315,7 @@ public class VentanaReunion extends javax.swing.JFrame {
 
                     conexion.close();
                     errorAlGuardar = false;
-                }   
+                //}   
             }
             
         }catch (SQLException e){
