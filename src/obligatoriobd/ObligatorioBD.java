@@ -83,6 +83,14 @@ public class ObligatorioBD {
             }
             result.close();
             
+            sql = "SELECT MAX(id_pago) AS id FROM pago;";
+            result = st.executeQuery(sql);
+            
+            while(result.next()){
+                Pago.ID = result.getInt("id");
+            }
+            result.close();
+            
             //Catchs y cierres
             st.close();
             conexion.close();
@@ -97,6 +105,7 @@ public class ObligatorioBD {
         System.out.println("Id usuario cargado, id actual es: "+Usuario.id+".\n");
         System.out.println("Id evento cargado, id actual es: "+Evento.id+".\n");
         System.out.println("Id insumo cargado, id actual es: "+Insumo.id+".\n");
+        System.out.println("Id insumo cargado, id actual es: "+Pago.ID+".\n");
 
         VentanaSesion vent = new VentanaSesion();
         vent.setVisible(true);

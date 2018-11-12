@@ -23,7 +23,7 @@ public class Pago {
     int idUsuario;
     int idReunion;
     boolean aceptado = false;
-    static private int ID = 0;
+    static public int ID = 0;
     static boolean errorAlGuardar = false;
     
     public Pago(int precio, Calendar fecha, int idUsuario, int idReunion, boolean aceptado){
@@ -127,7 +127,7 @@ public class Pago {
             while(result.next()){
                 Calendar fecha = Calendar.getInstance();
                 fecha.setTimeInMillis(result.getTimestamp("fecha").getTime());
-                pagos.add(new Pago(result.getInt("idPago"),result.getInt("precio"),fecha,result.getInt("idUsuario"),result.getInt("idReunion"),result.getBoolean("aceptado")));
+                pagos.add(new Pago(result.getInt("id_pago"),result.getInt("precio"),fecha,result.getInt("id_usuario"),result.getInt("id_reunion"),result.getBoolean("aceptado")));
             }
             result.close();
             st.close();
@@ -143,7 +143,7 @@ public class Pago {
             Class.forName("org.postgresql.Driver");
             Connection conexion =  DriverManager.getConnection(ObligatorioBD.url, ObligatorioBD.usuario, ObligatorioBD.contrasenia);
             java.sql.Statement st = conexion.createStatement();
-            String insertion = "UPDATE pago SET aceptado = "+this.idUsuario+ this.aceptado +" WHERE id_pago ="+ this.idPago;
+            String insertion = "UPDATE pago SET aceptado = "+ this.aceptado +" WHERE id_pago ="+ this.idPago;
             st.executeUpdate(insertion);
             st.close();
             conexion.close();
