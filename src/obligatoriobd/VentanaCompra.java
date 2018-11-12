@@ -244,13 +244,22 @@ public class VentanaCompra extends javax.swing.JFrame {
         }
         else{
             Insumo ins = insumos.get(this.lstInsumos.getSelectedIndex());
-            CompraReunion compra = new CompraReunion(insumos.get(this.lstInsumos.getSelectedIndex()).getIDInsumo(), reunion.getIDReunion(), ObligatorioBD.usuarioLoggeado.getId(), (int)this.fldCantidadInsumo.getValue(), (int)this.fldPrecioCompra.getValue());
-            compra.Save();
-            if(CompraReunion.errorAlGuardar){
-                this.lblError.setText("Error al guardar.");
-            }else{
-                this.lblError.setText("Se ha guardado correctamente.");
+            CompraReunion compra = CompraReunion.buscarCompra(ins.getIDInsumo(), reunion.getIDReunion(), ObligatorioBD.usuarioLoggeado.getId());
+            if(compra == null){
+                compra = new CompraReunion(insumos.get(this.lstInsumos.getSelectedIndex()).getIDInsumo(), reunion.getIDReunion(), ObligatorioBD.usuarioLoggeado.getId(), (int)this.fldCantidadInsumo.getValue(), (int)this.fldPrecioCompra.getValue());
+                compra.Save();
+                if(CompraReunion.errorAlGuardar){
+                    this.lblError.setText("Error al guardar.");
+                }else{
+                    this.lblError.setText("Se ha guardado correctamente.");
+                }
             }
+            else{
+                compra.setCantidadComprada((int)this.fldCantidadInsumo.getValue());
+                compra.setPrecio((int)this.fldPrecioCompra.getValue());
+                compra.Update();
+            }
+            
         }
         
     }//GEN-LAST:event_btnRegistrarCompraActionPerformed
