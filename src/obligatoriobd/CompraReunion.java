@@ -117,8 +117,26 @@ public class CompraReunion {
             Class.forName("org.postgresql.Driver");
             Connection conexion = DriverManager.getConnection(ObligatorioBD.url, ObligatorioBD.usuario, ObligatorioBD.contrasenia);
             java.sql.Statement st = conexion.createStatement();
-            String Update = "DELETE FROM CompraReunion WHERE id_insumo = "+ this.idInsumo + " AND id_usuario = " + this.idUsuario + " AND id_reunion = " + this.idReunion;
+            String Update = "DELETE FROM compra_reunion WHERE id_insumo = "+ this.idInsumo + " AND id_usuario = " + this.idUsuario + " AND id_reunion = " + this.idReunion;
             st.executeUpdate(Update);
+            st.close();
+            conexion.close();
+        }catch (SQLException e){
+            System.out.println("ERROR DE CONEXION " + e.getMessage());
+            
+        }
+        catch(ClassNotFoundException e){
+            System.out.println("ERROR AL CARGAR LA CLASE "+ e.getMessage());
+        }
+    }
+    
+    public void Update(){
+        try{
+            Class.forName("org.postgresql.Driver");
+            Connection conexion = DriverManager.getConnection(ObligatorioBD.url, ObligatorioBD.usuario, ObligatorioBD.contrasenia);
+            java.sql.Statement st = conexion.createStatement();
+            String insertion = "UPDATE compra_reunion SET cantidad_comprada = "+ this.cantidadComprada +", precio = " + this.precio+" WHERE id_insumo = "+ this.idInsumo +" AND id_usuario = "+this.idUsuario+" AND id_reunion = "+this.idReunion ;
+            st.executeUpdate(insertion);
             st.close();
             conexion.close();
         }catch (SQLException e){
