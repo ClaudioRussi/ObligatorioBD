@@ -246,6 +246,63 @@ public class Reunion {
         }
     }
     
+    public int getDeuda(){
+        int resultado=0;
+        try{
+            Class.forName("org.postgresql.Driver");
+            Connection conexion = DriverManager.getConnection(ObligatorioBD.url, ObligatorioBD.usuario, ObligatorioBD.contrasenia);
+            java.sql.Statement st = conexion.createStatement();
+            //Toda las reuniones a las que pertenece el usuario
+            String sql = "SELECT SUM(precio) FROM compra_reunion WHERE id_reunion ="+ this.getIDReunion();
+            ResultSet result = st.executeQuery(sql);
+            while(result.next()){
+                resultado = result.getInt("sum"); 
+            }
+            
+            
+            result.close();
+            st.close();
+            conexion.close();
+        }catch (SQLException e){
+            System.out.println("ERROR DE CONEXION " + e.getMessage());
+        }
+        catch(ClassNotFoundException e){
+            System.out.println("ERROR AL CARGAR LA CLASE "+ e.getMessage());
+        }
+        
+        return resultado;
+    }
+    
+    public int getCantidadIntegrantes(){
+        ArrayList<Usuario> usuarios = new ArrayList();
+        UsuarioReunion.obtenerIntegrantes(usuarios, idReunion);
+        return usuarios.size()+1;
+    }
+    
+    public int getPagosUsuario(int idUser){
+        int resultado =0;
+        try{
+            Class.forName("org.postgresql.Driver");
+            Connection conexion = DriverManager.getConnection(ObligatorioBD.url, ObligatorioBD.usuario, ObligatorioBD.contrasenia);
+            java.sql.Statement st = conexion.createStatement();
+            //Toda las reuniones a las que pertenece el usuario
+            String sql = "SELECT SUM(precio) FROM pago WHERE id_reunion ="+ this.getIDReunion() + " AND aceptado = true AND id_usuario = "+ idUser;
+            ResultSet result = st.executeQuery(sql);
+            while(result.next()){
+                resultado = result.getInt("sum"); 
+            }
+            result.close();
+            st.close();
+            conexion.close();
+        }catch (SQLException e){
+            System.out.println("ERROR DE CONEXION " + e.getMessage());
+        }
+        catch(ClassNotFoundException e){
+            System.out.println("ERROR AL CARGAR LA CLASE "+ e.getMessage());
+        }
+        
+        return resultado;
+    }
     
     
 }

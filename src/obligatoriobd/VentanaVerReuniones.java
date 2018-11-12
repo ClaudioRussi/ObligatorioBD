@@ -33,9 +33,14 @@ public class VentanaVerReuniones extends javax.swing.JFrame {
         modeloLista = new DefaultListModel();
         //Consulta SQL
         Reunion.buscarReunionesPorUsuario(reuniones, ObligatorioBD.usuarioLoggeado.getId());
+        
+        //
+        
+        //
         for(Reunion reunion : reuniones){
             String elementoLista;
-            elementoLista = reunion.getIDReunion()+" | " +reunion.getNombre();
+            int total = (reunion.getDeuda() / reunion.getCantidadIntegrantes()) - reunion.getPagosUsuario(ObligatorioBD.usuarioLoggeado.getId());
+            elementoLista = reunion.getIDReunion()+" | " +reunion.getNombre()+ " | "+ total ;
             modeloLista.addElement(elementoLista);
         }
         listaReuniones.setModel(modeloLista);
