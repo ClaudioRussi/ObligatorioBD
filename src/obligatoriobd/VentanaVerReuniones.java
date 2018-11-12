@@ -116,6 +116,11 @@ public class VentanaVerReuniones extends javax.swing.JFrame {
         jLabel1.setText("ID | Reunión");
 
         btnBorarReunion.setText("Borrar reunión");
+        btnBorarReunion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorarReunionActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelBlancoLayout = new javax.swing.GroupLayout(panelBlanco);
         panelBlanco.setLayout(panelBlancoLayout);
@@ -146,7 +151,7 @@ public class VentanaVerReuniones extends javax.swing.JFrame {
         panelBlancoLayout.setVerticalGroup(
             panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBlancoLayout.createSequentialGroup()
-                .addContainerGap(41, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -223,6 +228,10 @@ public class VentanaVerReuniones extends javax.swing.JFrame {
         vent.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnInvitacionesActionPerformed
+
+    private void btnBorarReunionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorarReunionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBorarReunionActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAbandonar;
