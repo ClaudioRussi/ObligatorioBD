@@ -17,6 +17,8 @@ public class VentanaVerInsumos extends javax.swing.JFrame {
 
     DefaultListModel modeloLista;
     ArrayList<Insumo> insumos = new ArrayList();
+    ArrayList<CompraReunion> compras = new ArrayList();
+    Reunion reunion = null;
     /**
      * Creates new form VerInsumos
      */
@@ -34,9 +36,10 @@ public class VentanaVerInsumos extends javax.swing.JFrame {
     }
     
     public VentanaVerInsumos(Reunion reunion){
+        this.reunion = reunion;
         initComponents();
         modeloLista = new DefaultListModel();
-        Insumo.buscarInsumoPorReunion(insumos, reunion.getIDReunion());
+        Insumo.buscarInsumosYComprasPorReunion(insumos, compras ,reunion.getIDReunion());
         for(Insumo insumo: insumos){
             String elementoLista;
             elementoLista = insumo.getIDInsumo() + " | " +insumo.getNombre()+ " | " + insumo.getDescripcion() + " | "+ insumo.getCantidad();
@@ -59,6 +62,7 @@ public class VentanaVerInsumos extends javax.swing.JFrame {
         listaInsumos = new javax.swing.JList<>();
         btnInsumo = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        lblError = new javax.swing.JLabel();
         lblAtras = new javax.swing.JLabel();
         lblfondoCeleste = new javax.swing.JLabel();
 
@@ -87,20 +91,25 @@ public class VentanaVerInsumos extends javax.swing.JFrame {
                 .addGap(96, 96, 96)
                 .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
-                    .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(btnInsumo, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBlancoLayout.createSequentialGroup()
+                            .addComponent(lblError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(btnInsumo))
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(244, Short.MAX_VALUE))
         );
         panelBlancoLayout.setVerticalGroup(
             panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBlancoLayout.createSequentialGroup()
-                .addContainerGap(31, Short.MAX_VALUE)
+                .addContainerGap(25, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
-                .addComponent(btnInsumo)
+                .addGroup(panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnInsumo)
+                    .addComponent(lblError))
                 .addGap(28, 28, 28))
         );
 
@@ -126,24 +135,45 @@ public class VentanaVerInsumos extends javax.swing.JFrame {
         int res;
         Posee posee;
         if(this.listaInsumos.getSelectedIndex() != -1){
-            res = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea eliminar este evento?");
+            res = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea eliminar este insumo?");
             if (res == 0){
-                pos = listaInsumos.getSelectedIndex();
-                modeloLista.remove(pos);
-                Insumo insumo = insumos.get(pos);
-                insumos.remove(pos);
-                posee = Posee.buscarPoseePorInsumo(insumo.getIDInsumo(), ObligatorioBD.usuarioLoggeado.getId());
-                posee.Delete();
-                //insumo.Delete();
-                
+                if(reunion == null){
+                    pos = listaInsumos.getSelectedIndex();
+                    modeloLista.remove(pos);
+                    Insumo insumo = insumos.get(pos);
+                    insumos.remove(pos);
+                    posee = Posee.buscarPoseePorInsumo(insumo.getIDInsumo(), ObligatorioBD.usuarioLoggeado.getId());
+                    posee.Delete();
+                    //insumo.Delete();
+                }
+                else{
+                    if(Reunion.verificarGestion(ObligatorioBD.usuarioLoggeado.getId(), reunion.getIDReunion()))
+                    {
+                        pos = listaInsumos.getSelectedIndex();
+                        modeloLista.remove(pos);
+                        Insumo insumo = insumos.get(pos);
+                        insumos.remove(pos);
+                        compras.get(pos).Delete();
+                        compras.remove(pos);
+                    }
+                    else{
+                        this.lblError.setText("No tienes permisos para eliminar");
+                    }
+                }
             }
         }
         
     }//GEN-LAST:event_btnInsumoActionPerformed
 
     private void lblAtrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtrasMouseClicked
-        VentanaInsumo vent = new VentanaInsumo();
-        vent.setVisible(true);
+        if(reunion == null){
+            VentanaInsumo vent = new VentanaInsumo();
+            vent.setVisible(true);
+        }
+        else{
+            VentanaReunion vent = new VentanaReunion(reunion);
+            vent.setVisible(true);
+        }
         this.dispose();
     }//GEN-LAST:event_lblAtrasMouseClicked
 
@@ -154,6 +184,7 @@ public class VentanaVerInsumos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAtras;
+    private javax.swing.JLabel lblError;
     private javax.swing.JLabel lblfondoCeleste;
     private javax.swing.JList<String> listaInsumos;
     private javax.swing.JPanel panelBlanco;

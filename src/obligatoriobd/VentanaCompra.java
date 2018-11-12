@@ -267,8 +267,14 @@ public class VentanaCompra extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarInsumoActionPerformed
 
     private void lblAtrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtrasMouseClicked
-        VentanaInsumo vent = new VentanaInsumo();
-        vent.setVisible(true);
+        if(reunion == null){
+          VentanaInsumo vent = new VentanaInsumo();
+          vent.setVisible(true);
+        }
+        else{
+          VentanaReunion vent = new VentanaReunion(reunion);
+          vent.setVisible(true);
+        }
         this.dispose();
     }//GEN-LAST:event_lblAtrasMouseClicked
 

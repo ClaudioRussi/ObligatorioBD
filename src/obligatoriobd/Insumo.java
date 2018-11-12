@@ -105,20 +105,25 @@ public class Insumo {
         }
     }
     
-    static public void buscarInsumoPorReunion(ArrayList<Insumo> insumos, int idReunion){
-        Insumo insumo = null;
+    static public void buscarInsumosYComprasPorReunion(ArrayList<Insumo> insumos, ArrayList<CompraReunion> compras, int idReunion){
+         
+        
         try{
             Class.forName("org.postgresql.Driver");
             Connection conexion = DriverManager.getConnection(url, PG_usuario, PG_contrasenia);
             java.sql.Statement st = conexion.createStatement();
             
-            String sql = "SELECT insumo.id_insumo, insumo.nombre, insumo.descripcion, compra_reunion.cantidad_comprada FROM compra_reunion, insumo WHERE compra_reunion.id_reunion = " + idReunion 
+            String sql = "SELECT insumo.id_insumo, insumo.nombre, insumo.descripcion, compra_reunion.cantidad_comprada, compra_reunion.precio, compra_reunion.id_usuario FROM compra_reunion, insumo WHERE compra_reunion.id_reunion = " + idReunion 
                     +" AND insumo.id_insumo = compra_reunion.id_insumo";
             ResultSet result = st.executeQuery(sql);
             while(result.next()){
-                insumo = (new Insumo(result.getInt("id_insumo"),result.getString("nombre"), result.getString("descripcion")));
+                
+                Insumo insumo = (new Insumo(result.getInt("id_insumo"),result.getString("nombre"), result.getString("descripcion")));
                 insumo.setCantidad(result.getInt("cantidad_comprada"));
                 insumos.add(insumo);
+                
+                CompraReunion compra = new CompraReunion(result.getInt("id_insumo"),idReunion,result.getInt("id_usuario"),result.getInt("cantidad_comprada"),result.getInt("precio"));
+                compras.add(compra);
                 
             }
             result.close();
